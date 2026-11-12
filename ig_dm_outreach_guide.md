@@ -171,9 +171,9 @@ Faiz - Data Sorcerers
 Gunakan template ini saat pertama kali menghubungi CP via WhatsApp setelah mendapatkan kontak dari DM IG:
 
 ```text
-Halo Kak/Teman-teman pengurus [Nama Organisasi], salam kenal, saya Faiz dari tim Data Sorcerers Yogyakarta.
+Halo [Mas/Kak Nama CP], salam kenal, saya Faiz dari tim Data Sorcerers Yogyakarta.
 
-Menindaklanjuti komunikasi kita via DM Instagram (@[username_ig]), berikut saya sampaikan berkas Surat Undangan Resmi (No. [Nomor Surat]) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari [Nama Organisasi].
+Saya mendapat arahan dari admin @[username_ig] untuk menghubungi [nama CP] terkait surat undangan dan untuk menindaklanjuti komunikasi kita via DM Instagram (@[username_ig]), berikut saya sampaikan berkas Surat Undangan Resmi (No. [Nomor Surat]) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari [Nama Organisasi].
 
 Acara diadakan hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub. Kehadiran delegasi bersifat undangan kehormatan (free).
 
