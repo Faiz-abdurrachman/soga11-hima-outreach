@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/api/data", "destination": "/database_soga11.json" },
+    { "source": "/surat/:id", "destination": "/api/surat/:id" },
     { "source": "/tor", "destination": "/TOR%20SOGA%20%2311.pdf" },
     { "source": "/excel", "destination": "/Database_SOGA_11_Master.xlsx" }
   ]

@@ -142,8 +142,8 @@ Gunakan template ini jika pihak HIMA membalas meminta berkas/surat langsung dila
 Baik kak/teman-teman pengurus @[username_ig], terima kasih banyak atas respon baiknya.
 
 Berikut kami lampirkan tautan berkas resmi kegiatan Sorcery Gathering #11 (SOGA #11):
-- Surat Undangan Resmi (No. [Nomor Surat]): https://withdrawal-condition-machines-furniture.trycloudflare.com/surat/[ID_Entitas]
-- Term of Reference (TOR) Acara: https://withdrawal-condition-machines-furniture.trycloudflare.com/tor
+- Surat Undangan Resmi (No. [Nomor Surat]): https://hima-smoky.vercel.app/surat/[ID_Entitas]
+- Term of Reference (TOR) Acara: https://hima-smoky.vercel.app/tor
 
 Undangan ini merupakan undangan kehormatan bagi perwakilan pengurus/anggota [Nama Organisasi] dengan kuota maksimal 3 orang delegasi (free).
 
@@ -158,7 +158,7 @@ Faiz - Data Sorcerers
 Gunakan template konfirmasi singkat ini di DM sebelum berpindah ke WhatsApp:
 
 ```text
-Siap, terima kasih banyak teman-teman @[username_ig]. Berkas surat undangan resmi dan koordinasi kehadiran delegasi segera saya hubungi via nomor WhatsApp tersebut ya. Sampai jumpa di SOGA #11!
+Siap, terima kasih banyak teman-teman @[username_ig]. Berkas surat undangan resmi dan koordinasi kehadiran delegasi segera saya hubungi via nomor WhatsApp tersebut ya.
 
 Faiz - Data Sorcerers
 ```
