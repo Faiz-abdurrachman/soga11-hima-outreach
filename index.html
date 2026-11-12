@@ -1,0 +1,3712 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOGA #11 - Outreach & RSVP Pipeline</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'tnum';
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    select.clean-select {
+      background-position: right 0.4rem center;
+      background-repeat: no-repeat;
+      background-size: 1.1em 1.1em;
+      padding-right: 1.6rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    select.select-dark-arrow {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23334155' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    }
+    select.select-white-arrow {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="min-h-screen text-slate-900 bg-slate-50 antialiased selection:bg-slate-200">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform transition-all duration-200 translate-y-8 opacity-0 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 border border-slate-800 text-xs">
+      <div id="toast-indicator" class="w-2 h-2 rounded-full bg-emerald-400"></div>
+      <div>
+        <p id="toast-title" class="font-medium text-slate-100">Pemberitahuan</p>
+        <p id="toast-message" class="text-slate-400 text-[11px] mt-0.5">Operasi berhasil dijalankan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top App Navigation -->
+  <header class="border-b border-slate-200 bg-white sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-md bg-slate-900 text-white flex items-center justify-center font-bold text-xs tracking-wider">
+          DS
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm font-semibold text-slate-900 tracking-tight">SOGA #11 Master Pipeline</h1>
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">100% Presisi HIMA</span>
+          </div>
+          <p class="text-[11px] text-slate-500 hidden sm:block">Sistem Manajemen Blasting & Tracking Undangan Delegasi</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="/surat/zip" download class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-indigo-200 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold transition shadow-2xs">
+          <svg class="w-3.5 h-3.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span class="hidden sm:inline">Semua Surat (ZIP)</span>
+          <span class="sm:hidden">ZIP</span>
+        </a>
+
+        <a href="/tor" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition shadow-2xs">
+          <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>PDF TOR</span>
+        </a>
+
+        <button onclick="openQRModal()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 text-xs font-medium transition shadow-2xs">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <span>Buka di HP</span>
+        </button>
+
+        <a href="/excel" download class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition shadow-2xs">
+          <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Excel</span>
+        </a>
+
+        <button onclick="saveData(true)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium transition shadow-xs">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+          <span>Simpan</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- KPI / Metric Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
+        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Total Target</p>
+        <p id="kpi-total" class="text-2xl font-bold text-slate-900 mt-1">91</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">51 HIMA • 26 Media • 14 Lain</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
+        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Siap Kirim</p>
+        <p id="kpi-siap" class="text-2xl font-bold text-blue-600 mt-1">0</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">Antrean surat</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
+        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Terkirim</p>
+        <p id="kpi-terkirim" class="text-2xl font-bold text-emerald-600 mt-1">0</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">Sudah diblast</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
+        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Pending Balasan</p>
+        <p id="kpi-pending" class="text-2xl font-bold text-amber-600 mt-1">0</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">Menunggu respon</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
+        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Konfirmasi Hadir</p>
+        <p id="kpi-hadir" class="text-2xl font-bold text-purple-600 mt-1">0</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">Ormawa hadir</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
+        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Total Delegasi</p>
+        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">0</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">Orang terkonfirmasi</p>
+      </div>
+    </div>
+
+    <!-- Filters, Search & View Controls -->
+    <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-2xs space-y-3">
+      <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <!-- Search -->
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="search-input" placeholder="Cari nama organisasi, kampus, nomor surat, atau akun IG..." class="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-md text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-400 transition">
+        </div>
+
+        <!-- Filter Dropdowns -->
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="filter-kategori" class="clean-select select-dark-arrow border border-slate-200 rounded-md py-2 pl-3 pr-8 text-xs text-slate-700 bg-white focus:outline-none focus:border-slate-400">
+            <option value="ALL">Semua Kategori (91)</option>
+            <option value="HIMA">HIMA & Ormawa (51)</option>
+            <option value="Media Partner">Media Partner (26)</option>
+            <option value="Instansi Pemerintah">Instansi Pemerintah (6)</option>
+            <option value="Komunitas">Komunitas (5)</option>
+            <option value="Inkubator & Bisnis">Inkubator & Bisnis (3)</option>
+          </select>
+
+          <select id="filter-status" class="clean-select select-dark-arrow border border-slate-200 rounded-md py-2 pl-3 pr-8 text-xs text-slate-700 bg-white focus:outline-none focus:border-slate-400">
+            <option value="ALL">Semua Status Kirim</option>
+            <option value="Draft">Draft</option>
+            <option value="Siap Kirim">Siap Kirim</option>
+            <option value="Terkirim">Terkirim</option>
+            <option value="Pending / Menunggu Balasan">Pending Balasan</option>
+            <option value="Gagal / Perlu Alternatif">Gagal / Perlu Alternatif</option>
+          </select>
+
+          <select id="filter-rsvp" class="clean-select select-dark-arrow border border-slate-200 rounded-md py-2 pl-3 pr-8 text-xs text-slate-700 bg-white focus:outline-none focus:border-slate-400">
+            <option value="ALL">Semua RSVP</option>
+            <option value="Belum Respon">Belum Respon</option>
+            <option value="Diterima / Membaca">Diterima / Membaca</option>
+            <option value="Menunggu Disposisi">Menunggu Disposisi</option>
+            <option value="Konfirmasi Hadir (3 Delegasi)">Hadir (3 Delegasi)</option>
+            <option value="Konfirmasi Hadir (<3 Delegasi)">Hadir (<3 Delegasi)</option>
+            <option value="Berhalangan Hadir">Berhalangan Hadir</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rapid Outreach Tip Bar -->
+    <div class="p-3 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-950 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-2xs">
+      <div class="flex items-center gap-2">
+        <span class="font-bold px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] tracking-wide uppercase">Fitur Cepat</span>
+        <span>Kirim via HP: Klik tombol <strong>"Salin & Buka IG DM"</strong> untuk copy template pesan dan otomatis buka profil IG. Jika belum ada IG, tombol berubah menjadi <strong>"Kirim via WhatsApp"</strong> langsung!</span>
+      </div>
+      <button onclick="openQRModal()" class="text-indigo-700 hover:text-indigo-900 font-semibold underline text-left shrink-0 text-xs">
+        Scan QR HP
+      </button>
+    </div>
+
+    <!-- Desktop Table View (Hidden on mobile) -->
+    <div class="hidden lg:block bg-white border border-slate-200 rounded-lg shadow-2xs overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50/75 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+              <th class="py-3 px-3 w-10 text-center">No</th>
+              <th class="py-3 px-3 min-w-[180px]">Organisasi & Kampus</th>
+              <th class="py-3 px-3 min-w-[150px]">Instagram (Presisi)</th>
+              <th class="py-3 px-3 min-w-[130px]">WhatsApp & CP</th>
+              <th class="py-3 px-3 min-w-[130px]">Status Kirim</th>
+              <th class="py-3 px-3 min-w-[140px]">Status RSVP</th>
+              <th class="py-3 px-3 w-20 text-center">Delegasi</th>
+              <th class="py-3 px-3 min-w-[110px]">PIC Panitia</th>
+              <th class="py-3 px-3 w-36 text-center">Aksi Cepat</th>
+            </tr>
+          </thead>
+          <tbody id="table-body" class="divide-y divide-slate-100 font-normal">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Mobile Rapid Outreach Cards (Shown on mobile & tablets) -->
+    <div id="mobile-cards" class="lg:hidden space-y-3">
+      <!-- Rendered by JS -->
+    </div>
+
+  </main>
+
+  <!-- OUTREACH MESSAGE MODAL (3-STAGE OUTREACH FLOW) -->
+  <div id="message-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/50">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 id="msg-modal-nama" class="font-semibold text-slate-900 text-sm">Nama Organisasi</h3>
+            <span id="msg-modal-kategori" class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700">Kategori</span>
+          </div>
+          <div class="flex items-center gap-3 mt-0.5 flex-wrap">
+            <p id="msg-modal-sub" class="text-slate-500 text-[11px]">Surat: No. 001/SOGA/SU/DS/XI/2026 | IG: @handle</p>
+            <a id="msg-modal-pdf-link" href="#" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-semibold text-rose-600 hover:text-rose-700 hover:underline">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span>Buka Surat PDF</span>
+            </a>
+          </div>
+        </div>
+        <button onclick="closeMessageModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-md">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Notice Banner if No IG -->
+      <div id="msg-modal-notice" class="hidden mx-5 mt-3 p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2">
+        <span class="text-sm">⚠️</span>
+        <div>
+          <span class="font-bold">Kanal Utama: WhatsApp Langsung</span>
+          <p class="mt-0.5 text-amber-800">Entitas ini belum memiliki akun Instagram resmi HIMA mandiri. Tab dialihkan otomatis ke <strong>Tab 3 (WhatsApp)</strong> untuk koordinasi resmi via kontak pengurus.</p>
+        </div>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="flex border-b border-slate-200 bg-slate-50/30 text-xs">
+        <button id="tab-btn-1" onclick="switchMsgTab(1)" class="flex-1 py-2.5 px-3 font-medium text-slate-900 border-b-2 border-slate-900 bg-white transition text-center">
+          1. Pembuka IG DM
+        </button>
+        <button id="tab-btn-2" onclick="switchMsgTab(2)" class="flex-1 py-2.5 px-3 font-medium text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition text-center">
+          2. Balasan IG DM
+        </button>
+        <button id="tab-btn-3" onclick="switchMsgTab(3)" class="flex-1 py-2.5 px-3 font-medium text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition text-center">
+          3. WhatsApp Resmi
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Pembuka IG DM -->
+      <div id="msg-tab-1" class="p-5 space-y-3">
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>Kirim pesan ini ke DM Instagram resmi himpunan:</span>
+          <span class="text-slate-400 text-[11px]">Tanpa emoji • Bersih • Sesuai TOR</span>
+        </div>
+        <textarea id="text-ig-open" rows="8" readonly class="w-full bg-slate-50 border border-slate-200 rounded-md p-3 text-xs text-slate-800 font-sans focus:outline-none focus:border-slate-400 leading-relaxed"></textarea>
+        <div class="flex items-center justify-between pt-1">
+          <button id="btn-open-ig-direct" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-medium transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Buka Profil Instagram
+          </button>
+          <button onclick="copyCurrentText('text-ig-open', 'Pesan DM Instagram disalin.')" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium transition shadow-xs">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            Salin Pesan IG
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Balas IG DM (Dua Kondisi) -->
+      <div id="msg-tab-2" class="p-5 space-y-3 hidden">
+        <div class="flex items-center justify-between text-xs text-slate-600">
+          <span class="font-semibold text-slate-800">Pilih Kondisi Balasan di DM Instagram:</span>
+          <span class="text-slate-400 text-[11px]">Tanpa emoji • Presisi</span>
+        </div>
+
+        <!-- Sub-tabs for Tab 2 -->
+        <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-lg text-xs">
+          <button id="subtab-ig-dm" type="button" onclick="selectIGReplySubtype('dm')" class="py-2 px-3 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center">
+            Pilihan A: Minta Kirim di DM Saja
+          </button>
+          <button id="subtab-ig-wa" type="button" onclick="selectIGReplySubtype('wa')" class="py-2 px-3 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center">
+            Pilihan B: Sudah Kasih No WA
+          </button>
+        </div>
+
+        <p id="msg-ig-reply-desc" class="text-[11px] text-slate-500 leading-normal">
+          Kirim balasan ini jika himpunan membalas minta berkas/surat langsung dilampirkan di DM Instagram (disertai link download Surat PDF resmi & TOR).
+        </p>
+
+        <textarea id="text-ig-reply" rows="8" readonly class="w-full bg-slate-50 border border-slate-200 rounded-md p-3 text-xs text-slate-800 font-sans focus:outline-none focus:border-slate-400 leading-relaxed"></textarea>
+        
+        <div class="flex items-center justify-between pt-1">
+          <span id="msg-ig-reply-hint" class="text-[11px] text-emerald-600 font-medium">Link surat otomatis siap diakses</span>
+          <button onclick="copyCurrentText('text-ig-reply', 'Pesan balasan IG disalin.')" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium transition shadow-xs">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            Salin Balasan IG
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: Chat WhatsApp Resmi (Dua Kondisi) -->
+      <div id="msg-tab-3" class="p-5 space-y-3 hidden">
+        <div class="flex items-center justify-between text-xs text-slate-600">
+          <span class="font-semibold text-slate-800">Pilih Tahap Komunikasi WhatsApp:</span>
+          <span id="msg-wa-status" class="text-emerald-600 font-medium text-[11px]">+62 8xx</span>
+        </div>
+
+        <!-- Sub-tabs for Tab 3 -->
+        <div class="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-lg text-[11px]">
+          <button id="subtab-wa-first" type="button" onclick="selectWASubtype('first')" class="py-1.5 px-2 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center">
+            1. Chat Pertama
+          </button>
+          <button id="subtab-wa-followup" type="button" onclick="selectWASubtype('followup')" class="py-1.5 px-2 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center">
+            2. Follow-Up
+          </button>
+          <button id="subtab-wa-confirmed" type="button" onclick="selectWASubtype('confirmed')" class="py-1.5 px-2 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center">
+            3. Konfirmasi Hadir
+          </button>
+        </div>
+
+        <p id="msg-wa-desc" class="text-[11px] text-slate-500 leading-normal">
+          Kirim pesan pengantar surat resmi saat pertama kali menghubungi kontak pengurus via WhatsApp.
+        </p>
+
+        <textarea id="text-wa-first" rows="8" readonly class="w-full bg-slate-50 border border-slate-200 rounded-md p-3 text-xs text-slate-800 font-sans focus:outline-none focus:border-slate-400 leading-relaxed"></textarea>
+        
+        <div class="flex items-center justify-between pt-1">
+          <button onclick="copyCurrentText('text-wa-first', 'Teks WhatsApp disalin.')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-medium transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            Salin Teks WA
+          </button>
+          <button id="btn-blast-wa-direct" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium transition shadow-xs">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+            <span id="btn-blast-wa-text">Kirim Berkas via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Detail & Follow-up Edit Modal -->
+  <div id="edit-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/50">
+        <h3 class="font-semibold text-slate-900 text-sm">Edit Data Entitas</h3>
+        <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-md">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-3.5 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Nama Organisasi / Entitas</label>
+          <input type="text" id="modal-nama" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 focus:outline-none focus:border-slate-400">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Username Instagram</label>
+            <input type="text" id="modal-ig" placeholder="@handle" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 focus:outline-none focus:border-slate-400">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">No WhatsApp CP</label>
+            <input type="text" id="modal-wa" placeholder="628xxx" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 focus:outline-none focus:border-slate-400">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Nama CP / Jabatan</label>
+            <input type="text" id="modal-cp" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 focus:outline-none focus:border-slate-400">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">PIC Panitia SOGA</label>
+            <input type="text" id="modal-pic" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 focus:outline-none focus:border-slate-400">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Status Kirim</label>
+            <select id="modal-status-kirim" class="clean-select select-dark-arrow w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 bg-white">
+              <option value="Draft">Draft</option>
+              <option value="Siap Kirim">Siap Kirim</option>
+              <option value="Terkirim">Terkirim</option>
+              <option value="Pending / Menunggu Balasan">Pending Balasan</option>
+              <option value="Gagal / Perlu Alternatif">Gagal / Perlu Alternatif</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Status RSVP</label>
+            <select id="modal-rsvp" class="clean-select select-dark-arrow w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 bg-white">
+              <option value="Belum Respon">Belum Respon</option>
+              <option value="Diterima / Membaca">Diterima / Membaca</option>
+              <option value="Menunggu Disposisi">Menunggu Disposisi</option>
+              <option value="Konfirmasi Hadir (3 Delegasi)">Hadir (3 Delegasi)</option>
+              <option value="Konfirmasi Hadir (<3 Delegasi)">Hadir (<3 Delegasi)</option>
+              <option value="Berhalangan Hadir">Berhalangan Hadir</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Jumlah Delegasi</label>
+            <input type="number" min="0" max="10" id="modal-delegasi" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900">
+          </div>
+          <div class="col-span-2">
+            <label class="block font-medium text-slate-700 mb-1">Nama Delegasi</label>
+            <input type="text" id="modal-nama-delegasi" placeholder="Nama lengkap peserta" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Catatan & Log Follow-up</label>
+          <textarea id="modal-catatan" rows="2" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-slate-900 placeholder-slate-400"></textarea>
+        </div>
+      </div>
+
+      <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-end gap-2">
+        <button onclick="closeEditModal()" class="px-3 py-1.5 border border-slate-200 text-slate-600 hover:bg-slate-100 rounded-md transition text-xs font-medium">Batal</button>
+        <button onclick="saveModalChanges()" class="px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-md transition text-xs font-medium shadow-xs">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR CODE MODAL FOR MOBILE ACCESS -->
+  <div id="qr-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-sm overflow-hidden text-center p-6 space-y-4">
+      <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center mx-auto">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 text-base">Akses Blasting di Smartphone</h3>
+        <p class="text-xs text-slate-500 mt-1">Scan QR code ini pakai kamera HP kamu untuk langsung membuka dashboard dan kirim DM/WA satu klik.</p>
+      </div>
+
+      <!-- QR Code Image -->
+      <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl inline-block">
+        <img id="qr-image" src="" alt="Scan QR Code" class="w-48 h-48 mx-auto rounded-lg">
+      </div>
+
+      <div class="space-y-1">
+        <p class="text-[11px] font-mono text-purple-700 break-all bg-purple-50 p-2 rounded border border-purple-100" id="qr-url-text">https://withdrawal-condition-machines-furniture.trycloudflare.com</p>
+        <p class="text-[10px] text-slate-400">Pastikan HP terhubung ke internet saat membuka link publik.</p>
+      </div>
+
+      <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-end">
+        <button onclick="closeQRModal()" class="px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium rounded-md transition shadow-xs">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const INITIAL_DATA = [
+  {
+    "no": 1,
+    "id": "HIM-001",
+    "kategori": "HIMA",
+    "nama": "HMIF UAD (Akstrat)",
+    "kampus": "Universitas Ahmad Dahlan",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "https://linktr.ee/HMIF_UAD",
+    "email": "",
+    "wa": "62895428203204",
+    "cp": "Pengurus Akstrat HMIF",
+    "kanal": "WA",
+    "no_surat": "001/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 3,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Divisi Akstrat HMIF UAD (outreach via WA). Akun IG resmi @hmifuad dipegang entitas HIM-023.",
+    "file_surat": "001-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMIF UAD (Akstrat).pdf"
+  },
+  {
+    "no": 2,
+    "id": "HIM-002",
+    "kategori": "HIMA",
+    "nama": "HIMA AKSI UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "ig": "@himaaksi_uny",
+    "url_ig": "https://www.instagram.com/himaaksi_uny/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6285735174335",
+    "cp": "Humas HIMA AKSI",
+    "kanal": "WA",
+    "no_surat": "002/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "002-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMA AKSI UNY.pdf"
+  },
+  {
+    "no": 3,
+    "id": "HIM-003",
+    "kategori": "HIMA",
+    "nama": "FORKOM TRI SV UGM",
+    "kampus": "Sekolah Vokasi Universitas Gadjah Mada",
+    "ig": "@forkomtrisvugm",
+    "url_ig": "https://www.instagram.com/forkomtrisvugm/",
+    "bio_link": "",
+    "email": "tri.sv@ugm.ac.id",
+    "wa": "6282315940631",
+    "cp": "Humas FORKOM TRI",
+    "kanal": "WA",
+    "no_surat": "003/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak & Email Tersedia",
+    "file_surat": "003-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - FORKOM TRI SV UGM.pdf"
+  },
+  {
+    "no": 4,
+    "id": "HIM-004",
+    "kategori": "HIMA",
+    "nama": "HIMA PBD FBSB UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "ig": "@himapbdfbsbuny",
+    "url_ig": "https://www.instagram.com/himapbdfbsbuny/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6289669782300",
+    "cp": "Humas HIMA PBD",
+    "kanal": "WA",
+    "no_surat": "004/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Handle IG terverifikasi aktif",
+    "file_surat": "004-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMA PBD FBSB UNY.pdf"
+  },
+  {
+    "no": 5,
+    "id": "HIM-005",
+    "kategori": "HIMA",
+    "nama": "HME UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "ig": "@hmeuny",
+    "url_ig": "https://www.instagram.com/hmeuny/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6285235119240",
+    "cp": "Pengurus HIMA Vikasi",
+    "kanal": "WA",
+    "no_surat": "005/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Menunggu Disposisi",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Surat diterima, sedang dikoordinasikan internal pengurus HME FT UNY untuk nama delegasi.",
+    "file_surat": "005-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HME UNY.pdf"
+  },
+  {
+    "no": 6,
+    "id": "HIM-006",
+    "kategori": "HIMA",
+    "nama": "HIMAFORKA UTDI",
+    "kampus": "Universitas Teknologi Digital Indonesia",
+    "ig": "@himaforka_utdi",
+    "url_ig": "https://www.instagram.com/himaforka_utdi/",
+    "bio_link": "https://linktr.ee/himaforkautdi_",
+    "email": "himaforka@utdi.ac.id",
+    "wa": "6281568261422",
+    "cp": "Humas HIMAFORKA (Verified Bio)",
+    "kanal": "WA",
+    "no_surat": "006/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Baru Terverifikasi",
+    "file_surat": "006-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMAFORKA UTDI.pdf"
+  },
+  {
+    "no": 7,
+    "id": "HIM-007",
+    "kategori": "HIMA",
+    "nama": "HIMAKOM AKPRIND",
+    "kampus": "Institut Sains & Teknologi AKPRIND",
+    "ig": "@himakom.akprind",
+    "url_ig": "https://www.instagram.com/himakom.akprind/",
+    "bio_link": "",
+    "email": "himakom@akprind.ac.id",
+    "wa": "6285786293843",
+    "cp": "Humas HIMAKOM AKPRIND",
+    "kanal": "WA",
+    "no_surat": "007/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Diterima / Membaca",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "HIMAKOM Universitas AKPRIND Indonesia",
+    "file_surat": "007-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMAKOM AKPRIND.pdf"
+  },
+  {
+    "no": 8,
+    "id": "HIM-008",
+    "kategori": "HIMA",
+    "nama": "HIMAKOM UGM",
+    "kampus": "Universitas Gadjah Mada",
+    "ig": "@himakomugm",
+    "url_ig": "https://www.instagram.com/himakomugm/",
+    "bio_link": "https://linktr.ee/himakomugm",
+    "email": "himakom.mipa@ugm.ac.id",
+    "wa": "628170015550",
+    "cp": "Divisi Humas & Jaringan",
+    "kanal": "WA",
+    "no_surat": "008/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak & Email Tersedia",
+    "file_surat": "008-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMAKOM UGM.pdf"
+  },
+  {
+    "no": 9,
+    "id": "HIM-009",
+    "kategori": "HIMA",
+    "nama": "HIMANIKA UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "ig": "@himanika_uny",
+    "url_ig": "https://www.instagram.com/himanika_uny/",
+    "bio_link": "https://linktr.ee/himanikauny",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "009/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Diterima / Membaca",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "009-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMANIKA UNY.pdf"
+  },
+  {
+    "no": 10,
+    "id": "HIM-010",
+    "kategori": "HIMA",
+    "nama": "HIMASI AMIKOM",
+    "kampus": "Universitas AMIKOM Yogyakarta",
+    "ig": "@himasiamikom",
+    "url_ig": "https://www.instagram.com/himasiamikom/",
+    "bio_link": "https://linktr.ee/himasiamikom",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "010/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "010-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMASI AMIKOM.pdf"
+  },
+  {
+    "no": 11,
+    "id": "HIM-011",
+    "kategori": "HIMA",
+    "nama": "HIMASI UAD",
+    "kampus": "Universitas Ahmad Dahlan",
+    "ig": "@himasi_uad",
+    "url_ig": "https://www.instagram.com/himasi_uad/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6282188785310",
+    "cp": "Humas HIMASI UAD",
+    "kanal": "WA",
+    "no_surat": "011/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "011-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMASI UAD.pdf"
+  },
+  {
+    "no": 12,
+    "id": "HIM-012",
+    "kategori": "HIMA",
+    "nama": "HIMASI UTDI",
+    "kampus": "Universitas Teknologi Digital Indonesia",
+    "ig": "@himasi_utdi",
+    "url_ig": "https://www.instagram.com/himasi_utdi/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6281338855301",
+    "cp": "Humas HIMASI UTDI",
+    "kanal": "WA",
+    "no_surat": "012/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "012-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMASI UTDI.pdf"
+  },
+  {
+    "no": 13,
+    "id": "HIM-013",
+    "kategori": "HIMA",
+    "nama": "HIMASIA UTDI",
+    "kampus": "Universitas Teknologi Digital Indonesia",
+    "ig": "@himasia_utdi",
+    "url_ig": "https://www.instagram.com/himasia_utdi/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6285747354969",
+    "cp": "Humas HIMASIA UTDI",
+    "kanal": "WA",
+    "no_surat": "013/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "013-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMASIA UTDI.pdf"
+  },
+  {
+    "no": 14,
+    "id": "HIM-014",
+    "kategori": "HIMA",
+    "nama": "HIMATEKNO UNJAYA",
+    "kampus": "Universitas Jenderal Achmad Yani Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "himateknounjani@gmail.com",
+    "wa": "6285848678732",
+    "cp": "Humas HIMATEKNO",
+    "kanal": "WA",
+    "no_surat": "014/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Belum ada akun IG resmi HIMA mandiri (@fttiunjaya adalah fakultas). Outreach via kontak WA.",
+    "file_surat": "014-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATEKNO UNJAYA.pdf"
+  },
+  {
+    "no": 15,
+    "id": "HIM-015",
+    "kategori": "HIMA",
+    "nama": "HIMATIF UPNVYK",
+    "kampus": "UPN \"Veteran\" Yogyakarta",
+    "ig": "@himatifupnvyk",
+    "url_ig": "https://www.instagram.com/himatifupnvyk/",
+    "bio_link": "https://linktr.ee/himatifupnvyk",
+    "email": "",
+    "wa": "6285183118020",
+    "cp": "Humas HIMATIF UPNVY",
+    "kanal": "WA",
+    "no_surat": "015/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "015-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATIF UPNVYK.pdf"
+  },
+  {
+    "no": 16,
+    "id": "HIM-016",
+    "kategori": "HIMA",
+    "nama": "HIMATIK UAA",
+    "kampus": "Universitas Alma Ata",
+    "ig": "@himatikuaa",
+    "url_ig": "https://www.instagram.com/himatikuaa/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "016/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "016-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATIK UAA.pdf"
+  },
+  {
+    "no": 17,
+    "id": "HIM-017",
+    "kategori": "HIMA",
+    "nama": "HIMATIKA STMIK El Rahma",
+    "kampus": "STMIK El Rahma Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "himatika.era@gmail.com",
+    "wa": "6285702212770",
+    "cp": "Humas HIMATIKA EL-RAHMA",
+    "kanal": "WA",
+    "no_surat": "017/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Belum ada akun IG resmi HIMA aktif (@bemelrahma_yk adalah BEM). Outreach via kontak WA.",
+    "file_surat": "017-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATIKA STMIK El Rahma.pdf"
+  },
+  {
+    "no": 18,
+    "id": "HIM-018",
+    "kategori": "HIMA",
+    "nama": "HIMATIKA UNRIYO",
+    "kampus": "Universitas Respati Yogyakarta",
+    "ig": "@himatika_unriyo",
+    "url_ig": "https://www.instagram.com/himatika_unriyo/",
+    "bio_link": "https://linktr.ee/himatikaunriyo",
+    "email": "himatika@respati.ac.id",
+    "wa": "6285822916045",
+    "cp": "CP Tech Hub HIMATIKA UNRIYO (Verified Linktree)",
+    "kanal": "IG_DM",
+    "no_surat": "018/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Diterima / Membaca",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Akun IG resmi HIMA terverifikasi @himatika_unriyo (sebelumnya event tag @great_unriyo).",
+    "file_surat": "018-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATIKA UNRIYO.pdf"
+  },
+  {
+    "no": 19,
+    "id": "HIM-019",
+    "kategori": "HIMA",
+    "nama": "HIMATIKA UTY",
+    "kampus": "Universitas Teknologi Yogyakarta",
+    "ig": "@himatikauty",
+    "url_ig": "https://www.instagram.com/himatikauty/",
+    "bio_link": "https://linktr.ee/himatikauty",
+    "email": "",
+    "wa": "6285184453716",
+    "cp": "Humas HIMATIKA UTY",
+    "kanal": "WA",
+    "no_surat": "019/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "019-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATIKA UTY.pdf"
+  },
+  {
+    "no": 20,
+    "id": "HIM-020",
+    "kategori": "HIMA",
+    "nama": "HIMSI UAA",
+    "kampus": "Universitas Alma Ata",
+    "ig": "@himsi_uaa",
+    "url_ig": "https://www.instagram.com/himsi_uaa/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "020/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "020-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMSI UAA.pdf"
+  },
+  {
+    "no": 21,
+    "id": "HIM-021",
+    "kategori": "HIMA",
+    "nama": "HMF ITDA",
+    "kampus": "Institut Teknologi Dirgantara Adisutjipto",
+    "ig": "@hmf_itda",
+    "url_ig": "https://www.instagram.com/hmf_itda/",
+    "bio_link": "",
+    "email": "itda.hmf@gmail.com",
+    "wa": "6285796709096",
+    "cp": "Humas HMF ITDA",
+    "kanal": "WA",
+    "no_surat": "021/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "HMF ITD Adisutjipto terverifikasi",
+    "file_surat": "021-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMF ITDA.pdf"
+  },
+  {
+    "no": 22,
+    "id": "HIM-022",
+    "kategori": "HIMA",
+    "nama": "HMIF AMIKOM",
+    "kampus": "Universitas AMIKOM Yogyakarta",
+    "ig": "@hmifamikom",
+    "url_ig": "https://www.instagram.com/hmifamikom/",
+    "bio_link": "https://linktr.ee/hmifamikom",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "022/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "022-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMIF AMIKOM.pdf"
+  },
+  {
+    "no": 23,
+    "id": "HIM-023",
+    "kategori": "HIMA",
+    "nama": "HMIF UAD",
+    "kampus": "Universitas Ahmad Dahlan",
+    "ig": "@hmifuad",
+    "url_ig": "https://www.instagram.com/hmifuad/",
+    "bio_link": "https://linktr.ee/HMIF_UAD",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "023/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "023-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMIF UAD.pdf"
+  },
+  {
+    "no": 24,
+    "id": "HIM-024",
+    "kategori": "HIMA",
+    "nama": "HMIF UNJAYA",
+    "kampus": "Universitas Jenderal Achmad Yani Yogyakarta",
+    "ig": "@hmif_unjaya",
+    "url_ig": "https://www.instagram.com/hmif_unjaya/",
+    "bio_link": "https://linktr.ee/HMIFUNJAYA",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "024/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "024-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMIF UNJAYA.pdf"
+  },
+  {
+    "no": 25,
+    "id": "HIM-025",
+    "kategori": "HIMA",
+    "nama": "HMIF USD",
+    "kampus": "Universitas Sanata Dharma",
+    "ig": "@hmif.usd",
+    "url_ig": "https://www.instagram.com/hmif.usd/",
+    "bio_link": "",
+    "email": "",
+    "wa": "628816516325",
+    "cp": "Humas HMIF USD",
+    "kanal": "WA",
+    "no_surat": "025/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "025-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMIF USD.pdf"
+  },
+  {
+    "no": 26,
+    "id": "HIM-026",
+    "kategori": "HIMA",
+    "nama": "HIMMAIF UII",
+    "kampus": "Universitas Islam Indonesia",
+    "ig": "@himmaifuii",
+    "url_ig": "https://www.instagram.com/himmaifuii/",
+    "bio_link": "https://linktr.ee/himmaifuii",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "026/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "026-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMMAIF UII.pdf"
+  },
+  {
+    "no": 27,
+    "id": "HIM-027",
+    "kategori": "HIMA",
+    "nama": "HMJ TI Janabadra",
+    "kampus": "Universitas Janabadra",
+    "ig": "@hmjti_ujb",
+    "url_ig": "https://www.instagram.com/hmjti_ujb/",
+    "bio_link": "https://janabadra.ac.id/",
+    "email": "hmj_ti@janabadra.ac.id",
+    "wa": "6281228827035",
+    "cp": "Humas HMJ TI Janabadra",
+    "kanal": "IG_DM",
+    "no_surat": "027/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Akun IG resmi HIMA terverifikasi @hmjti_ujb (sebelumnya akun universitas @univ.janabadra).",
+    "file_surat": "027-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMJ TI Janabadra.pdf"
+  },
+  {
+    "no": 28,
+    "id": "HIM-028",
+    "kategori": "HIMA",
+    "nama": "HIMATIKA UNU Yogyakarta",
+    "kampus": "Universitas Nahdlatul Ulama Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "unuinformatic@gmail.com",
+    "wa": "6283128388681",
+    "cp": "Humas HIMATIKA UNU (Updated Name)",
+    "kanal": "WA",
+    "no_surat": "028/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "i",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Belum ada akun IG resmi HIMA mandiri (@fti_unuyo adalah fakultas). Outreach via kontak WA.",
+    "file_surat": "028-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMATIKA UNU Yogyakarta.pdf"
+  },
+  {
+    "no": 29,
+    "id": "HIM-029",
+    "kategori": "HIMA",
+    "nama": "HMP Informatika UPY",
+    "kampus": "Universitas PGRI Yogyakarta",
+    "ig": "@hmpinformatika_upy",
+    "url_ig": "https://www.instagram.com/hmpinformatika_upy/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "029/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Akun IG resmi HMP Informatika UPY.",
+    "file_surat": "029-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMP Informatika UPY.pdf"
+  },
+  {
+    "no": 30,
+    "id": "HIM-030",
+    "kategori": "HIMA",
+    "nama": "HMP SI UPY",
+    "kampus": "Universitas PGRI Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "Perlu Alternatif",
+    "no_surat": "030/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Prodi baru, belum memiliki akun IG himpunan terpisah. Perlu riset kontak alternatif.",
+    "file_surat": "030-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMP SI UPY.pdf"
+  },
+  {
+    "no": 31,
+    "id": "HIM-031",
+    "kategori": "HIMA",
+    "nama": "HMPS Matematika UIN Sunan Kalijaga",
+    "kampus": "UIN Sunan Kalijaga Yogyakarta",
+    "ig": "@hmps.mathsuka",
+    "url_ig": "https://www.instagram.com/hmps.mathsuka/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6285363813594",
+    "cp": "Humas HMPS Matematika",
+    "kanal": "WA",
+    "no_surat": "031/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "031-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMPS Matematika UIN Sunan Kalijaga.pdf"
+  },
+  {
+    "no": 32,
+    "id": "HIM-032",
+    "kategori": "HIMA",
+    "nama": "HMPSI UMBY",
+    "kampus": "Universitas Mercu Buana Yogyakarta",
+    "ig": "@hmpssi_umby",
+    "url_ig": "https://www.instagram.com/hmpssi_umby/",
+    "bio_link": "",
+    "email": "",
+    "wa": "628977096931",
+    "cp": "Pengurus HMPSI UMBY",
+    "kanal": "IG_DM",
+    "no_surat": "032/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Konfirmasi Hadir (<3 Delegasi)",
+    "delegasi": 2,
+    "nama_delegasi": "1. Febi Chelsia Zaharani\n2. Kelvin Dita Febriansyah",
+    "wa_delegasi": "",
+    "catatan": "Konfirmasi hadir 2 delegasi (Febi Chelsia Zaharani & Kelvin Dita Febriansyah). WA: 08977096931",
+    "file_surat": "032-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMPSI UMBY.pdf"
+  },
+  {
+    "no": 33,
+    "id": "HIM-033",
+    "kategori": "HIMA",
+    "nama": "HMPSKOM UAJY",
+    "kampus": "Universitas Atma Jaya Yogyakarta",
+    "ig": "@hmpskom_uajy",
+    "url_ig": "https://www.instagram.com/hmpskom_uajy/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6282329631122",
+    "cp": "Humas HMPSKOM UAJY",
+    "kanal": "WA",
+    "no_surat": "033/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "033-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMPSKOM UAJY.pdf"
+  },
+  {
+    "no": 34,
+    "id": "HIM-034",
+    "kategori": "HIMA",
+    "nama": "HMSI UNJAYA",
+    "kampus": "Universitas Jenderal Achmad Yani Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "hmsi.unjaniyk.official@gmail.com",
+    "wa": "6289637586070",
+    "cp": "Humas HMSI UNJAYA",
+    "kanal": "WA",
+    "no_surat": "034/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Belum ada akun IG resmi HIMA mandiri (@fttiunjaya adalah fakultas). Outreach via kontak WA.",
+    "file_surat": "034-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMSI UNJAYA.pdf"
+  },
+  {
+    "no": 35,
+    "id": "HIM-035",
+    "kategori": "HIMA",
+    "nama": "HMSI UTY",
+    "kampus": "Universitas Teknologi Yogyakarta",
+    "ig": "@hmsiuty",
+    "url_ig": "https://www.instagram.com/hmsiuty/",
+    "bio_link": "https://linktr.ee/hmsiuty",
+    "email": "",
+    "wa": "6285760794074",
+    "cp": "Humas HMSI UTY",
+    "kanal": "WA",
+    "no_surat": "035/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "035-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMSI UTY.pdf"
+  },
+  {
+    "no": 36,
+    "id": "HIM-036",
+    "kategori": "HIMA",
+    "nama": "HMTI Sanata Dharma",
+    "kampus": "Universitas Sanata Dharma",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "hmjtisanatadharma@gmail.com",
+    "wa": "6282246450756",
+    "cp": "Humas HMTI USD",
+    "kanal": "WA",
+    "no_surat": "036/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "USD tidak memiliki prodi/HIMA TI mandiri (@hmif.usd milik HIM-025). Outreach via kontak WA.",
+    "file_surat": "036-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMTI Sanata Dharma.pdf"
+  },
+  {
+    "no": 37,
+    "id": "HIM-037",
+    "kategori": "HIMA",
+    "nama": "HMTI UKDW",
+    "kampus": "Universitas Kristen Duta Wacana",
+    "ig": "@hmti.ukdw",
+    "url_ig": "https://www.instagram.com/hmti.ukdw/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "037/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "037-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMTI UKDW.pdf"
+  },
+  {
+    "no": 38,
+    "id": "HIM-038",
+    "kategori": "HIMA",
+    "nama": "HUMANIKA AKPRIND",
+    "kampus": "Institut Sains & Teknologi AKPRIND",
+    "ig": "@humanika_akprind",
+    "url_ig": "https://www.instagram.com/humanika_akprind/",
+    "bio_link": "",
+    "email": "humanika@akprind.ac.id",
+    "wa": "6285329306717",
+    "cp": "Humas HUMANIKA",
+    "kanal": "WA",
+    "no_surat": "038/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak & Email Tersedia",
+    "file_surat": "038-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HUMANIKA AKPRIND.pdf"
+  },
+  {
+    "no": 39,
+    "id": "HIM-039",
+    "kategori": "HIMA",
+    "nama": "IMPSI UST",
+    "kampus": "Universitas Sarjanawiyata Tamansiswa",
+    "ig": "@impsi_ust",
+    "url_ig": "https://www.instagram.com/impsi_ust/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6285975984840",
+    "cp": "Humas IMPSI UST",
+    "kanal": "WA",
+    "no_surat": "039/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "039-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - IMPSI UST.pdf"
+  },
+  {
+    "no": 40,
+    "id": "HIM-040",
+    "kategori": "HIMA",
+    "nama": "HMIM UTY",
+    "kampus": "Universitas Teknologi Yogyakarta",
+    "ig": "@hmim.uty",
+    "url_ig": "https://www.instagram.com/hmim.uty/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "040/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "040-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMIM UTY.pdf"
+  },
+  {
+    "no": 41,
+    "id": "HIM-041",
+    "kategori": "HIMA",
+    "nama": "INFINITE UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "ig": "@infinite.uny",
+    "url_ig": "https://www.instagram.com/infinite.uny/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6285187815148",
+    "cp": "Humas INVINITE UNY",
+    "kanal": "WA",
+    "no_surat": "041/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "041-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - INFINITE UNY.pdf"
+  },
+  {
+    "no": 42,
+    "id": "HIM-042",
+    "kategori": "HIMA",
+    "nama": "ITECH UNISA",
+    "kampus": "Universitas Aisyiyah Yogyakarta",
+    "ig": "@itech_unisa",
+    "url_ig": "https://www.instagram.com/itech_unisa/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "042/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "042-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - ITECH UNISA.pdf"
+  },
+  {
+    "no": 43,
+    "id": "HIM-043",
+    "kategori": "HIMA",
+    "nama": "KMTI UMY",
+    "kampus": "Universitas Muhammadiyah Yogyakarta",
+    "ig": "@kmti_umy",
+    "url_ig": "https://www.instagram.com/kmti_umy/",
+    "bio_link": "https://linktr.ee/KMTIUMY",
+    "email": "",
+    "wa": "6282151669887",
+    "cp": "Humas KMTI UMY",
+    "kanal": "WA",
+    "no_surat": "043/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "043-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - KMTI UMY.pdf"
+  },
+  {
+    "no": 44,
+    "id": "HIM-044",
+    "kategori": "HIMA",
+    "nama": "KMTETI UGM",
+    "kampus": "Universitas Gadjah Mada",
+    "ig": "@kmteti",
+    "url_ig": "https://www.instagram.com/kmteti/",
+    "bio_link": "http://kmteti.ft.ugm.ac.id",
+    "email": "kmtetiftugm@gmail.com",
+    "wa": "628118201611",
+    "cp": "Humas KMTETI FT UGM",
+    "kanal": "WA",
+    "no_surat": "044/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak & Email Tersedia",
+    "file_surat": "044-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - KMTETI UGM.pdf"
+  },
+  {
+    "no": 45,
+    "id": "HIM-045",
+    "kategori": "HIMA",
+    "nama": "KLIK UAD",
+    "kampus": "Universitas Ahmad Dahlan",
+    "ig": "@klik_uad",
+    "url_ig": "https://www.instagram.com/klik_uad/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "045/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Akun Universitas Ahmad Dahlan",
+    "file_surat": "045-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - KLIK UAD.pdf"
+  },
+  {
+    "no": 46,
+    "id": "HIM-046",
+    "kategori": "HIMA",
+    "nama": "Robotika UPNVJ",
+    "kampus": "UPN \"Veteran\" Jakarta / Yogyakarta",
+    "ig": "@robotikaupnvj",
+    "url_ig": "https://www.instagram.com/robotikaupnvj/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "046/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "046-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Robotika UPNVJ.pdf"
+  },
+  {
+    "no": 47,
+    "id": "HIM-047",
+    "kategori": "HIMA",
+    "nama": "Robotika UTY",
+    "kampus": "Universitas Teknologi Yogyakarta",
+    "ig": "@robotikauty",
+    "url_ig": "https://www.instagram.com/robotikauty/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6289665947739",
+    "cp": "Pengurus Robotika UTY",
+    "kanal": "WA",
+    "no_surat": "047/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "047-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Robotika UTY.pdf"
+  },
+  {
+    "no": 48,
+    "id": "HIM-048",
+    "kategori": "HIMA",
+    "nama": "SIERA STMIK El Rahma",
+    "kampus": "STMIK El Rahma Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "",
+    "email": "stmikelrahma.siera@gmail.com",
+    "wa": "6285222836763",
+    "cp": "Humas SIERA",
+    "kanal": "WA",
+    "no_surat": "048/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Belum ada akun IG resmi himpunan mandiri (@bemelrahma_yk adalah BEM). Outreach via kontak WA.",
+    "file_surat": "048-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - SIERA STMIK El Rahma.pdf"
+  },
+  {
+    "no": 49,
+    "id": "HIM-049",
+    "kategori": "HIMA",
+    "nama": "HMTI UIN Sunan Kalijaga",
+    "kampus": "UIN Sunan Kalijaga Yogyakarta",
+    "ig": "@hmti_uinsuka",
+    "url_ig": "https://www.instagram.com/hmti_uinsuka/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6282133646556",
+    "cp": "Humas HMTI UINSUKA",
+    "kanal": "WA",
+    "no_surat": "049/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "HMTI UIN Sunan Kalijaga terverifikasi aktif",
+    "file_surat": "049-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMTI UIN Sunan Kalijaga.pdf"
+  },
+  {
+    "no": 50,
+    "id": "HIM-050",
+    "kategori": "HIMA",
+    "nama": "HIMAKA UMBY",
+    "kampus": "Universitas Mercu Buana Yogyakarta",
+    "ig": "@himaka.umby",
+    "url_ig": "https://www.instagram.com/himaka.umby/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "050/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "HIMAKA UMBY (Informatika Mercu Buana) terverifikasi aktif",
+    "file_surat": "050-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMAKA UMBY.pdf"
+  },
+  {
+    "no": 51,
+    "id": "HIM-051",
+    "kategori": "HIMA",
+    "nama": "HIMTEK UTY",
+    "kampus": "Universitas Teknologi Yogyakarta",
+    "ig": "@himtek.uty",
+    "url_ig": "https://www.instagram.com/himtek.uty/",
+    "bio_link": "",
+    "email": "",
+    "wa": "6289671139389",
+    "cp": "Humas HIMTEK UTY",
+    "kanal": "WA",
+    "no_surat": "051/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Kontak Tersedia",
+    "file_surat": "051-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMTEK UTY.pdf"
+  },
+  {
+    "no": 52,
+    "id": "KOM-001",
+    "kategori": "Komunitas",
+    "nama": "AMCC AMIKOM",
+    "kampus": "Universitas AMIKOM Yogyakarta",
+    "ig": "@amccamikom",
+    "url_ig": "https://www.instagram.com/amccamikom/",
+    "bio_link": "https://linktr.ee/amccamikom",
+    "email": "amcc@amikom.ac.id",
+    "wa": "",
+    "cp": "Pengurus AMCC",
+    "kanal": "IG_DM",
+    "no_surat": "052/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "052-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - AMCC AMIKOM.pdf"
+  },
+  {
+    "no": 53,
+    "id": "KOM-002",
+    "kategori": "Komunitas",
+    "nama": "KOMA AMIKOM",
+    "kampus": "Universitas AMIKOM Yogyakarta",
+    "ig": "@media_koma",
+    "url_ig": "https://www.instagram.com/media_koma/",
+    "bio_link": "https://linktr.ee/koma_amikom",
+    "email": "",
+    "wa": "",
+    "cp": "Humas KOMA",
+    "kanal": "IG_DM",
+    "no_surat": "053/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "053-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - KOMA AMIKOM.pdf"
+  },
+  {
+    "no": 54,
+    "id": "KOM-003",
+    "kategori": "Komunitas",
+    "nama": "Youth Ranger Indonesia",
+    "kampus": "Komunitas Pemuda Nasional (Community Partner)",
+    "ig": "@youthranger.id",
+    "url_ig": "https://www.instagram.com/youthranger.id/",
+    "bio_link": "https://linktr.ee/youthrangerindonesia",
+    "email": "partnership@youthrangerindonesia.com",
+    "wa": "",
+    "cp": "Divisi Partnership YRI",
+    "kanal": "IG_DM",
+    "no_surat": "054/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM / Email",
+    "file_surat": "054-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Youth Ranger Indonesia.pdf"
+  },
+  {
+    "no": 55,
+    "id": "KOM-004",
+    "kategori": "Komunitas",
+    "nama": "Trash Ranger Indonesia",
+    "kampus": "Komunitas Lingkungan & Pemuda",
+    "ig": "@trashranger.id",
+    "url_ig": "https://www.instagram.com/trashranger.id/",
+    "bio_link": "https://linktr.ee/trashranger.id",
+    "email": "",
+    "wa": "",
+    "cp": "Humas Trash Ranger",
+    "kanal": "IG_DM",
+    "no_surat": "055/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Diterima / Membaca",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "055-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Trash Ranger Indonesia.pdf"
+  },
+  {
+    "no": 56,
+    "id": "KOM-005",
+    "kategori": "Komunitas",
+    "nama": "Womanhub Indonesia",
+    "kampus": "Platform Pemberdayaan Perempuan (Community Partner)",
+    "ig": "@womanhub.id",
+    "url_ig": "https://www.instagram.com/womanhub.id/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "Partnership Womanhub",
+    "kanal": "IG_DM",
+    "no_surat": "056/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Terkirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "056-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Womanhub Indonesia.pdf"
+  },
+  {
+    "no": 57,
+    "id": "GOV-001",
+    "kategori": "Instansi Pemerintah",
+    "nama": "BPSDM Komdigi Yogyakarta",
+    "kampus": "Kementerian Komunikasi dan Digital RI",
+    "ig": "@blsdm.komdigi.yogyakarta",
+    "url_ig": "https://www.instagram.com/blsdm.komdigi.yogyakarta/",
+    "bio_link": "https://linktr.ee/bpsdmdiy",
+    "email": "bpsdm.jogja@komdigi.go.id",
+    "wa": "",
+    "cp": "Humas BPSDM Komdigi",
+    "kanal": "Email",
+    "no_surat": "057/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "BLSDM Komdigi Yogyakarta terverifikasi resmi",
+    "file_surat": "057-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - BPSDM Komdigi Yogyakarta.pdf"
+  },
+  {
+    "no": 58,
+    "id": "GOV-002",
+    "kategori": "Instansi Pemerintah",
+    "nama": "Balai Monitor SFR Yogyakarta",
+    "kampus": "Ditjen SDPPI Komdigi RI",
+    "ig": "@balmonjogja",
+    "url_ig": "https://www.instagram.com/balmonjogja/",
+    "bio_link": "https://linktr.ee/balmonjogja",
+    "email": "balmon.jogja@komdigi.go.id",
+    "wa": "",
+    "cp": "Pelayanan Terpadu Balmon",
+    "kanal": "Email",
+    "no_surat": "058/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Surat Resmi Email/Fisik",
+    "file_surat": "058-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Balai Monitor SFR Yogyakarta.pdf"
+  },
+  {
+    "no": 59,
+    "id": "GOV-003",
+    "kategori": "Instansi Pemerintah",
+    "nama": "Diskominfo DIY",
+    "kampus": "Pemerintah Daerah Istimewa Yogyakarta",
+    "ig": "@kominfodiy",
+    "url_ig": "https://www.instagram.com/kominfodiy/",
+    "bio_link": "https://diskominfo.jogjaprov.go.id",
+    "email": "diskominfo@jogjaprov.go.id",
+    "wa": "",
+    "cp": "Bagian Humas & Kemitraan",
+    "kanal": "Email",
+    "no_surat": "059/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Surat Resmi Email/Fisik",
+    "file_surat": "059-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Diskominfo DIY.pdf"
+  },
+  {
+    "no": 60,
+    "id": "GOV-004",
+    "kategori": "Instansi Pemerintah",
+    "nama": "Dinas Koperasi dan UKM DIY",
+    "kampus": "Pemerintah Daerah Istimewa Yogyakarta",
+    "ig": "@diskopukm.diy",
+    "url_ig": "https://www.instagram.com/diskopukm.diy/",
+    "bio_link": "https://sibakuljogja.jogjaprov.go.id",
+    "email": "dinkopukm@jogjaprov.go.id",
+    "wa": "",
+    "cp": "SiBakul / Humas Koperasi",
+    "kanal": "Email",
+    "no_surat": "060/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Dinas Koperasi dan UKM DIY terverifikasi resmi",
+    "file_surat": "060-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Dinas Koperasi dan UKM DIY.pdf"
+  },
+  {
+    "no": 61,
+    "id": "GOV-005",
+    "kategori": "Instansi Pemerintah",
+    "nama": "Dinkop UKM Sleman",
+    "kampus": "Pemerintah Kabupaten Sleman",
+    "ig": "@dinkopukmsleman",
+    "url_ig": "https://www.instagram.com/dinkopukmsleman/",
+    "bio_link": "https://dinkopukm.slemankab.go.id",
+    "email": "dinkopukm@slemankab.go.id",
+    "wa": "",
+    "cp": "Humas Dinkop Sleman",
+    "kanal": "Email",
+    "no_surat": "061/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Surat Resmi Email/Fisik",
+    "file_surat": "061-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Dinkop UKM Sleman.pdf"
+  },
+  {
+    "no": 62,
+    "id": "GOV-006",
+    "kategori": "Instansi Pemerintah",
+    "nama": "Humas UNU Yogyakarta",
+    "kampus": "Universitas Nahdlatul Ulama Yogyakarta",
+    "ig": "",
+    "url_ig": "",
+    "bio_link": "https://unu-jogja.ac.id",
+    "email": "humas@unu-jogja.ac.id",
+    "wa": "62895423216883",
+    "cp": "Humas Rektorat UNU Jogja",
+    "kanal": "WA",
+    "no_surat": "062/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Akun @unujogja adalah akun resmi universitas. Outreach resmi Humas via WA Humas.",
+    "file_surat": "062-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Humas UNU Yogyakarta.pdf"
+  },
+  {
+    "no": 63,
+    "id": "BIZ-001",
+    "kategori": "Inkubator & Bisnis",
+    "nama": "ABP Incubator AMIKOM",
+    "kampus": "Universitas AMIKOM Yogyakarta",
+    "ig": "@abp.incubator",
+    "url_ig": "https://www.instagram.com/abp.incubator/",
+    "bio_link": "https://abpincubator.com",
+    "email": "info@abpincubator.com",
+    "wa": "",
+    "cp": "Admin ABP Incubator",
+    "kanal": "IG_DM",
+    "no_surat": "063/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "ABP Incubator terverifikasi resmi",
+    "file_surat": "063-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - ABP Incubator AMIKOM.pdf"
+  },
+  {
+    "no": 64,
+    "id": "BIZ-002",
+    "kategori": "Inkubator & Bisnis",
+    "nama": "Entrepreneur Campus AMIKOM",
+    "kampus": "Universitas AMIKOM Yogyakarta",
+    "ig": "@entrepreneurcampus",
+    "url_ig": "https://www.instagram.com/entrepreneurcampus/",
+    "bio_link": "",
+    "email": "",
+    "wa": "",
+    "cp": "Admin Entrepreneur Campus",
+    "kanal": "IG_DM",
+    "no_surat": "064/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perlu DM IG",
+    "file_surat": "064-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Entrepreneur Campus AMIKOM.pdf"
+  },
+  {
+    "no": 65,
+    "id": "BIZ-003",
+    "kategori": "Inkubator & Bisnis",
+    "nama": "Cyberkarta",
+    "kampus": "Perusahaan Swasta / IT Solutions",
+    "ig": "@thecyberkarta",
+    "url_ig": "https://www.instagram.com/thecyberkarta/",
+    "bio_link": "https://cyberkarta.com",
+    "email": "contact@cyberkarta.com",
+    "wa": "6285161835865",
+    "cp": "Business Inquiries Cyberkarta",
+    "kanal": "IG_DM",
+    "no_surat": "065/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Akun IG & No WA Cyberkarta terverifikasi",
+    "file_surat": "065-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Cyberkarta.pdf"
+  },
+  {
+    "no": 66,
+    "id": "MED-001",
+    "kategori": "Media Partner",
+    "nama": "Indonesiana (Tempo Media)",
+    "kampus": "",
+    "ig": "@tempodotco",
+    "url_ig": "https://www.instagram.com/tempodotco/",
+    "bio_link": "",
+    "email": "redaksi@indonesiana.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "073/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Tempo.co (Grup Pengelola Indonesiana)",
+    "file_surat": "073-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Indonesiana (Tempo Media).pdf"
+  },
+  {
+    "no": 67,
+    "id": "MED-002",
+    "kategori": "Media Partner",
+    "nama": "Republika Online",
+    "kampus": "",
+    "ig": "@republikaonline",
+    "url_ig": "https://www.instagram.com/republikaonline/",
+    "bio_link": "",
+    "email": "sekretariat@republika.co.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "074/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "074-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Republika Online.pdf"
+  },
+  {
+    "no": 68,
+    "id": "MED-003",
+    "kategori": "Media Partner",
+    "nama": "Kompas.com",
+    "kampus": "",
+    "ig": "@kompascom",
+    "url_ig": "https://www.instagram.com/kompascom/",
+    "bio_link": "",
+    "email": "redaksi@kompas.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "075/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "075-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Kompas.com.pdf"
+  },
+  {
+    "no": 69,
+    "id": "MED-004",
+    "kategori": "Media Partner",
+    "nama": "Detikcom",
+    "kampus": "",
+    "ig": "@detikcom",
+    "url_ig": "https://www.instagram.com/detikcom/",
+    "bio_link": "",
+    "email": "redaksi@detik.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "076/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "076-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Detikcom.pdf"
+  },
+  {
+    "no": 70,
+    "id": "MED-005",
+    "kategori": "Media Partner",
+    "nama": "CNN Indonesia",
+    "kampus": "",
+    "ig": "@cnnindonesia",
+    "url_ig": "https://www.instagram.com/cnnindonesia/",
+    "bio_link": "",
+    "email": "redaksi@cnnindonesia.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "077/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "077-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - CNN Indonesia.pdf"
+  },
+  {
+    "no": 71,
+    "id": "MED-006",
+    "kategori": "Media Partner",
+    "nama": "Lesehan Musik",
+    "kampus": "",
+    "ig": "@lesehanmusik",
+    "url_ig": "https://www.instagram.com/lesehanmusik/",
+    "bio_link": "",
+    "email": "lesehanmusik@gmail.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "078/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "078-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Lesehan Musik.pdf"
+  },
+  {
+    "no": 72,
+    "id": "MED-007",
+    "kategori": "Media Partner",
+    "nama": "Bolehmusic",
+    "kampus": "",
+    "ig": "@bolehmusic",
+    "url_ig": "https://www.instagram.com/bolehmusic/",
+    "bio_link": "",
+    "email": "redaksi@bolehmusic.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "079/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "079-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Bolehmusic.pdf"
+  },
+  {
+    "no": 73,
+    "id": "MED-008",
+    "kategori": "Media Partner",
+    "nama": "Musiclive ID",
+    "kampus": "",
+    "ig": "@musicliveid",
+    "url_ig": "https://www.instagram.com/musicliveid/",
+    "bio_link": "",
+    "email": "musicliveid@gmail.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "080/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Musiclive ID terverifikasi aktif",
+    "file_surat": "080-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Musiclive ID.pdf"
+  },
+  {
+    "no": 74,
+    "id": "MED-009",
+    "kategori": "Media Partner",
+    "nama": "Voicemagz",
+    "kampus": "",
+    "ig": "@voicemagz",
+    "url_ig": "https://www.instagram.com/voicemagz/",
+    "bio_link": "",
+    "email": "voicemagz@gmail.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "081/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "081-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Voicemagz.pdf"
+  },
+  {
+    "no": 75,
+    "id": "MED-010",
+    "kategori": "Media Partner",
+    "nama": "Medcom.id",
+    "kampus": "",
+    "ig": "@medcomid",
+    "url_ig": "https://www.instagram.com/medcomid/",
+    "bio_link": "",
+    "email": "redaksi@medcom.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "082/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "082-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Medcom.id.pdf"
+  },
+  {
+    "no": 76,
+    "id": "MED-011",
+    "kategori": "Media Partner",
+    "nama": "Kumparan",
+    "kampus": "",
+    "ig": "@kumparancom",
+    "url_ig": "https://www.instagram.com/kumparancom/",
+    "bio_link": "",
+    "email": "redaksi@kumparan.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "083/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "083-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Kumparan.pdf"
+  },
+  {
+    "no": 77,
+    "id": "MED-012",
+    "kategori": "Media Partner",
+    "nama": "Suara.com",
+    "kampus": "",
+    "ig": "@suaradotcom",
+    "url_ig": "https://www.instagram.com/suaradotcom/",
+    "bio_link": "",
+    "email": "redaksi@suara.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "084/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "084-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Suara.com.pdf"
+  },
+  {
+    "no": 78,
+    "id": "MED-013",
+    "kategori": "Media Partner",
+    "nama": "Hops.id",
+    "kampus": "",
+    "ig": "@hops.id",
+    "url_ig": "https://www.instagram.com/hops.id/",
+    "bio_link": "",
+    "email": "redaksi@hops.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "085/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "085-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Hops.id.pdf"
+  },
+  {
+    "no": 79,
+    "id": "MED-014",
+    "kategori": "Media Partner",
+    "nama": "JPNN.com",
+    "kampus": "",
+    "ig": "@jpnncom",
+    "url_ig": "https://www.instagram.com/jpnncom/",
+    "bio_link": "",
+    "email": "redaksi@jpnn.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "086/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "086-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - JPNN.com.pdf"
+  },
+  {
+    "no": 80,
+    "id": "MED-015",
+    "kategori": "Media Partner",
+    "nama": "Jawa Pos",
+    "kampus": "",
+    "ig": "@jawapos",
+    "url_ig": "https://www.instagram.com/jawapos/",
+    "bio_link": "",
+    "email": "editor@jawapos.co.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "087/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "087-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Jawa Pos.pdf"
+  },
+  {
+    "no": 81,
+    "id": "MED-016",
+    "kategori": "Media Partner",
+    "nama": "Liputan6",
+    "kampus": "",
+    "ig": "@liputan6",
+    "url_ig": "https://www.instagram.com/liputan6/",
+    "bio_link": "",
+    "email": "redaksi@liputan6.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "088/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "088-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Liputan6.pdf"
+  },
+  {
+    "no": 82,
+    "id": "MED-017",
+    "kategori": "Media Partner",
+    "nama": "Indopos",
+    "kampus": "",
+    "ig": "@indopos.co.id",
+    "url_ig": "https://www.instagram.com/indopos.co.id/",
+    "bio_link": "",
+    "email": "redaksi@indopos.co.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "089/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "089-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Indopos.pdf"
+  },
+  {
+    "no": 83,
+    "id": "MED-018",
+    "kategori": "Media Partner",
+    "nama": "Tabloid Bintang",
+    "kampus": "",
+    "ig": "@tabloidbintang",
+    "url_ig": "https://www.instagram.com/tabloidbintang/",
+    "bio_link": "",
+    "email": "redaksi@tabloidbintang.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "090/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "090-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Tabloid Bintang.pdf"
+  },
+  {
+    "no": 84,
+    "id": "MED-019",
+    "kategori": "Media Partner",
+    "nama": "Sindonews",
+    "kampus": "",
+    "ig": "@sindonews",
+    "url_ig": "https://www.instagram.com/sindonews/",
+    "bio_link": "",
+    "email": "redaksi@sindonews.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "091/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "091-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Sindonews.pdf"
+  },
+  {
+    "no": 85,
+    "id": "MED-020",
+    "kategori": "Media Partner",
+    "nama": "VOI.id",
+    "kampus": "",
+    "ig": "@voidotid",
+    "url_ig": "https://www.instagram.com/voidotid/",
+    "bio_link": "",
+    "email": "redaksi@voi.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "092/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "092-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - VOI.id.pdf"
+  },
+  {
+    "no": 86,
+    "id": "MED-021",
+    "kategori": "Media Partner",
+    "nama": "KapanLagi",
+    "kampus": "",
+    "ig": "@kapanlagicom",
+    "url_ig": "https://www.instagram.com/kapanlagicom/",
+    "bio_link": "",
+    "email": "redaksi@kapanlagi.net",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "093/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "093-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - KapanLagi.pdf"
+  },
+  {
+    "no": 87,
+    "id": "MED-022",
+    "kategori": "Media Partner",
+    "nama": "VIVA.co.id",
+    "kampus": "",
+    "ig": "@vivacoid",
+    "url_ig": "https://www.instagram.com/vivacoid/",
+    "bio_link": "",
+    "email": "redaksi@viva.co.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "094/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "094-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - VIVA.co.id.pdf"
+  },
+  {
+    "no": 88,
+    "id": "MED-023",
+    "kategori": "Media Partner",
+    "nama": "Dailyhype",
+    "kampus": "",
+    "ig": "@dailyhype.id",
+    "url_ig": "https://www.instagram.com/dailyhype.id/",
+    "bio_link": "",
+    "email": "dailyhype.id@gmail.com",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "095/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "095-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Dailyhype.pdf"
+  },
+  {
+    "no": 89,
+    "id": "MED-024",
+    "kategori": "Media Partner",
+    "nama": "MyLifestyle",
+    "kampus": "",
+    "ig": "@tabloidseleberita",
+    "url_ig": "https://www.instagram.com/tabloidseleberita/",
+    "bio_link": "https://mylifestyle.id/redaksi/",
+    "email": "redaksi@mylifestyle.id",
+    "wa": "6287885524477",
+    "cp": "Redaksi MyLifestyle (MTM Network)",
+    "kanal": "IG_DM",
+    "no_surat": "096/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Media MTM Network penerbit mylifestyle.id (Kontak Redaksi: 087885524477)",
+    "file_surat": "096-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - MyLifestyle.pdf"
+  },
+  {
+    "no": 90,
+    "id": "MED-025",
+    "kategori": "Media Partner",
+    "nama": "GenPI.co",
+    "kampus": "",
+    "ig": "@genpi.co",
+    "url_ig": "https://www.instagram.com/genpi.co/",
+    "bio_link": "",
+    "email": "redaksi@genpi.co",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "097/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "097-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - GenPI.co.pdf"
+  },
+  {
+    "no": 91,
+    "id": "MED-026",
+    "kategori": "Media Partner",
+    "nama": "Hallo.id",
+    "kampus": "",
+    "ig": "@hallo.id",
+    "url_ig": "https://www.instagram.com/hallo.id/",
+    "bio_link": "",
+    "email": "redaksi@hallo.id",
+    "wa": "",
+    "cp": "",
+    "kanal": "IG_DM",
+    "no_surat": "098/SOGA/SPm/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-11",
+    "pic": "",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "",
+    "file_surat": "098-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Hallo.id.pdf"
+  }
+];
+    let currentData = [];
+    const STORAGE_KEY = 'SOGA11_DATABASE_V6_ACCURATE';
+    let activeModalItem = null;
+
+    function initData() {
+      // Purge stale cache from earlier sessions
+      localStorage.removeItem('SOGA11_DATABASE_V5_PRECISE');
+      localStorage.removeItem('SOGA11_DATABASE_CLEAN_V2');
+      localStorage.removeItem('SOGA11_DATABASE_CLEAN');
+      localStorage.removeItem('SOGA11_DATABASE');
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          const initMap = {};
+          INITIAL_DATA.forEach(d => { initMap[d.id] = d; });
+          currentData = parsed.map(item => {
+            if (initMap[item.id]) {
+              item.nama = initMap[item.id].nama;
+              item.ig = initMap[item.id].ig;
+              item.url_ig = initMap[item.id].url_ig;
+              item.bio_link = initMap[item.id].bio_link;
+              item.kanal = initMap[item.id].kanal;
+              item.catatan = initMap[item.id].catatan;
+              item.wa = initMap[item.id].wa;
+            }
+            return item;
+          });
+        } catch (e) {
+          currentData = [...INITIAL_DATA];
+        }
+      } else {
+        currentData = [...INITIAL_DATA];
+      }
+
+      fetch('/api/data?t=' + Date.now())
+        .then(r => r.json())
+        .then(remote => {
+          if (Array.isArray(remote) && remote.length > 0) {
+            const remoteMap = {};
+            remote.forEach(r => { remoteMap[r.id] = r; });
+            currentData = currentData.map(c => {
+              if (remoteMap[c.id]) {
+                c.nama = remoteMap[c.id].nama;
+                c.ig = remoteMap[c.id].ig;
+                c.url_ig = remoteMap[c.id].url_ig;
+                c.bio_link = remoteMap[c.id].bio_link;
+                c.kanal = remoteMap[c.id].kanal;
+                c.catatan = remoteMap[c.id].catatan;
+                c.wa = remoteMap[c.id].wa;
+              }
+              return c;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(currentData));
+            updateKPIs();
+            renderTable();
+          }
+        })
+        .catch(() => {});
+        
+      updateKPIs();
+      renderTable();
+    }
+
+    function saveData(explicitSync = false) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentData));
+      updateKPIs();
+
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentData)
+      })
+      .then(r => r.json())
+      .then(res => {
+        if (explicitSync) {
+          showToast('Sinkronisasi Berhasil', `${res.saved} entitas tersimpan ke database & Excel.`);
+        }
+      })
+      .catch(err => {
+        if (explicitSync) {
+          showToast('Tersimpan Lokal', 'Server tidak terhubung. Data tersimpan di browser.');
+        }
+      });
+    }
+
+    function updateKPIs() {
+      document.getElementById('kpi-total').textContent = currentData.length;
+      document.getElementById('kpi-siap').textContent = currentData.filter(d => d.status_kirim === 'Siap Kirim').length;
+      document.getElementById('kpi-terkirim').textContent = currentData.filter(d => d.status_kirim === 'Terkirim').length;
+      document.getElementById('kpi-pending').textContent = currentData.filter(d => d.status_kirim === 'Pending / Menunggu Balasan').length;
+      document.getElementById('kpi-hadir').textContent = currentData.filter(d => (d.rsvp || '').includes('Hadir') && !(d.rsvp || '').includes('Berhalangan')).length;
+      
+      const totalDel = currentData.reduce((acc, it) => acc + (parseInt(it.delegasi) || 0), 0);
+      document.getElementById('kpi-delegasi').textContent = totalDel;
+    }
+
+    function getPdfUrl(item) {
+      if (item && item.file_surat) {
+        return '/Surat_Undangan_Generated/' + encodeURIComponent(item.file_surat);
+      }
+      return '/surat/' + (item ? item.id : '');
+    }
+
+    // GENERATE PRECISE OUTREACH MESSAGES (RINGKAS, ELEGAN, SESUAI NAMA IG, TANPA EMOJI)
+    function generateIGOpenText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+      const cleanHandle = item.ig ? `@${item.ig.replace('@', '').trim()}` : '';
+      const targetSalutation = cleanHandle || item.nama;
+
+      if (isMedia) {
+        return `Halo rekan-rekan tim redaksi ${targetSalutation}, salam kenal saya Faiz dari tim Data Sorcerers Yogyakarta.
+
+Kami ingin mengajukan permohonan kerja sama media partner untuk acara Sorcery Gathering #11 (SOGA #11), seminar edukasi tentang karakter dan daya juang di era AI pada Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
+
+Untuk berkas proposal media partner dan TOR acaranya, kira-kira lebih nyaman kami kirimkan langsung via DM ini atau lewat WhatsApp ya kak?
+
+Kalau via WA, boleh minta kontak divisi kemitraan/redaksi yang aktif? Atau rekan-rekan bisa juga menghubungi saya langsung di WhatsApp: 088227250005.
+
+Terima kasih banyak atas perhatian dan kerja samanya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        return `Selamat siang Bapak/Ibu jajaran pimpinan ${targetSalutation}, salam hormat, saya Faiz dari tim Komunitas Data Sorcerers Yogyakarta.
+
+Melalui pesan ini, kami bermaksud menyampaikan Surat Undangan Resmi (No. ${item.no_surat}) kepada perwakilan ${item.nama} untuk berkenan hadir sebagai Tamu Kehormatan di acara Sorcery Gathering #11 (SOGA #11) pada Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
+
+Untuk penyampaian berkas surat resmi dan TOR acara, apakah lebih berkenan kami kirimkan via surel (email) atau WhatsApp bagian protokol/humas?
+
+Kami juga dapat dihubungi langsung via WhatsApp di nomor 088227250005. Atas perhatian dan perkenan Bapak/Ibu, kami ucapkan terima kasih.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else {
+        return `Halo kak/teman-teman pengurus ${targetSalutation}, salam kenal saya Faiz dari tim Data Sorcerers.
+
+Kami bermaksud mengundang perwakilan delegasi dari ${item.nama} untuk hadir di acara Sorcery Gathering #11 (SOGA #11) tentang penguatan karakter, adab, dan daya juang di era AI, hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
+
+Untuk berkas surat undangan resmi dan TOR acaranya, kira-kira lebih nyaman kami kirimkan lewat DM ini atau via WhatsApp ya kak?
+
+Kalau via WA, boleh minta kontak humas atau ketua yang aktif? Atau teman-teman bisa juga hubungi saya langsung di WhatsApp: 088227250005.
+
+Terima kasih banyak ya!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    function getPublicHost() {
+      if (window.location.hostname.includes('trycloudflare.com')) {
+        return window.location.origin;
+      }
+      return 'https://withdrawal-condition-machines-furniture.trycloudflare.com';
+    }
+
+    function generateIGReplyDMText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+      const cleanHandle = item.ig ? `@${item.ig.replace('@', '').trim()}` : '';
+      const targetSalutation = cleanHandle || item.nama;
+      const publicBase = getPublicHost();
+      const suratUrl = `${publicBase}/surat/${item.id}`;
+      const torUrl = `${publicBase}/tor`;
+
+      if (isMedia) {
+        return `Baik rekan-rekan tim ${targetSalutation}, terima kasih banyak atas respon baiknya.
+
+Berikut kami lampirkan tautan berkas resmi permohonan kerja sama media partner Sorcery Gathering #11 (SOGA #11):
+- Surat Permohonan Kerja Sama (No. ${item.no_surat}): ${suratUrl}
+- Term of Reference (TOR) Acara: ${torUrl}
+
+Besar harapan kami dapat berkolaborasi bersama ${item.nama} dalam publikasi kegiatan ini. Konfirmasi kerja sama atau ketentuan publikasi dari rekan-rekan dapat disampaikan via DM ini atau melalui WhatsApp di 088227250005.
+
+Terima kasih banyak atas dukungannya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        return `Selamat siang Bapak/Ibu admin ${targetSalutation}, terima kasih banyak atas respon baiknya.
+
+Berikut kami sampaikan tautan berkas resmi kegiatan Sorcery Gathering #11 (SOGA #11):
+- Surat Undangan Resmi (No. ${item.no_surat}): ${suratUrl}
+- Term of Reference (TOR) Acara: ${torUrl}
+
+Kami memohon kesediaan perwakilan Bapak/Ibu untuk hadir sebagai Tamu Kehormatan pada Minggu, 15 November 2026 di Garuda Spark Innovation Hub. Konfirmasi kehadiran dapat disampaikan melalui pesan ini atau melalui WhatsApp di 088227250005.
+
+Terima kasih banyak atas perhatian dan arahan Bapak/Ibu.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else {
+        return `Baik kak/teman-teman pengurus ${targetSalutation}, terima kasih banyak atas respon baiknya.
+
+Berikut kami lampirkan tautan berkas resmi kegiatan Sorcery Gathering #11 (SOGA #11):
+- Surat Undangan Resmi (No. ${item.no_surat}): ${suratUrl}
+- Term of Reference (TOR) Acara: ${torUrl}
+
+Undangan ini merupakan undangan kehormatan bagi perwakilan pengurus/anggota ${item.nama} dengan kuota maksimal 3 orang delegasi (free).
+
+Untuk konfirmasi nama perwakilan delegasi yang akan hadir pada Minggu, 15 November 2026 di Garuda Spark Innovation Hub, rekan-rekan bisa langsung infokan ke saya melalui DM ini atau via WhatsApp di 088227250005.
+
+Terima kasih banyak atas dukungannya!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    function generateIGReplyWAText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+      const cleanHandle = item.ig ? `@${item.ig.replace('@', '').trim()}` : '';
+      const targetSalutation = cleanHandle || item.nama;
+
+      if (isMedia) {
+        return `Siap, terima kasih banyak rekan-rekan tim ${targetSalutation}. Berkas kerja sama media partner segera saya teruskan ke nomor WhatsApp tersebut ya. Terima kasih banyak atas dukungannya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        return `Terima kasih banyak Bapak/Ibu. Berkas surat undangan resmi dan koordinasi protokol segera kami hubungi melalui kontak yang diberikan.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else {
+        return `Siap, terima kasih banyak teman-teman ${targetSalutation}. Berkas surat undangan resmi dan koordinasi kehadiran delegasi segera saya hubungi via nomor WhatsApp tersebut ya. Sampai jumpa di SOGA #11!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    function generateWAFollowUpText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+
+      if (isMedia) {
+        return `Halo Rekan Tim Redaksi ${item.nama}, selamat siang.
+
+Saya Faiz dari panitia SOGA #11 Data Sorcerers. Izin menindaklanjuti berkas Surat Permohonan Kerja Sama Media Partner (No. ${item.no_surat}) yang telah kami sampaikan sebelumnya.
+
+Apakah permohonan kerja sama publikasi SOGA #11 dari kami memungkinkan untuk didiskusikan lebih lanjut bersama rekan-rekan tim redaksi?
+
+Terima kasih banyak atas waktu dan kesempatannya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        return `Selamat siang Bapak/Ibu Humas dan Protokol ${item.nama}, salam hormat, saya Faiz dari panitia Sorcery Gathering #11 (SOGA #11) Data Sorcerers.
+
+Izin menindaklanjuti Surat Undangan Resmi (No. ${item.no_surat}) yang telah kami haturkan sebelumnya perihal undangan Tamu Kehormatan pada agenda SOGA #11 hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
+
+Apakah surat undangan tersebut telah berkenan didisposisikan oleh pimpinan? Apabila ada perwakilan yang didelegasikan untuk berkenan hadir, mohon berkenan mengabari kami agar dapat kami siapkan dalam daftar protokol tamu kehormatan.
+
+Terima kasih banyak atas perhatian dan waktu Bapak/Ibu.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else {
+        return `Halo Kak/Teman-teman pengurus ${item.nama}, selamat siang.
+
+Saya Faiz dari panitia SOGA #11 Data Sorcerers. Izin menindaklanjuti berkas Surat Undangan Resmi (No. ${item.no_surat}) yang telah kami sampaikan sebelumnya.
+
+Apakah surat undangannya sudah sempat didisposisikan kepada rekan-rekan pengurus? Sekiranya sudah ada nama perwakilan delegasi (maksimal 3 orang) yang akan hadir pada Minggu, 15 November 2026 nanti di Garuda Spark Innovation Hub, mohon dapat diinfokan kepada kami ya kak agar dapat kami masukkan ke dalam daftar registrasi tamu delegasi.
+
+Terima kasih banyak atas waktu dan bantuannya!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    function generateWAConfirmedText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+      const listDelegasi = (item.nama_delegasi && item.nama_delegasi.trim())
+        ? item.nama_delegasi
+        : `1. [Nama Delegasi 1]
+2. [Nama Delegasi 2]`;
+
+      if (isMedia) {
+        return `Baik rekan-rekan tim ${item.nama}, terima kasih banyak atas konfirmasi kerja sama publikasi Sorcery Gathering #11 (SOGA #11).
+
+Data tim redaksi/perwakilan media yang akan meliput/hadir telah kami catat:
+${listDelegasi}
+
+Sebagai pengingat detail pelaksanaan:
+- Hari, Tanggal: Minggu, 15 November 2026
+- Waktu: 08.00 - 12.30 WIB (Registrasi dimulai pukul 08.00 WIB)
+- Lokasi: Garuda Spark Innovation Hub, Yogyakarta
+- Fasilitas: Media partner pass & akses liputan penuh
+
+Apabila ada materi publikasi tambahan atau press release yang diperlukan sebelum hari H, mohon dapat diinfokan kepada kami ya.
+
+Terima kasih banyak atas kerja samanya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        return `Selamat siang Bapak/Ibu Humas/Protokol ${item.nama}, salam hormat.
+
+Terima kasih banyak atas konfirmasi perwakilan yang berkenan hadir sebagai Tamu Kehormatan pada agenda Sorcery Gathering #11 (SOGA #11).
+
+Nama perwakilan berikut telah resmi kami masukkan ke dalam daftar protokol tamu kehormatan:
+${listDelegasi}
+
+Detail pelaksanaan acara:
+- Hari, Tanggal: Minggu, 15 November 2026
+- Waktu: 08.00 - 12.30 WIB (Registrasi dibuka pukul 08.00 WIB)
+- Lokasi: Garuda Spark Innovation Hub, Yogyakarta
+- Pakaian: Pakaian dinas / batik rapi
+
+Kami siap menyambut kehadiran perwakilan dari ${item.nama}. Terima kasih banyak atas perhatian dan arahan Bapak/Ibu.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else {
+        return `Baik kak/teman-teman pengurus ${item.nama}, terima kasih banyak atas konfirmasi dan data perwakilan delegasinya.
+
+Nama delegasi berikut telah resmi kami catat dalam daftar tamu kehormatan Sorcery Gathering #11 (SOGA #11):
+${listDelegasi}
+
+Sebagai pengingat untuk rekan-rekan delegasi:
+- Hari, Tanggal: Minggu, 15 November 2026
+- Waktu: 08.00 - 12.30 WIB (Registrasi dimulai pukul 08.00 WIB)
+- Lokasi: Garuda Spark Innovation Hub, Yogyakarta
+- Pakaian: Bebas rapi / PDH Himpunan / Jas Almamater
+
+Saat tiba di lokasi, rekan-rekan delegasi dapat langsung menuju meja registrasi dan menyebutkan nama serta delegasi dari ${item.nama}.
+
+Apabila ada nomor WhatsApp aktif dari rekan-rekan delegasi tersebut untuk keperluan koordinasi teknis/pengingat sebelum hari H, boleh diinfokan ke kami ya kak.
+
+Sampai jumpa di SOGA #11 dan terima kasih banyak atas partisipasinya!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    function generateWAChatText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+      const hasIG = Boolean(item.ig && item.ig.trim());
+      const igHandle = hasIG ? `@${item.ig.replace('@', '').trim()}` : '';
+
+      if (isMedia) {
+        const refDM = hasIG ? `Menindaklanjuti koordinasi kita via DM Instagram (${igHandle})` : `Bersama pesan ini`;
+        return `Halo Rekan Tim Redaksi ${item.nama}, salam kenal, saya Faiz dari tim Data Sorcerers Yogyakarta.
+
+${refDM}, berikut kami sampaikan berkas Surat Permohonan Kerja Sama Media Partner (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11).
+
+Agenda diadakan hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub. Besar harapan kami dapat berkolaborasi bersama ${item.nama} dalam publikasi acara ini.
+
+Apabila ada ketentuan atau alur kerja sama media dari rekan-rekan, mohon dapat diinfokan kepada kami ya. Terima kasih banyak atas kerja samanya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        const refDM = hasIG ? `Menindaklanjuti komunikasi kami sebelumnya via Instagram resmi (${igHandle})` : `Melalui pesan ini`;
+        return `Selamat siang Bapak/Ibu Humas/Protokol ${item.nama}, salam hormat, saya Faiz dari tim Komunitas Data Sorcerers Yogyakarta.
+
+${refDM}, bersama pesan ini kami menyampaikan Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara kepada perwakilan ${item.nama} untuk berkenan hadir sebagai Tamu Kehormatan pada acara Sorcery Gathering #11 (SOGA #11) hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
+
+Terima kasih banyak atas waktu dan perhatian Bapak/Ibu.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else {
+        const refDM = hasIG ? `Menindaklanjuti komunikasi kita via DM Instagram (${igHandle})` : `Melalui pesan ini`;
+        return `Halo Kak/Teman-teman pengurus ${item.nama}, salam kenal, saya Faiz dari tim Data Sorcerers Yogyakarta.
+
+${refDM}, berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari ${item.nama}.
+
+Acara diadakan hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub. Kehadiran delegasi bersifat undangan kehormatan (free).
+
+Untuk konfirmasi nama delegasi yang akan hadir, Kakak/teman-teman bisa langsung infokan ke saya via chat ini ya. Terima kasih banyak atas bantuannya!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('table-body');
+      const mobileCards = document.getElementById('mobile-cards');
+      const q = document.getElementById('search-input').value.toLowerCase().trim();
+      const kat = document.getElementById('filter-kategori').value;
+      const stat = document.getElementById('filter-status').value;
+      const rsvp = document.getElementById('filter-rsvp').value;
+
+      const filtered = currentData.filter(d => {
+        const matchQ = !q || 
+          d.nama.toLowerCase().includes(q) || 
+          (d.kampus || '').toLowerCase().includes(q) || 
+          (d.ig || '').toLowerCase().includes(q) || 
+          d.id.toLowerCase().includes(q) || 
+          d.no_surat.toLowerCase().includes(q);
+        const matchKat = kat === 'ALL' || d.kategori === kat;
+        const matchStat = stat === 'ALL' || d.status_kirim === stat;
+        const matchRsvp = rsvp === 'ALL' || d.rsvp === rsvp;
+        return matchQ && matchKat && matchStat && matchRsvp;
+      });
+
+      // High-contrast Status Kirim styles
+      const kirimStyles = {
+        'Draft': 'bg-slate-100 text-slate-800 border border-slate-300 select-dark-arrow font-medium',
+        'Siap Kirim': 'bg-blue-600 text-white border border-blue-600 select-white-arrow font-bold shadow-xs',
+        'Terkirim': 'bg-emerald-600 text-white border border-emerald-600 select-white-arrow font-bold shadow-xs',
+        'Pending / Menunggu Balasan': 'bg-amber-100 text-amber-900 border border-amber-300 select-dark-arrow font-semibold',
+        'Gagal / Perlu Alternatif': 'bg-rose-100 text-rose-800 border border-rose-300 select-dark-arrow font-medium'
+      };
+
+      // High-contrast RSVP styles
+      const rsvpStyles = {
+        'Belum Respon': 'bg-slate-100 text-slate-700 border border-slate-300 select-dark-arrow font-normal',
+        'Diterima / Membaca': 'bg-sky-100 text-sky-900 border border-sky-300 select-dark-arrow font-semibold',
+        'Menunggu Disposisi': 'bg-amber-50 text-amber-900 border border-amber-300 select-dark-arrow font-medium',
+        'Konfirmasi Hadir (3 Delegasi)': 'bg-purple-600 text-white border border-purple-600 select-white-arrow font-bold shadow-xs',
+        'Konfirmasi Hadir (<3 Delegasi)': 'bg-indigo-600 text-white border border-indigo-600 select-white-arrow font-bold shadow-xs',
+        'Berhalangan Hadir': 'bg-rose-100 text-rose-800 border border-rose-300 select-dark-arrow font-medium'
+      };
+
+      // 1. Render Desktop Table Body
+      tbody.innerHTML = filtered.map((item, idx) => {
+        const hasWA = item.wa && item.wa !== '-' && item.wa !== '';
+        const hasIG = Boolean(item.ig && item.ig.trim());
+
+        return `
+          <tr class="hover:bg-slate-50/70 transition">
+            <!-- No -->
+            <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">
+              <div>${idx + 1}</div>
+              <span class="text-[9px] text-slate-400">${item.id}</span>
+            </td>
+
+            <!-- Organisasi -->
+            <td class="py-2.5 px-3">
+              <div class="font-medium text-slate-900 text-xs">${item.nama}</div>
+              <div class="text-[11px] text-slate-500">${item.kampus || '-'}</div>
+              <div class="text-[10px] text-slate-400 font-mono mt-0.5">${item.no_surat}</div>
+            </td>
+
+            <!-- Instagram -->
+            <td class="py-2.5 px-3">
+              ${hasIG ? `
+                <a href="${item.url_ig || `https://instagram.com/${item.ig.replace('@', '')}`}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-800 hover:text-purple-600 hover:underline">
+                  <span class="text-purple-600 font-bold">@</span>${item.ig.replace('@', '')}
+                </a>
+              ` : `
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
+                  Belum Ada IG HIMA
+                </span>
+              `}
+              ${item.bio_link ? `
+                <div class="mt-0.5">
+                  <a href="${item.bio_link}" target="_blank" class="text-[10px] text-blue-600 hover:underline inline-flex items-center gap-0.5">
+                    <span>Link Bio</span>
+                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  </a>
+                </div>
+              ` : ''}
+            </td>
+
+            <!-- WhatsApp & CP -->
+            <td class="py-2.5 px-3">
+              ${hasWA ? `
+                <a href="https://api.whatsapp.com/send?phone=${cleanWA(item.wa)}" target="_blank" class="font-mono text-[11px] font-medium text-emerald-700 hover:underline">
+                  +${cleanWA(item.wa)}
+                </a>
+              ` : `
+                <span class="text-[11px] text-amber-600 font-normal">Perlu kontak</span>
+              `}
+              <div class="text-[10px] text-slate-500 truncate max-w-[140px]">${item.cp || 'Belum ada CP'}</div>
+            </td>
+
+            <!-- Status Kirim Dropdown -->
+            <td class="py-2.5 px-3">
+              <select onchange="updateItemField('${item.id}', 'status_kirim', this.value)" class="clean-select text-[11px] rounded-md border py-1.5 pl-2.5 pr-6 focus:outline-none transition ${kirimStyles[item.status_kirim] || 'bg-white text-slate-700 border-slate-200'}">
+                <option class="bg-white text-slate-900 font-normal" value="Draft" ${item.status_kirim === 'Draft' ? 'selected' : ''}>Draft</option>
+                <option class="bg-white text-slate-900 font-normal" value="Siap Kirim" ${item.status_kirim === 'Siap Kirim' ? 'selected' : ''}>Siap Kirim</option>
+                <option class="bg-white text-slate-900 font-normal" value="Terkirim" ${item.status_kirim === 'Terkirim' ? 'selected' : ''}>Terkirim</option>
+                <option class="bg-white text-slate-900 font-normal" value="Pending / Menunggu Balasan" ${item.status_kirim === 'Pending / Menunggu Balasan' ? 'selected' : ''}>Pending</option>
+                <option class="bg-white text-slate-900 font-normal" value="Gagal / Perlu Alternatif" ${item.status_kirim === 'Gagal / Perlu Alternatif' ? 'selected' : ''}>Gagal</option>
+              </select>
+            </td>
+
+            <!-- RSVP Dropdown -->
+            <td class="py-2.5 px-3">
+              <select onchange="updateItemField('${item.id}', 'rsvp', this.value)" class="clean-select text-[11px] rounded-md border py-1.5 pl-2.5 pr-6 focus:outline-none transition ${rsvpStyles[item.rsvp] || 'bg-white text-slate-700 border-slate-200'}">
+                <option class="bg-white text-slate-900 font-normal" value="Belum Respon" ${item.rsvp === 'Belum Respon' ? 'selected' : ''}>Belum Respon</option>
+                <option class="bg-white text-slate-900 font-normal" value="Diterima / Membaca" ${item.rsvp === 'Diterima / Membaca' ? 'selected' : ''}>Diterima</option>
+                <option class="bg-white text-slate-900 font-normal" value="Menunggu Disposisi" ${item.rsvp === 'Menunggu Disposisi' ? 'selected' : ''}>Menunggu Disposisi</option>
+                <option class="bg-white text-slate-900 font-normal" value="Konfirmasi Hadir (3 Delegasi)" ${item.rsvp === 'Konfirmasi Hadir (3 Delegasi)' ? 'selected' : ''}>Hadir (3 Delegasi)</option>
+                <option class="bg-white text-slate-900 font-normal" value="Konfirmasi Hadir (<3 Delegasi)" ${item.rsvp === 'Konfirmasi Hadir (<3 Delegasi)' ? 'selected' : ''}>Hadir (<3 Delegasi)</option>
+                <option class="bg-white text-slate-900 font-normal" value="Berhalangan Hadir" ${item.rsvp === 'Berhalangan Hadir' ? 'selected' : ''}>Berhalangan</option>
+              </select>
+            </td>
+
+            <!-- Delegasi Stepper -->
+            <td class="py-2.5 px-3 text-center">
+              <div class="inline-flex items-center border border-slate-200 rounded overflow-hidden bg-white text-xs">
+                <button onclick="stepDelegasi('${item.id}', -1)" class="px-2 py-0.5 hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition">-</button>
+                <span class="px-2 py-0.5 font-medium text-slate-900">${item.delegasi || 0}</span>
+                <button onclick="stepDelegasi('${item.id}', 1)" class="px-2 py-0.5 hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition">+</button>
+              </div>
+            </td>
+
+            <!-- PIC -->
+            <td class="py-2.5 px-3">
+              <input type="text" value="${item.pic || ''}" onchange="updateItemField('${item.id}', 'pic', this.value)" placeholder="Nama PIC" class="bg-transparent hover:bg-slate-50 focus:bg-white border border-transparent hover:border-slate-200 focus:border-slate-300 rounded px-1.5 py-1 text-[11px] text-slate-800 w-full focus:outline-none transition">
+            </td>
+
+            <!-- Aksi Outreach -->
+            <td class="py-2.5 px-3 text-center">
+              <div class="flex items-center justify-center gap-1">
+                ${hasIG ? `
+                  <!-- Tombol Cepat Salin & DM IG -->
+                  <button onclick="quickDM('${item.id}')" title="Salin Template DM & Buka IG (Otomatis Tandai Terkirim)" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-600 hover:bg-purple-700 text-white font-medium text-[11px] transition shadow-2xs">
+                    <svg class="w-3.5 h-3.5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span>DM</span>
+                  </button>
+                ` : (hasWA ? `
+                  <!-- Tombol Cepat WA Langsung jika Belum Ada IG -->
+                  <button onclick="blastWA('${item.id}')" title="Kirim Undangan Langsung via WhatsApp" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-[11px] transition shadow-2xs">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+                    <span>WA</span>
+                  </button>
+                ` : `
+                  <button onclick="promptQuickWA('${item.id}')" title="Input Nomor Kontak Alternatif" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-amber-100 hover:bg-amber-200 text-amber-800 font-medium text-[11px] transition border border-amber-200">
+                    <span>+Kontak</span>
+                  </button>
+                `)}
+
+                <!-- Tombol Buka PDF Surat Personal -->
+                <a href="${getPdfUrl(item)}" target="_blank" title="Buka PDF Surat Undangan Resmi" class="p-1 rounded text-rose-600 hover:text-rose-800 hover:bg-rose-50 transition inline-flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </a>
+
+                <!-- Tombol Buka Modal Template Pesan -->
+                <button onclick="openMessageModal('${item.id}')" title="Buka Template Pesan (IG DM & WA)" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-900 hover:bg-slate-800 text-white font-medium text-[11px] transition shadow-2xs">
+                  <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                  <span>Chat</span>
+                </button>
+
+                <!-- Tombol Kirim WA sekunder jika ada IG dan WA -->
+                ${(hasIG && hasWA) ? `
+                  <button onclick="blastWA('${item.id}')" title="Kirim Langsung via WA" class="p-1 rounded text-emerald-600 hover:bg-emerald-50 transition">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+                  </button>
+                ` : ''}
+
+                <!-- Edit Modal -->
+                <button onclick="openEditModal('${item.id}')" title="Edit Detail" class="p-1 rounded text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // 2. Render Mobile Rapid Outreach Cards
+      if (mobileCards) {
+        mobileCards.innerHTML = filtered.map((item, idx) => {
+          const hasWA = item.wa && item.wa !== '-' && item.wa !== '';
+          const hasIG = Boolean(item.ig && item.ig.trim());
+          const waNumClean = cleanWA(item.wa);
+
+          return `
+            <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-2xs space-y-3 transition hover:border-slate-300">
+              <!-- Header Card -->
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex-1">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[10px] font-mono text-slate-400">#${idx + 1} (${item.id})</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">${item.kategori}</span>
+                    ${item.kampus ? `<span class="text-[11px] text-slate-500 font-medium">• ${item.kampus}</span>` : ''}
+                  </div>
+                  <h4 class="font-bold text-slate-900 text-sm mt-1 leading-snug">${item.nama}</h4>
+                  <div class="flex items-center justify-between mt-0.5">
+                    <div class="text-[10px] font-mono text-slate-400">${item.no_surat}</div>
+                    <a href="${getPdfUrl(item)}" target="_blank" class="text-[11px] font-semibold text-rose-600 hover:text-rose-700 inline-flex items-center gap-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                      <span>Buka PDF</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Edit Button -->
+                <button onclick="openEditModal('${item.id}')" class="p-1.5 text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-md border border-slate-200 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                </button>
+              </div>
+
+              <!-- Instagram & Kontak Info -->
+              <div class="flex items-center justify-between gap-2 text-xs bg-slate-50 rounded-lg p-2.5 border border-slate-100">
+                <div class="truncate">
+                  ${hasIG ? `
+                    <div class="flex items-center gap-1 font-semibold text-purple-700">
+                      <span>📸</span>
+                      <a href="${item.url_ig || `https://instagram.com/${item.ig.replace('@', '')}`}" target="_blank" class="hover:underline">@${item.ig.replace('@', '')}</a>
+                    </div>
+                  ` : `
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
+                      Belum Ada IG HIMA (Kanal WA)
+                    </span>
+                  `}
+                  ${item.bio_link ? `
+                    <a href="${item.bio_link}" target="_blank" class="text-[10px] text-blue-600 hover:underline block truncate mt-0.5">Link Bio: ${item.bio_link}</a>
+                  ` : ''}
+                </div>
+                <div class="text-right shrink-0">
+                  ${hasWA ? `
+                    <div class="text-[11px] font-mono font-bold text-emerald-700">+${waNumClean}</div>
+                    <div class="text-[9px] text-slate-500 truncate max-w-[100px]">${item.cp || 'PIC WA'}</div>
+                  ` : `
+                    <span class="text-[10px] text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">Perlu Kontak</span>
+                  `}
+                </div>
+              </div>
+
+              <!-- Status Dropdowns (High Contrast) -->
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <label class="block text-[10px] font-medium text-slate-500 mb-1">Status Kirim:</label>
+                  <select onchange="updateItemField('${item.id}', 'status_kirim', this.value)" class="clean-select w-full text-xs rounded-md border py-1.5 pl-2 pr-6 focus:outline-none transition ${kirimStyles[item.status_kirim] || 'bg-white text-slate-700 border-slate-200'}">
+                    <option class="bg-white text-slate-900 font-normal" value="Draft" ${item.status_kirim === 'Draft' ? 'selected' : ''}>Draft</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Siap Kirim" ${item.status_kirim === 'Siap Kirim' ? 'selected' : ''}>Siap Kirim</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Terkirim" ${item.status_kirim === 'Terkirim' ? 'selected' : ''}>Terkirim</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Pending / Menunggu Balasan" ${item.status_kirim === 'Pending / Menunggu Balasan' ? 'selected' : ''}>Pending</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Gagal / Perlu Alternatif" ${item.status_kirim === 'Gagal / Perlu Alternatif' ? 'selected' : ''}>Gagal</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-medium text-slate-500 mb-1">Status RSVP:</label>
+                  <select onchange="updateItemField('${item.id}', 'rsvp', this.value)" class="clean-select w-full text-xs rounded-md border py-1.5 pl-2 pr-6 focus:outline-none transition ${rsvpStyles[item.rsvp] || 'bg-white text-slate-700 border-slate-200'}">
+                    <option class="bg-white text-slate-900 font-normal" value="Belum Respon" ${item.rsvp === 'Belum Respon' ? 'selected' : ''}>Belum Respon</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Diterima / Membaca" ${item.rsvp === 'Diterima / Membaca' ? 'selected' : ''}>Diterima</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Menunggu Disposisi" ${item.rsvp === 'Menunggu Disposisi' ? 'selected' : ''}>Menunggu Disposisi</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Konfirmasi Hadir (3 Delegasi)" ${item.rsvp === 'Konfirmasi Hadir (3 Delegasi)' ? 'selected' : ''}>Hadir (3 Delegasi)</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Konfirmasi Hadir (<3 Delegasi)" ${item.rsvp === 'Konfirmasi Hadir (<3 Delegasi)' ? 'selected' : ''}>Hadir (<3 Delegasi)</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Berhalangan Hadir" ${item.rsvp === 'Berhalangan Hadir' ? 'selected' : ''}>Berhalangan</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Delegasi Counter & PIC Input -->
+              <div class="flex items-center justify-between gap-2 pt-1 border-t border-slate-100 text-xs">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[11px] text-slate-500">Delegasi:</span>
+                  <div class="inline-flex items-center border border-slate-200 rounded overflow-hidden bg-white text-xs">
+                    <button onclick="stepDelegasi('${item.id}', -1)" class="px-2 py-0.5 hover:bg-slate-100 text-slate-600 font-bold">-</button>
+                    <span class="px-2 py-0.5 font-bold text-slate-900">${item.delegasi || 0}</span>
+                    <button onclick="stepDelegasi('${item.id}', 1)" class="px-2 py-0.5 hover:bg-slate-100 text-slate-600 font-bold">+</button>
+                  </div>
+                </div>
+
+                <div class="flex-1 max-w-[130px]">
+                  <input type="text" value="${item.pic || ''}" onchange="updateItemField('${item.id}', 'pic', this.value)" placeholder="Nama PIC Panitia" class="w-full bg-slate-50 border border-slate-200 rounded px-2 py-1 text-[11px] text-slate-800 focus:bg-white focus:outline-none">
+                </div>
+              </div>
+
+              <!-- RAPID OUTREACH ACTION BUTTONS (BIG TOUCH TARGETS) -->
+              <div class="pt-2 flex items-center gap-2">
+                ${hasIG ? `
+                  <!-- PRIMARY CTA: COPY & OPEN IG APP -->
+                  <button onclick="quickDM('${item.id}')" class="flex-1 py-2.5 px-3 bg-slate-900 active:bg-slate-800 text-white font-semibold text-xs rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition">
+                    <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    <span>Salin & Buka IG DM</span>
+                  </button>
+
+                  <!-- WA CTA -->
+                  ${hasWA ? `
+                    <button onclick="blastWA('${item.id}')" class="py-2.5 px-3 bg-emerald-600 active:bg-emerald-700 text-white font-semibold text-xs rounded-lg shadow-xs flex items-center justify-center gap-1 transition">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+                      <span>WA</span>
+                    </button>
+                  ` : `
+                    <button onclick="promptQuickWA('${item.id}')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-lg border border-slate-200 transition">
+                      <span>+ WA</span>
+                    </button>
+                  `}
+                ` : (hasWA ? `
+                  <!-- PRIMARY CTA WHEN NO IG: DIRECT WA BLAST -->
+                  <button onclick="blastWA('${item.id}')" class="flex-1 py-2.5 px-3 bg-emerald-600 active:bg-emerald-700 text-white font-bold text-xs rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.2.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/></svg>
+                    <span>Kirim via WhatsApp</span>
+                  </button>
+                ` : `
+                  <button onclick="promptQuickWA('${item.id}')" class="flex-1 py-2.5 px-3 bg-amber-500 active:bg-amber-600 text-white font-bold text-xs rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition">
+                    <span>+ Input Kontak WA/IG</span>
+                  </button>
+                `)}
+
+                <!-- MODAL CHAT VIEW -->
+                <button onclick="openMessageModal('${item.id}')" class="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg border border-slate-200 transition" title="Lihat Template Chat Lengkap">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function cleanWA(num) {
+      if (!num) return '';
+      let n = String(num).replace(/[^0-9]/g, '');
+      if (n.startsWith('0')) n = '62' + n.slice(1);
+      else if (!n.startsWith('62')) n = '62' + n;
+      return n;
+    }
+
+    function updateItemField(id, field, value) {
+      const item = currentData.find(d => d.id === id);
+      if (item) {
+        item[field] = value;
+        if (field === 'rsvp' && value.includes('Hadir') && !value.includes('Berhalangan')) {
+          item.status_kirim = 'Terkirim';
+          if (value === 'Konfirmasi Hadir (3 Delegasi)' && (!item.delegasi || item.delegasi === 0)) {
+            item.delegasi = 3;
+          }
+        }
+        saveData();
+        renderTable();
+      }
+    }
+
+    function stepDelegasi(id, delta) {
+      const item = currentData.find(d => d.id === id);
+      if (item) {
+        let cur = parseInt(item.delegasi) || 0;
+        cur = Math.max(0, cur + delta);
+        item.delegasi = cur;
+        if (cur === 3) item.rsvp = 'Konfirmasi Hadir (3 Delegasi)';
+        else if (cur > 0 && cur < 3) item.rsvp = 'Konfirmasi Hadir (<3 Delegasi)';
+        saveData();
+        renderTable();
+      }
+    }
+
+    // MESSAGE MODAL CONTROLS
+    function openMessageModal(id) {
+      const item = currentData.find(d => d.id === id);
+      if (!item) return;
+      activeModalItem = item;
+
+      const hasIG = Boolean(item.ig && item.ig.trim());
+      const hasWA = item.wa && item.wa !== '-' && item.wa !== '';
+
+      document.getElementById('msg-modal-nama').textContent = item.nama;
+      document.getElementById('msg-modal-kategori').textContent = item.kategori;
+      document.getElementById('msg-modal-sub').textContent = `No. Surat: ${item.no_surat} | IG: ${item.ig || '(Belum Ada IG HIMA)'}`;
+      const pdfLinkEl = document.getElementById('msg-modal-pdf-link');
+      if (pdfLinkEl) pdfLinkEl.href = getPdfUrl(item);
+
+      document.getElementById('text-ig-open').value = generateIGOpenText(item);
+      selectIGReplySubtype('dm');
+      selectWASubtype('first');
+
+      const noticeEl = document.getElementById('msg-modal-notice');
+      const waStatusEl = document.getElementById('msg-wa-status');
+      const blastBtn = document.getElementById('btn-blast-wa-direct');
+      const igBtn = document.getElementById('btn-open-ig-direct');
+      
+      if (hasWA) {
+        waStatusEl.textContent = `+${cleanWA(item.wa)} (${item.cp || 'PIC'})`;
+        waStatusEl.className = 'text-emerald-600 font-medium text-[11px]';
+        blastBtn.classList.remove('hidden');
+        blastBtn.onclick = () => blastWA(item.id);
+      } else {
+        waStatusEl.textContent = 'Belum ada nomor WA (Input nomor via Edit)';
+        waStatusEl.className = 'text-amber-600 font-normal text-[11px]';
+        blastBtn.classList.add('hidden');
+      }
+
+      if (hasIG) {
+        noticeEl.classList.add('hidden');
+        igBtn.classList.remove('hidden');
+        igBtn.onclick = () => openIG(item.id);
+        switchMsgTab(1);
+      } else {
+        noticeEl.classList.remove('hidden');
+        igBtn.classList.add('hidden');
+        // Automatically switch to WhatsApp tab if there is no standalone IG
+        switchMsgTab(3);
+      }
+
+      document.getElementById('message-modal').classList.remove('hidden');
+    }
+
+    function closeMessageModal() {
+      document.getElementById('message-modal').classList.add('hidden');
+      activeModalItem = null;
+    }
+
+    function switchMsgTab(tabNum) {
+      for (let i = 1; i <= 3; i++) {
+        const tabEl = document.getElementById(`msg-tab-${i}`);
+        const btnEl = document.getElementById(`tab-btn-${i}`);
+        if (i === tabNum) {
+          tabEl.classList.remove('hidden');
+          btnEl.className = 'flex-1 py-2.5 px-4 font-medium text-slate-900 border-b-2 border-slate-900 bg-white transition';
+        } else {
+          tabEl.classList.add('hidden');
+          btnEl.className = 'flex-1 py-2.5 px-4 font-medium text-slate-500 hover:text-slate-800 border-b-2 border-transparent transition';
+        }
+      }
+    }
+
+    let currentIGReplySubtype = 'dm';
+    let currentWASubtype = 'first';
+
+    function selectIGReplySubtype(subtype) {
+      currentIGReplySubtype = subtype;
+      const btnDM = document.getElementById('subtab-ig-dm');
+      const btnWA = document.getElementById('subtab-ig-wa');
+      const descEl = document.getElementById('msg-ig-reply-desc');
+      const textarea = document.getElementById('text-ig-reply');
+      
+      if (subtype === 'dm') {
+        if (btnDM) btnDM.className = 'py-2 px-3 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center';
+        if (btnWA) btnWA.className = 'py-2 px-3 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center';
+        if (descEl) descEl.textContent = 'Kirim balasan ini jika himpunan membalas minta berkas/surat langsung dilampirkan di DM Instagram (disertai link download Surat PDF resmi & TOR).';
+        if (textarea && activeModalItem) textarea.value = generateIGReplyDMText(activeModalItem);
+      } else {
+        if (btnWA) btnWA.className = 'py-2 px-3 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center';
+        if (btnDM) btnDM.className = 'py-2 px-3 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center';
+        if (descEl) descEl.textContent = 'Kirim balasan konfirmasi ini di DM Instagram jika mereka telah memberikan kontak nomor WhatsApp.';
+        if (textarea && activeModalItem) textarea.value = generateIGReplyWAText(activeModalItem);
+      }
+    }
+
+    function selectWASubtype(subtype) {
+      currentWASubtype = subtype;
+      const btnFirst = document.getElementById('subtab-wa-first');
+      const btnFollowup = document.getElementById('subtab-wa-followup');
+      const btnConfirmed = document.getElementById('subtab-wa-confirmed');
+      const descEl = document.getElementById('msg-wa-desc');
+      const textarea = document.getElementById('text-wa-first');
+      const blastBtnText = document.getElementById('btn-blast-wa-text');
+      
+      const activeClass = 'py-1.5 px-2 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center';
+      const inactiveClass = 'py-1.5 px-2 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center';
+
+      if (btnFirst) btnFirst.className = (subtype === 'first') ? activeClass : inactiveClass;
+      if (btnFollowup) btnFollowup.className = (subtype === 'followup') ? activeClass : inactiveClass;
+      if (btnConfirmed) btnConfirmed.className = (subtype === 'confirmed') ? activeClass : inactiveClass;
+
+      if (subtype === 'first') {
+        if (descEl) descEl.textContent = 'Kirim pesan pengantar surat resmi saat pertama kali menghubungi kontak pengurus via WhatsApp.';
+        if (blastBtnText) blastBtnText.textContent = 'Kirim Berkas via WhatsApp';
+        if (textarea && activeModalItem) textarea.value = generateWAChatText(activeModalItem);
+      } else if (subtype === 'followup') {
+        if (descEl) descEl.textContent = 'Kirim pesan tindak lanjut (1-2 hari setelah kirim berkas) untuk menanyakan disposisi surat dan konfirmasi nama delegasi.';
+        if (blastBtnText) blastBtnText.textContent = 'Kirim Follow-Up via WhatsApp';
+        if (textarea && activeModalItem) textarea.value = generateWAFollowUpText(activeModalItem);
+      } else if (subtype === 'confirmed') {
+        if (descEl) descEl.textContent = 'Kirim pesan balasan konfirmasi ini setelah pihak organisasi memastikan hadir dan mengirimkan nama perwakilan delegasi.';
+        if (blastBtnText) blastBtnText.textContent = 'Kirim Konfirmasi via WhatsApp';
+        if (textarea && activeModalItem) textarea.value = generateWAConfirmedText(activeModalItem);
+      }
+    }
+
+    function copyCurrentText(textAreaId, successMsg) {
+      const el = document.getElementById(textAreaId);
+      if (!el) return;
+      navigator.clipboard.writeText(el.value).then(() => {
+        showToast('Berhasil Disalin', successMsg || 'Teks siap ditempel.');
+      });
+    }
+
+    function quickDM(id) {
+      const item = currentData.find(d => d.id === id);
+      if (!item) return;
+
+      const text = generateIGOpenText(item);
+      
+      // Copy text to clipboard
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Pesan Disalin!', `DM untuk ${item.nama} tersalin. Tinggal Paste di IG!`);
+        }).catch(() => {
+          fallbackCopyText(text);
+          showToast('Pesan Disalin!', `DM untuk ${item.nama} tersalin. Tinggal Paste di IG!`);
+        });
+      } else {
+        fallbackCopyText(text);
+        showToast('Pesan Disalin!', `DM untuk ${item.nama} tersalin. Tinggal Paste di IG!`);
+      }
+
+      // Automatically update status to Terkirim
+      if (item.status_kirim !== 'Terkirim') {
+        item.status_kirim = 'Terkirim';
+        saveData();
+        renderTable();
+      }
+
+      // Open Instagram app directly via deep link
+      if (item.ig) {
+        const handle = item.ig.replace('@', '').trim();
+        const appUrl = `https://instagram.com/_u/${handle}`;
+        const a = document.createElement('a');
+        a.href = appUrl;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } else {
+        showToast('Info', 'Instagram resmi HIMA belum tersedia. Gunakan kontak WhatsApp.');
+      }
+    }
+
+    function promptQuickWA(id) {
+      const item = currentData.find(d => d.id === id);
+      if (!item) return;
+      const currentVal = item.wa && item.wa !== '-' ? item.wa : '';
+      const input = prompt(`Masukkan nomor WhatsApp humas/ketua untuk ${item.nama}:`, currentVal);
+      if (input !== null && input.trim() !== '') {
+        item.wa = input.trim();
+        saveData();
+        renderTable();
+        showToast('Nomor WA Disimpan', `${item.nama}: ${item.wa}`);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {}
+      textArea.remove();
+    }
+
+    function openIG(id) {
+      const item = currentData.find(d => d.id === id);
+      if (item && item.ig) {
+        const handle = item.ig.replace('@', '').trim();
+        window.open(`https://instagram.com/${handle}`, '_blank');
+      }
+    }
+
+    function blastWA(id) {
+      const item = currentData.find(d => d.id === id);
+      if (!item || !item.wa) {
+        showToast('Nomor Tidak Ada', 'Nomor WA belum terisi.');
+        return;
+      }
+      const num = cleanWA(item.wa);
+      const textarea = document.getElementById('text-wa-first');
+      const text = (textarea && activeModalItem && activeModalItem.id === id)
+        ? textarea.value
+        : generateWAChatText(item);
+      const url = `https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(text)}`;
+      
+      if (item.status_kirim !== 'Terkirim') {
+        item.status_kirim = 'Terkirim';
+        saveData();
+        renderTable();
+      }
+      
+      window.open(url, '_blank');
+    }
+
+    // EDIT MODAL CONTROLS
+    function openEditModal(id) {
+      const item = currentData.find(d => d.id === id);
+      if (!item) return;
+      activeModalItem = item;
+
+      document.getElementById('modal-nama').value = item.nama;
+      document.getElementById('modal-ig').value = item.ig || '';
+      document.getElementById('modal-wa').value = item.wa || '';
+      document.getElementById('modal-cp').value = item.cp || '';
+      document.getElementById('modal-pic').value = item.pic || '';
+      document.getElementById('modal-status-kirim').value = item.status_kirim;
+      document.getElementById('modal-rsvp').value = item.rsvp;
+      document.getElementById('modal-delegasi').value = item.delegasi || 0;
+      document.getElementById('modal-nama-delegasi').value = item.nama_delegasi || '';
+      document.getElementById('modal-catatan').value = item.catatan || '';
+
+      document.getElementById('edit-modal').classList.remove('hidden');
+    }
+
+    function closeEditModal() {
+      document.getElementById('edit-modal').classList.add('hidden');
+      activeModalItem = null;
+    }
+
+    function saveModalChanges() {
+      if (!activeModalItem) return;
+      
+      activeModalItem.nama = document.getElementById('modal-nama').value.trim();
+      activeModalItem.ig = document.getElementById('modal-ig').value.trim();
+      activeModalItem.wa = document.getElementById('modal-wa').value.trim();
+      activeModalItem.cp = document.getElementById('modal-cp').value.trim();
+      activeModalItem.pic = document.getElementById('modal-pic').value.trim();
+      activeModalItem.status_kirim = document.getElementById('modal-status-kirim').value;
+      activeModalItem.rsvp = document.getElementById('modal-rsvp').value;
+      activeModalItem.delegasi = parseInt(document.getElementById('modal-delegasi').value) || 0;
+      activeModalItem.nama_delegasi = document.getElementById('modal-nama-delegasi').value.trim();
+      activeModalItem.catatan = document.getElementById('modal-catatan').value.trim();
+
+      if (activeModalItem.ig) {
+        if (!activeModalItem.ig.startsWith('@')) activeModalItem.ig = '@' + activeModalItem.ig;
+        activeModalItem.url_ig = `https://www.instagram.com/${activeModalItem.ig.replace('@', '')}/`;
+      } else {
+        activeModalItem.url_ig = '';
+      }
+
+      saveData();
+      renderTable();
+      closeEditModal();
+      showToast('Data Diperbarui', `Perubahan untuk ${activeModalItem.nama} berhasil disimpan.`);
+    }
+
+    // QR MODAL CONTROLS
+    function openQRModal() {
+      const publicUrl = "https://withdrawal-condition-machines-furniture.trycloudflare.com";
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(publicUrl)}`;
+      document.getElementById('qr-image').src = qrApiUrl;
+      document.getElementById('qr-url-text').textContent = publicUrl;
+      document.getElementById('qr-modal').classList.remove('hidden');
+    }
+
+    function closeQRModal() {
+      document.getElementById('qr-modal').classList.add('hidden');
+    }
+
+    function showToast(title, msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-title').textContent = title;
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('translate-y-8', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-8', 'opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    // EVENT LISTENERS
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('filter-kategori').addEventListener('change', renderTable);
+    document.getElementById('filter-status').addEventListener('change', renderTable);
+    document.getElementById('filter-rsvp').addEventListener('change', renderTable);
+
+    window.addEventListener('DOMContentLoaded', initData);
+  </script>
+</body>
+</html>

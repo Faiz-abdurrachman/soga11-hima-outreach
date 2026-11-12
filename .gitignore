@@ -1,0 +1,8 @@
+*.zip
+*backup*
+*.png
+generate_all_invitations.py
+server.py
+whatsapp_blast_links.csv
+.playwright-mcp
+Semua_Surat_Undangan_SOGA11_91_Target
