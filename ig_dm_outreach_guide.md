@@ -19,7 +19,7 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | HIM-002 | HIMA | HIMA AKSI UNY | @himaaksi_uny | [@himaaksi_uny](https://www.instagram.com/himaaksi_uny/) | - | 6285735174335 | WA | Kontak Tersedia |
 | HIM-003 | HIMA | FORKOM TRI SV UGM | @forkomtrisvugm | [@forkomtrisvugm](https://www.instagram.com/forkomtrisvugm/) | - | 6282315940631 | WA | Kontak & Email Tersedia |
 | HIM-004 | HIMA | HIMA PBD FBSB UNY | @himapbdfbsbuny | [@himapbdfbsbuny](https://www.instagram.com/himapbdfbsbuny/) | - | 6289669782300 | WA | Handle IG terverifikasi aktif |
-| HIM-005 | HIMA | HME UNY | @hmeuny | [@hmeuny](https://www.instagram.com/hmeuny/) | - | 6285235119240 | WA | HME FT UNY (Elektro & Elektronika UNY) |
+| HIM-005 | HIMA | HME UNY | @hmeuny | [@hmeuny](https://www.instagram.com/hmeuny/) | - | 6285382632798 | WA | Kontak terverifikasi: Kak Raya (HME FT UNY) |
 | HIM-006 | HIMA | HIMAFORKA UTDI | @himaforka_utdi | [@himaforka_utdi](https://www.instagram.com/himaforka_utdi/) | https://linktr.ee/himaforkautdi_ | 6281568261422 | WA | Kontak Baru Terverifikasi |
 | HIM-007 | HIMA | HIMAKOM AKPRIND | @himakom.akprind | [@himakom.akprind](https://www.instagram.com/himakom.akprind/) | - | 6285786293843 | WA | HIMAKOM Universitas AKPRIND Indonesia |
 | HIM-008 | HIMA | HIMAKOM UGM | @himakomugm | [@himakomugm](https://www.instagram.com/himakomugm/) | https://linktr.ee/himakomugm | 628170015550 | WA | Kontak & Email Tersedia |
@@ -37,15 +37,15 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | HIM-020 | HIMA | HIMSI UAA | @himsi_uaa | [@himsi_uaa](https://www.instagram.com/himsi_uaa/) | - | - | IG_DM | Perlu DM IG |
 | HIM-021 | HIMA | HMF ITDA | @hmf_itda | [@hmf_itda](https://www.instagram.com/hmf_itda/) | - | 6285796709096 | WA | HMF ITD Adisutjipto terverifikasi |
 | HIM-022 | HIMA | HMIF AMIKOM | @hmifamikom | [@hmifamikom](https://www.instagram.com/hmifamikom/) | https://linktr.ee/hmifamikom | - | IG_DM | Perlu DM IG |
-| HIM-023 | HIMA | HMIF UAD | @hmifuad | [@hmifuad](https://www.instagram.com/hmifuad/) | https://linktr.ee/HMIF_UAD | - | IG_DM | Perlu DM IG |
+| HIM-023 | HIMA | HMIF UAD | @hmifuad | [@hmifuad](https://www.instagram.com/hmifuad/) | https://linktr.ee/HMIF_UAD | 6285848103476 | WA | Kontak terverifikasi via admin IG: Mas Doni |
 | HIM-024 | HIMA | HMIF UNJAYA | @hmif_unjaya | [@hmif_unjaya](https://www.instagram.com/hmif_unjaya/) | https://linktr.ee/HMIFUNJAYA | - | IG_DM | Perlu DM IG |
 | HIM-025 | HIMA | HMIF USD | @hmif.usd | [@hmif.usd](https://www.instagram.com/hmif.usd/) | - | 628816516325 | WA | Kontak Tersedia |
 | HIM-026 | HIMA | HIMMAIF UII | @himmaifuii | [@himmaifuii](https://www.instagram.com/himmaifuii/) | https://linktr.ee/himmaifuii | - | IG_DM | Perlu DM IG |
 | HIM-027 | HIMA | HMJ TI Janabadra | @hmjti_ujb | [@hmjti_ujb](https://www.instagram.com/hmjti_ujb/) | https://janabadra.ac.id/ | 6281228827035 | IG_DM | Akun IG resmi HIMA terverifikasi @hmjti_ujb (sebelumnya akun universitas @univ.janabadra). |
 | HIM-028 | HIMA | HIMATIKA UNU Yogyakarta | *(Belum Ada IG HIMA)* | - | - | 6283128388681 | WA | Belum ada akun IG resmi HIMA mandiri (@fti_unuyo adalah fakultas). Outreach via kontak WA. |
-| HIM-029 | HIMA | HMP Informatika UPY | @hmpinformatika_upy | [@hmpinformatika_upy](https://www.instagram.com/hmpinformatika_upy/) | - | - | IG_DM | Akun IG resmi HMP Informatika UPY. |
+| HIM-029 | HIMA | HMP Informatika UPY | @hmpinformatika_upy | [@hmpinformatika_upy](https://www.instagram.com/hmpinformatika_upy/) | - | 62882003404737 | WA | Kontak terverifikasi: Kak Fina (Bupati HMPI UPY) |
 | HIM-030 | HIMA | HMP SI UPY | *(Belum Ada IG HIMA)* | - | - | - | Perlu Alternatif | Prodi baru, belum memiliki akun IG himpunan terpisah. Perlu riset kontak alternatif. |
-| HIM-031 | HIMA | HMPS Matematika UIN Sunan Kalijaga | @hmps.mathsuka | [@hmps.mathsuka](https://www.instagram.com/hmps.mathsuka/) | - | 6285363813594 | WA | Kontak Tersedia |
+| HIM-031 | HIMA | HMPS Matematika UIN Sunan Kalijaga | @hmps.mathsuka | [@hmps.mathsuka](https://www.instagram.com/hmps.mathsuka/) | - | 6285694605450 | WA | Kontak terverifikasi via admin IG: Mas Zaki |
 | HIM-032 | HIMA | HMPSI UMBY | @hmpssi_umby | [@hmpssi_umby](https://www.instagram.com/hmpssi_umby/) | - | - | IG_DM | Perlu DM IG |
 | HIM-033 | HIMA | HMPSKOM UAJY | @hmpskom_uajy | [@hmpskom_uajy](https://www.instagram.com/hmpskom_uajy/) | - | 6282329631122 | WA | Kontak Tersedia |
 | HIM-034 | HIMA | HMSI UNJAYA | *(Belum Ada IG HIMA)* | - | - | 6289637586070 | WA | Belum ada akun IG resmi HIMA mandiri (@fttiunjaya adalah fakultas). Outreach via kontak WA. |
@@ -64,12 +64,12 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | HIM-047 | HIMA | Robotika UTY | @robotikauty | [@robotikauty](https://www.instagram.com/robotikauty/) | - | 6289665947739 | WA | Kontak Tersedia |
 | HIM-048 | HIMA | SIERA STMIK El Rahma | *(Belum Ada IG HIMA)* | - | - | 6285222836763 | WA | Belum ada akun IG resmi himpunan mandiri (@bemelrahma_yk adalah BEM). Outreach via kontak WA. |
 | HIM-049 | HIMA | HMTI UIN Sunan Kalijaga | @hmti_uinsuka | [@hmti_uinsuka](https://www.instagram.com/hmti_uinsuka/) | - | 6282133646556 | WA | HMTI UIN Sunan Kalijaga terverifikasi aktif |
-| HIM-050 | HIMA | HIMAKA UMBY | @himaka.umby | [@himaka.umby](https://www.instagram.com/himaka.umby/) | - | - | IG_DM | HIMAKA UMBY (Informatika Mercu Buana) terverifikasi aktif |
+| HIM-050 | HIMA | HIMAKA UMBY | @himaka.umby | [@himaka.umby](https://www.instagram.com/himaka.umby/) | - | 62882007166831 | WA | Kontak terverifikasi: Humas HIMAKA UMBY |
 | HIM-051 | HIMA | HIMTEK UTY | @himtek.uty | [@himtek.uty](https://www.instagram.com/himtek.uty/) | - | 6289671139389 | WA | Kontak Tersedia |
 | KOM-001 | Komunitas | AMCC AMIKOM | @amccamikom | [@amccamikom](https://www.instagram.com/amccamikom/) | https://linktr.ee/amccamikom | - | IG_DM | Perlu DM IG |
 | KOM-002 | Komunitas | KOMA AMIKOM | @media_koma | [@media_koma](https://www.instagram.com/media_koma/) | https://linktr.ee/koma_amikom | - | IG_DM | Perlu DM IG |
 | KOM-003 | Komunitas | Youth Ranger Indonesia | @youthranger.id | [@youthranger.id](https://www.instagram.com/youthranger.id/) | https://linktr.ee/youthrangerindonesia | - | IG_DM | Perlu DM / Email |
-| KOM-004 | Komunitas | Trash Ranger Indonesia | @trashranger.id | [@trashranger.id](https://www.instagram.com/trashranger.id/) | https://linktr.ee/trashranger.id | - | IG_DM | Perlu DM IG |
+| KOM-004 | Komunitas | Trash Ranger Indonesia | @trashranger.id | [@trashranger.id](https://www.instagram.com/trashranger.id/) | https://linktr.ee/trashranger.id | 6282280371918 | WA | Kontak terverifikasi: Kak Putri |
 | KOM-005 | Komunitas | Womanhub Indonesia | @womanhub.id | [@womanhub.id](https://www.instagram.com/womanhub.id/) | - | - | IG_DM | Perlu DM IG |
 | GOV-001 | Instansi Pemerintah | BPSDM Komdigi Yogyakarta | @blsdm.komdigi.yogyakarta | [@blsdm.komdigi.yogyakarta](https://www.instagram.com/blsdm.komdigi.yogyakarta/) | https://linktr.ee/bpsdmdiy | - | Email | BLSDM Komdigi Yogyakarta terverifikasi resmi |
 | GOV-002 | Instansi Pemerintah | Balai Monitor SFR Yogyakarta | @balmonjogja | [@balmonjogja](https://www.instagram.com/balmonjogja/) | https://linktr.ee/balmonjogja | - | Email | Surat Resmi Email/Fisik |

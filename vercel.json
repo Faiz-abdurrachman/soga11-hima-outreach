@@ -1,9 +1,40 @@
 {
   "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        }
+      ]
+    }
+  ],
   "rewrites": [
-    { "source": "/api/data", "destination": "/database_soga11.json" },
-    { "source": "/surat/:id", "destination": "/api/surat/:id" },
-    { "source": "/tor", "destination": "/TOR%20SOGA%20%2311.pdf" },
-    { "source": "/excel", "destination": "/Database_SOGA_11_Master.xlsx" }
+    {
+      "source": "/api/data",
+      "destination": "/database_soga11.json"
+    },
+    {
+      "source": "/surat/:id",
+      "destination": "/api/surat/:id"
+    },
+    {
+      "source": "/tor",
+      "destination": "/TOR%20SOGA%20%2311.pdf"
+    },
+    {
+      "source": "/excel",
+      "destination": "/Database_SOGA_11_Master.xlsx"
+    }
   ]
 }

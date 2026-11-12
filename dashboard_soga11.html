@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>SOGA #11 - Outreach & RSVP Pipeline</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1661,9 +1664,9 @@
     "url_ig": "https://www.instagram.com/himaka.umby/",
     "bio_link": "",
     "email": "",
-    "wa": "",
-    "cp": "",
-    "kanal": "IG_DM",
+    "wa": "62882007166831",
+    "cp": "Humas HIMAKA UMBY",
+    "kanal": "WA",
     "no_surat": "050/SOGA/SU/DS/XI/2026",
     "status_kirim": "Terkirim",
     "tanggal_kirim": "2026-11-11",
@@ -1672,7 +1675,7 @@
     "delegasi": 0,
     "nama_delegasi": "",
     "wa_delegasi": "",
-    "catatan": "HIMAKA UMBY (Informatika Mercu Buana) terverifikasi aktif",
+    "catatan": "Kontak terverifikasi: Humas HIMAKA UMBY (+62 882-0071-66831)",
     "file_surat": "050-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HIMAKA UMBY.pdf"
   },
   {
@@ -2661,61 +2664,61 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V6_ACCURATE';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V9_LIVE';
     let activeModalItem = null;
 
     function initData() {
-      // Purge stale cache from earlier sessions
-      localStorage.removeItem('SOGA11_DATABASE_V5_PRECISE');
-      localStorage.removeItem('SOGA11_DATABASE_CLEAN_V2');
-      localStorage.removeItem('SOGA11_DATABASE_CLEAN');
-      localStorage.removeItem('SOGA11_DATABASE');
+      // Purge all old cache keys completely
+      ['SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+        try { localStorage.removeItem(k); } catch(e) {}
+      });
 
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        try {
+      // Always base currentData on fresh INITIAL_DATA
+      currentData = INITIAL_DATA.map(d => ({ ...d }));
+
+      // Restore user tracking progress (RSVP / status) if stored in active version
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
           const parsed = JSON.parse(saved);
-          const initMap = {};
-          INITIAL_DATA.forEach(d => { initMap[d.id] = d; });
-          currentData = parsed.map(item => {
-            if (initMap[item.id]) {
-              item.nama = initMap[item.id].nama;
-              item.ig = initMap[item.id].ig;
-              item.url_ig = initMap[item.id].url_ig;
-              item.bio_link = initMap[item.id].bio_link;
-              item.kanal = initMap[item.id].kanal;
-              item.catatan = initMap[item.id].catatan;
-              item.wa = initMap[item.id].wa;
+          const savedMap = {};
+          parsed.forEach(s => { savedMap[s.id] = s; });
+          currentData.forEach(item => {
+            const s = savedMap[item.id];
+            if (s) {
+              if (s.status_kirim && s.status_kirim !== 'Siap Kirim') item.status_kirim = s.status_kirim;
+              if (s.rsvp && s.rsvp !== 'Belum Respon') item.rsvp = s.rsvp;
+              if (s.delegasi) item.delegasi = s.delegasi;
+              if (s.nama_delegasi) item.nama_delegasi = s.nama_delegasi;
+              if (s.wa_delegasi) item.wa_delegasi = s.wa_delegasi;
             }
-            return item;
           });
-        } catch (e) {
-          currentData = [...INITIAL_DATA];
         }
-      } else {
-        currentData = [...INITIAL_DATA];
-      }
+      } catch (e) {}
 
+      // Fetch fresh API data and sync all master fields
       fetch('/api/data?t=' + Date.now())
         .then(r => r.json())
         .then(remote => {
           if (Array.isArray(remote) && remote.length > 0) {
             const remoteMap = {};
             remote.forEach(r => { remoteMap[r.id] = r; });
-            currentData = currentData.map(c => {
-              if (remoteMap[c.id]) {
-                c.nama = remoteMap[c.id].nama;
-                c.ig = remoteMap[c.id].ig;
-                c.url_ig = remoteMap[c.id].url_ig;
-                c.bio_link = remoteMap[c.id].bio_link;
-                c.kanal = remoteMap[c.id].kanal;
-                c.catatan = remoteMap[c.id].catatan;
-                c.wa = remoteMap[c.id].wa;
+            currentData.forEach(c => {
+              const r = remoteMap[c.id];
+              if (r) {
+                c.nama = r.nama;
+                c.ig = r.ig;
+                c.url_ig = r.url_ig;
+                c.bio_link = r.bio_link;
+                c.kanal = r.kanal;
+                c.catatan = r.catatan;
+                c.wa = r.wa;
+                c.cp = r.cp;
+                c.no_surat = r.no_surat;
+                c.file_surat = r.file_surat;
               }
-              return c;
             });
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(currentData));
-            updateKPIs();
+            saveData();
             renderTable();
           }
         })
@@ -2980,7 +2983,7 @@ Saat tiba di lokasi, rekan-rekan delegasi dapat langsung menuju meja registrasi 
 
 Apabila ada nomor WhatsApp aktif dari rekan-rekan delegasi tersebut untuk keperluan koordinasi teknis/pengingat sebelum hari H, boleh diinfokan ke kami ya kak.
 
-Sampai jumpa di SOGA #11 dan terima kasih banyak atas partisipasinya!
+Terima kasih banyak atas partisipasinya!
 
 Faiz - Data Sorcerers`;
       }
