@@ -81,6 +81,12 @@
           <span>PDF TOR</span>
         </a>
 
+        <button onclick="openDelegasiModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold transition shadow-2xs">
+          <svg class="w-3.5 h-3.5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span class="hidden sm:inline">Database Delegasi (5)</span>
+          <span class="sm:hidden">Delegasi (5)</span>
+        </button>
+
         <button onclick="openQRModal()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 text-xs font-medium transition shadow-2xs">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
           <span>Buka di HP</span>
@@ -133,10 +139,13 @@
         <p class="text-[10px] text-slate-400 mt-0.5">Ormawa hadir</p>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
-        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Total Delegasi</p>
-        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">0</p>
-        <p class="text-[10px] text-slate-400 mt-0.5">Orang terkonfirmasi</p>
+      <div onclick="openDelegasiModal()" class="bg-white border border-purple-200 hover:border-purple-400 rounded-lg p-3.5 shadow-2xs cursor-pointer transition group">
+        <p class="text-[11px] font-medium text-purple-700 uppercase tracking-wider flex items-center justify-between">
+          <span>Total Delegasi</span>
+          <span class="text-[10px] text-purple-600 font-bold group-hover:underline">Buka List &rarr;</span>
+        </p>
+        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">5</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">5 Terdaftar (2 Ormawa)</p>
       </div>
     </div>
 
@@ -448,6 +457,85 @@
     </div>
   </div>
 
+    <!-- DELEGASI MODAL FOR OFFICIAL DELEGATION MANAGEMENT -->
+  <div id="delegasi-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-200 flex items-start justify-between bg-slate-50/70">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow-xs">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Database Delegasi Resmi SOGA #11</h3>
+            <p class="text-xs text-slate-500">Rekapitulasi nama perwakilan ormawa terkonfirmasi hadir untuk registrasi meja depan & ID Card</p>
+          </div>
+        </div>
+        <button onclick="closeDelegasiModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Quick Metrics & Actions Banner -->
+      <div class="p-4 border-b border-slate-200 bg-purple-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-3 text-xs flex-wrap">
+          <div class="flex items-center gap-1.5">
+            <span class="font-medium text-slate-600">Total Delegasi:</span>
+            <span class="font-bold px-2.5 py-0.5 rounded-full bg-purple-600 text-white text-[11px]">5 Orang</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-medium text-slate-600">HIMA Hadir:</span>
+            <span class="font-bold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[11px]">2 Ormawa</span>
+          </div>
+          <span class="text-slate-400 hidden md:inline">•</span>
+          <div class="hidden md:flex items-center gap-1 text-slate-500 font-medium">
+            <span>Minggu, 15 Nov 2026 @ Garuda Spark Hub</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="copyDelegasiListWA()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition shadow-2xs">
+            <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span>Salin Format WA</span>
+          </button>
+          <a href="/database_delegasi_soga11.csv" download="Database_Delegasi_SOGA11.csv" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold transition shadow-2xs">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Download CSV</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Delegates List / Table -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-3">
+        <div class="overflow-x-auto border border-slate-200 rounded-lg">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+                <th class="py-2.5 px-3 text-center w-12">No</th>
+                <th class="py-2.5 px-3">Nama Lengkap Delegasi</th>
+                <th class="py-2.5 px-3">Organisasi & Kampus</th>
+                <th class="py-2.5 px-3">Peran / Jabatan</th>
+                <th class="py-2.5 px-3">Kontak CP</th>
+                <th class="py-2.5 px-3 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody id="delegasi-table-body" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+        <span>Data tersinkronisasi otomatis dengan Master Excel & Database JSON.</span>
+        <button onclick="closeDelegasiModal()" class="px-3 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 rounded-md font-medium text-slate-700 transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- QR CODE MODAL FOR MOBILE ACCESS -->
   <div id="qr-modal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-xl shadow-xl border border-slate-200 w-full max-w-sm overflow-hidden text-center p-6 space-y-4">
@@ -496,7 +584,7 @@
     "tanggal_kirim": "2026-11-11",
     "pic": "",
     "rsvp": "Belum Respon",
-    "delegasi": 3,
+    "delegasi": 0,
     "nama_delegasi": "",
     "wa_delegasi": "",
     "catatan": "Divisi Akstrat HMIF UAD (outreach via WA). Akun IG resmi @hmifuad dipegang entitas HIM-023.",
@@ -1167,11 +1255,11 @@
     "status_kirim": "Terkirim",
     "tanggal_kirim": "2026-11-11",
     "pic": "",
-    "rsvp": "Belum Respon",
-    "delegasi": 0,
-    "nama_delegasi": "",
+    "rsvp": "Konfirmasi Hadir (3 Delegasi)",
+    "delegasi": 3,
+    "nama_delegasi": "1. Fina Aprilia\n2. Revaleona Bondan Laily Ramadhani\n3. Muhammad Fatih Alhamaha",
     "wa_delegasi": "",
-    "catatan": "Kontak terverifikasi via IG: Kak Fina - Bupati HMPI UPY (+62 882-0034-04737)",
+    "catatan": "Konfirmasi hadir 3 delegasi: 1. Fina Aprilia, 2. Revaleona Bondan Laily Ramadhani, 3. Muhammad Fatih Alhamaha. Kontak CP: Kak Fina - Bupati HMPI UPY (+62 882-0034-04737)",
     "file_surat": "029-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMP Informatika UPY.pdf"
   },
   {
@@ -1243,7 +1331,7 @@
     "delegasi": 2,
     "nama_delegasi": "1. Febi Chelsia Zaharani\n2. Kelvin Dita Febriansyah",
     "wa_delegasi": "",
-    "catatan": "Konfirmasi hadir 2 delegasi (Febi Chelsia Zaharani & Kelvin Dita Febriansyah). WA: +62 897-7096-931",
+    "catatan": "Konfirmasi hadir 2 delegasi: 1. Febi Chelsia Zaharani, 2. Kelvin Dita Febriansyah. Kontak CP: Pengurus HMPSI UMBY (+62 897-7096-931)",
     "file_surat": "032-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMPSI UMBY.pdf"
   },
   {
@@ -2664,12 +2752,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V9_LIVE';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V10_DELEGASI';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -2757,7 +2845,10 @@
       document.getElementById('kpi-pending').textContent = currentData.filter(d => d.status_kirim === 'Pending / Menunggu Balasan').length;
       document.getElementById('kpi-hadir').textContent = currentData.filter(d => (d.rsvp || '').includes('Hadir') && !(d.rsvp || '').includes('Berhalangan')).length;
       
-      const totalDel = currentData.reduce((acc, it) => acc + (parseInt(it.delegasi) || 0), 0);
+      const totalDel = currentData.reduce((acc, it) => {
+        const isHadir = (it.rsvp || '').includes('Hadir') && !(it.rsvp || '').includes('Berhalangan');
+        return acc + (isHadir ? (parseInt(it.delegasi) || 0) : 0);
+      }, 0);
       document.getElementById('kpi-delegasi').textContent = totalDel;
     }
 
@@ -3122,6 +3213,15 @@ Faiz - Data Sorcerers`;
               <div class="font-medium text-slate-900 text-xs">${item.nama}</div>
               <div class="text-[11px] text-slate-500">${item.kampus || '-'}</div>
               <div class="text-[10px] text-slate-400 font-mono mt-0.5">${item.no_surat}</div>
+              ${item.nama_delegasi ? `
+                <div class="mt-1.5 p-2 bg-purple-50/90 border border-purple-200 rounded text-[10px] text-purple-950 font-medium">
+                  <div class="font-bold text-purple-800 flex items-center gap-1">
+                    <svg class="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+                    <span>Delegasi Terdaftar (${item.delegasi || 0} org):</span>
+                  </div>
+                  <div class="mt-0.5 whitespace-pre-line text-slate-800 font-medium leading-relaxed">${item.nama_delegasi}</div>
+                </div>
+              ` : ''}
             </td>
 
             <!-- Instagram -->
@@ -3328,6 +3428,16 @@ Faiz - Data Sorcerers`;
                   </select>
                 </div>
               </div>
+
+              ${item.nama_delegasi ? `
+                <div class="p-2.5 bg-purple-50/90 border border-purple-200 rounded-lg text-xs text-purple-950 space-y-1">
+                  <div class="font-bold text-purple-800 flex items-center gap-1 text-[11px]">
+                    <svg class="w-3.5 h-3.5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+                    <span>Delegasi Terdaftar (${item.delegasi || 0} Orang):</span>
+                  </div>
+                  <div class="whitespace-pre-line text-slate-800 font-medium text-[11px] leading-relaxed pl-4 border-l-2 border-purple-300">${item.nama_delegasi}</div>
+                </div>
+              ` : ''}
 
               <!-- Delegasi Counter & PIC Input -->
               <div class="flex items-center justify-between gap-2 pt-1 border-t border-slate-100 text-xs">
@@ -3705,6 +3815,142 @@ Faiz - Data Sorcerers`;
       renderTable();
       closeEditModal();
       showToast('Data Diperbarui', `Perubahan untuk ${activeModalItem.nama} berhasil disimpan.`);
+    }
+
+
+    // DELEGATION MANAGEMENT JAVASCRIPT
+    const DELEGATES_MASTER = [
+      {
+        no: 1,
+        id_delegasi: "DEL-001",
+        id_entitas: "HIM-029",
+        nama_delegasi: "Fina Aprilia",
+        jabatan_peran: "Bupati HMPI UPY / Delegasi 1",
+        organisasi: "HMP Informatika UPY",
+        kampus: "Universitas PGRI Yogyakarta",
+        no_surat: "029/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 882-0034-04737 (Kak Fina)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 2,
+        id_delegasi: "DEL-002",
+        id_entitas: "HIM-029",
+        nama_delegasi: "Revaleona Bondan Laily Ramadhani",
+        jabatan_peran: "Pengurus / Delegasi 2",
+        organisasi: "HMP Informatika UPY",
+        kampus: "Universitas PGRI Yogyakarta",
+        no_surat: "029/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 882-0034-04737 (via Kak Fina)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 3,
+        id_delegasi: "DEL-003",
+        id_entitas: "HIM-029",
+        nama_delegasi: "Muhammad Fatih Alhamaha",
+        jabatan_peran: "Pengurus / Delegasi 3",
+        organisasi: "HMP Informatika UPY",
+        kampus: "Universitas PGRI Yogyakarta",
+        no_surat: "029/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 882-0034-04737 (via Kak Fina)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 4,
+        id_delegasi: "DEL-004",
+        id_entitas: "HIM-032",
+        nama_delegasi: "Febi Chelsia Zaharani",
+        jabatan_peran: "Pengurus / Delegasi 1",
+        organisasi: "HMPSI UMBY",
+        kampus: "Universitas Mercu Buana Yogyakarta",
+        no_surat: "032/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 897-7096-931 (Pengurus HMPSI)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 5,
+        id_delegasi: "DEL-005",
+        id_entitas: "HIM-032",
+        nama_delegasi: "Kelvin Dita Febriansyah",
+        jabatan_peran: "Pengurus / Delegasi 2",
+        organisasi: "HMPSI UMBY",
+        kampus: "Universitas Mercu Buana Yogyakarta",
+        no_surat: "032/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 897-7096-931 (via Pengurus HMPSI)",
+        status_kehadiran: "Konfirmasi Hadir"
+      }
+    ];
+
+    function openDelegasiModal() {
+      renderDelegasiModalTable();
+      document.getElementById('delegasi-modal').classList.remove('hidden');
+    }
+
+    function closeDelegasiModal() {
+      document.getElementById('delegasi-modal').classList.add('hidden');
+    }
+
+    function renderDelegasiModalTable() {
+      const tbody = document.getElementById('delegasi-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = DELEGATES_MASTER.map(d => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-2.5 px-3 text-center text-slate-400 font-mono text-[11px]">${d.no}</td>
+          <td class="py-2.5 px-3">
+            <div class="font-bold text-slate-900 text-xs">${d.nama_delegasi}</div>
+            <div class="text-[10px] text-slate-400 font-mono">${d.id_delegasi}</div>
+          </td>
+          <td class="py-2.5 px-3">
+            <div class="font-semibold text-slate-800 text-xs">${d.organisasi}</div>
+            <div class="text-[11px] text-slate-500">${d.kampus}</div>
+          </td>
+          <td class="py-2.5 px-3 text-slate-700 text-xs">${d.jabatan_peran}</td>
+          <td class="py-2.5 px-3">
+            <div class="text-xs font-mono text-emerald-700 font-medium">${d.kontak_wa}</div>
+            <div class="text-[10px] text-slate-400">${d.no_surat}</div>
+          </td>
+          <td class="py-2.5 px-3 text-center">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+              Hadir
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function copyDelegasiListWA() {
+      const text = `DAFTAR DELEGASI RESMI SOGA #11
+Sorcery Gathering #11: "Pahlawan Pendidikan di Era Algoritma"
+Hari, Tanggal: Minggu, 15 November 2026 (08.00 - 12.30 WIB)
+Lokasi: Garuda Spark Innovation Hub, Yogyakarta
+
+Total Terkonfirmasi: 5 Delegasi (2 Ormawa)
+
+1. HMP Informatika UPY (Universitas PGRI Yogyakarta) - 3 Delegasi
+   - Fina Aprilia (Bupati HMPI UPY)
+   - Revaleona Bondan Laily Ramadhani
+   - Muhammad Fatih Alhamaha
+   Kontak CP: Kak Fina (+62 882-0034-04737)
+   No. Surat: 029/SOGA/SU/DS/XI/2026
+
+2. HMPSI UMBY (Universitas Mercu Buana Yogyakarta) - 2 Delegasi
+   - Febi Chelsia Zaharani
+   - Kelvin Dita Febriansyah
+   Kontak CP: Pengurus HMPSI (+62 897-7096-931)
+   No. Surat: 032/SOGA/SU/DS/XI/2026`;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Daftar Disalin!', 'Daftar nama delegasi disalin ke clipboard dalam format rapi.');
+        }).catch(() => {
+          fallbackCopyText(text);
+          showToast('Daftar Disalin!', 'Daftar nama delegasi disalin ke clipboard dalam format rapi.');
+        });
+      } else {
+        fallbackCopyText(text);
+        showToast('Daftar Disalin!', 'Daftar nama delegasi disalin ke clipboard dalam format rapi.');
+      }
     }
 
     // QR MODAL CONTROLS

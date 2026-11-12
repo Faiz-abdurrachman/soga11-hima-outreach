@@ -43,10 +43,10 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | HIM-026 | HIMA | HIMMAIF UII | @himmaifuii | [@himmaifuii](https://www.instagram.com/himmaifuii/) | https://linktr.ee/himmaifuii | - | IG_DM | Perlu DM IG |
 | HIM-027 | HIMA | HMJ TI Janabadra | @hmjti_ujb | [@hmjti_ujb](https://www.instagram.com/hmjti_ujb/) | https://janabadra.ac.id/ | 6281228827035 | IG_DM | Akun IG resmi HIMA terverifikasi @hmjti_ujb (sebelumnya akun universitas @univ.janabadra). |
 | HIM-028 | HIMA | HIMATIKA UNU Yogyakarta | *(Belum Ada IG HIMA)* | - | - | 6283128388681 | WA | Belum ada akun IG resmi HIMA mandiri (@fti_unuyo adalah fakultas). Outreach via kontak WA. |
-| HIM-029 | HIMA | HMP Informatika UPY | @hmpinformatika_upy | [@hmpinformatika_upy](https://www.instagram.com/hmpinformatika_upy/) | - | 62882003404737 | WA | Kontak terverifikasi: Kak Fina (Bupati HMPI UPY) |
+| HIM-029 | HIMA | HMP Informatika UPY | @hmpinformatika_upy | [@hmpinformatika_upy](https://www.instagram.com/hmpinformatika_upy/) | - | 62882003404737 | WA | Konfirmasi Hadir 3 Delegasi: Fina Aprilia, Revaleona Bondan Laily Ramadhani, Muhammad Fatih Alhamaha (CP: Kak Fina) |
 | HIM-030 | HIMA | HMP SI UPY | *(Belum Ada IG HIMA)* | - | - | - | Perlu Alternatif | Prodi baru, belum memiliki akun IG himpunan terpisah. Perlu riset kontak alternatif. |
 | HIM-031 | HIMA | HMPS Matematika UIN Sunan Kalijaga | @hmps.mathsuka | [@hmps.mathsuka](https://www.instagram.com/hmps.mathsuka/) | - | 6285694605450 | WA | Kontak terverifikasi via admin IG: Mas Zaki |
-| HIM-032 | HIMA | HMPSI UMBY | @hmpssi_umby | [@hmpssi_umby](https://www.instagram.com/hmpssi_umby/) | - | - | IG_DM | Perlu DM IG |
+| HIM-032 | HIMA | HMPSI UMBY | @hmpssi_umby | [@hmpssi_umby](https://www.instagram.com/hmpssi_umby/) | - | 628977096931 | WA | Konfirmasi Hadir 2 Delegasi: Febi Chelsia Zaharani, Kelvin Dita Febriansyah (CP: Pengurus HMPSI) |
 | HIM-033 | HIMA | HMPSKOM UAJY | @hmpskom_uajy | [@hmpskom_uajy](https://www.instagram.com/hmpskom_uajy/) | - | 6282329631122 | WA | Kontak Tersedia |
 | HIM-034 | HIMA | HMSI UNJAYA | *(Belum Ada IG HIMA)* | - | - | 6289637586070 | WA | Belum ada akun IG resmi HIMA mandiri (@fttiunjaya adalah fakultas). Outreach via kontak WA. |
 | HIM-035 | HIMA | HMSI UTY | @hmsiuty | [@hmsiuty](https://www.instagram.com/hmsiuty/) | https://linktr.ee/hmsiuty | 6285760794074 | WA | Kontak Tersedia |

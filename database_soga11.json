@@ -17,7 +17,7 @@
     "tanggal_kirim": "2026-11-11",
     "pic": "",
     "rsvp": "Belum Respon",
-    "delegasi": 3,
+    "delegasi": 0,
     "nama_delegasi": "",
     "wa_delegasi": "",
     "catatan": "Divisi Akstrat HMIF UAD (outreach via WA). Akun IG resmi @hmifuad dipegang entitas HIM-023.",
@@ -688,11 +688,11 @@
     "status_kirim": "Terkirim",
     "tanggal_kirim": "2026-11-11",
     "pic": "",
-    "rsvp": "Belum Respon",
-    "delegasi": 0,
-    "nama_delegasi": "",
+    "rsvp": "Konfirmasi Hadir (3 Delegasi)",
+    "delegasi": 3,
+    "nama_delegasi": "1. Fina Aprilia\n2. Revaleona Bondan Laily Ramadhani\n3. Muhammad Fatih Alhamaha",
     "wa_delegasi": "",
-    "catatan": "Kontak terverifikasi via IG: Kak Fina - Bupati HMPI UPY (+62 882-0034-04737)",
+    "catatan": "Konfirmasi hadir 3 delegasi: 1. Fina Aprilia, 2. Revaleona Bondan Laily Ramadhani, 3. Muhammad Fatih Alhamaha. Kontak CP: Kak Fina - Bupati HMPI UPY (+62 882-0034-04737)",
     "file_surat": "029-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMP Informatika UPY.pdf"
   },
   {
@@ -764,7 +764,7 @@
     "delegasi": 2,
     "nama_delegasi": "1. Febi Chelsia Zaharani\n2. Kelvin Dita Febriansyah",
     "wa_delegasi": "",
-    "catatan": "Konfirmasi hadir 2 delegasi (Febi Chelsia Zaharani & Kelvin Dita Febriansyah). WA: +62 897-7096-931",
+    "catatan": "Konfirmasi hadir 2 delegasi: 1. Febi Chelsia Zaharani, 2. Kelvin Dita Febriansyah. Kontak CP: Pengurus HMPSI UMBY (+62 897-7096-931)",
     "file_surat": "032-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HMPSI UMBY.pdf"
   },
   {

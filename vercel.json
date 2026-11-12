@@ -29,6 +29,18 @@
       "destination": "/api/surat/:id"
     },
     {
+      "source": "/api/delegasi",
+      "destination": "/database_delegasi_soga11.json"
+    },
+    {
+      "source": "/delegasi",
+      "destination": "/database_delegasi_soga11.json"
+    },
+    {
+      "source": "/delegasi.csv",
+      "destination": "/database_delegasi_soga11.csv"
+    },
+    {
       "source": "/tor",
       "destination": "/TOR%20SOGA%20%2311.pdf"
     },
