@@ -1546,8 +1546,8 @@
     "bio_link": "https://cyberkarta.com",
     "email": "contact@cyberkarta.com",
     "wa": "6285161835865",
-    "cp": "Business Inquiries Cyberkarta",
-    "kanal": "IG_DM",
+    "cp": "Tim Cyberkarta",
+    "kanal": "WA",
     "no_surat": "065/SOGA/SU/DS/XI/2026",
     "status_kirim": "Siap Kirim",
     "tanggal_kirim": "2026-11-11",
@@ -1556,7 +1556,7 @@
     "delegasi": 0,
     "nama_delegasi": "",
     "wa_delegasi": "",
-    "catatan": "Akun IG & No WA Cyberkarta terverifikasi",
+    "catatan": "Mitra Keamanan Siber & Komunitas IT. WA: +62 851-6183-5865. Format undangan khusus: tanpa kuota delegasi (undangan silaturahmi & networking).",
     "file_surat": "065-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Cyberkarta.pdf"
   },
   {
@@ -2182,5 +2182,29 @@
     "wa_delegasi": "",
     "catatan": "",
     "file_surat": "098-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Hallo.id.pdf"
+  },
+  {
+    "no": 92,
+    "id": "KOM-006",
+    "kategori": "Komunitas",
+    "nama": "Jogja Cyber Security",
+    "kampus": "Komunitas Cyber Security Yogyakarta",
+    "ig": "@jogjacybersec",
+    "url_ig": "https://www.instagram.com/jogjacybersec/",
+    "bio_link": "https://jogjacybersec.org",
+    "email": "contact@jogjacybersec.org",
+    "wa": "6285974841341",
+    "cp": "Kak Alvin (Partnership JCS)",
+    "kanal": "WA",
+    "no_surat": "066/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-13",
+    "pic": "Faiz",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Komunitas independen pegiat cyber security Yogyakarta. Kontak: Kak Alvin (Partnership) +62 859-7484-1341. Telegram: @jogjacybersec. Format undangan khusus: tanpa kuota delegasi.",
+    "file_surat": "066-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Jogja Cyber Security.pdf"
   }
 ]

@@ -71,6 +71,7 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | KOM-003 | Komunitas | Youth Ranger Indonesia | @youthranger.id | [@youthranger.id](https://www.instagram.com/youthranger.id/) | https://linktr.ee/youthrangerindonesia | - | IG_DM | Perlu DM / Email |
 | KOM-004 | Komunitas | Trash Ranger Indonesia | @trashranger.id | [@trashranger.id](https://www.instagram.com/trashranger.id/) | https://linktr.ee/trashranger.id | 6282280371918 | WA | Kontak terverifikasi: Kak Putri |
 | KOM-005 | Komunitas | Womanhub Indonesia | @womanhub.id | [@womanhub.id](https://www.instagram.com/womanhub.id/) | - | - | IG_DM | Perlu DM IG |
+| KOM-006 | Komunitas | Jogja Cyber Security | @jogjacybersec | [@jogjacybersec](https://www.instagram.com/jogjacybersec/) | https://jogjacybersec.org | 6285974841341 | WA | Kontak Kak Alvin (Partnership). Khusus komunitas: format undangan tanpa batasan delegasi |
 | GOV-001 | Instansi Pemerintah | BPSDM Komdigi Yogyakarta | @blsdm.komdigi.yogyakarta | [@blsdm.komdigi.yogyakarta](https://www.instagram.com/blsdm.komdigi.yogyakarta/) | https://linktr.ee/bpsdmdiy | - | Email | BLSDM Komdigi Yogyakarta terverifikasi resmi |
 | GOV-002 | Instansi Pemerintah | Balai Monitor SFR Yogyakarta | @balmonjogja | [@balmonjogja](https://www.instagram.com/balmonjogja/) | https://linktr.ee/balmonjogja | - | Email | Surat Resmi Email/Fisik |
 | GOV-003 | Instansi Pemerintah | Diskominfo DIY | @kominfodiy | [@kominfodiy](https://www.instagram.com/kominfodiy/) | https://diskominfo.jogjaprov.go.id | - | Email | Surat Resmi Email/Fisik |
@@ -79,7 +80,7 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | GOV-006 | Instansi Pemerintah | Humas UNU Yogyakarta | *(Belum Ada IG HIMA)* | - | https://unu-jogja.ac.id | 62895423216883 | WA | Akun @unujogja adalah akun resmi universitas. Outreach resmi Humas via WA Humas. |
 | BIZ-001 | Inkubator & Bisnis | ABP Incubator AMIKOM | @abp.incubator | [@abp.incubator](https://www.instagram.com/abp.incubator/) | https://abpincubator.com | - | IG_DM | ABP Incubator terverifikasi resmi |
 | BIZ-002 | Inkubator & Bisnis | Entrepreneur Campus AMIKOM | @entrepreneurcampus | [@entrepreneurcampus](https://www.instagram.com/entrepreneurcampus/) | - | - | IG_DM | Perlu DM IG |
-| BIZ-003 | Inkubator & Bisnis | Cyberkarta | @thecyberkarta | [@thecyberkarta](https://www.instagram.com/thecyberkarta/) | https://cyberkarta.com | 6285161835865 | IG_DM | Akun IG & No WA Cyberkarta terverifikasi |
+| BIZ-003 | Inkubator & Bisnis | Cyberkarta | @thecyberkarta | [@thecyberkarta](https://www.instagram.com/thecyberkarta/) | https://cyberkarta.com | 6285161835865 | WA | Mitra Keamanan Siber Yogyakarta. Khusus komunitas: format undangan tanpa batasan delegasi |
 | MED-001 | Media Partner | Indonesiana (Tempo Media) | @tempodotco | [@tempodotco](https://www.instagram.com/tempodotco/) | - | - | IG_DM | Tempo.co (Grup Pengelola Indonesiana) |
 | MED-002 | Media Partner | Republika Online | @republikaonline | [@republikaonline](https://www.instagram.com/republikaonline/) | - | - | IG_DM | - |
 | MED-003 | Media Partner | Kompas.com | @kompascom | [@kompascom](https://www.instagram.com/kompascom/) | - | - | IG_DM | - |

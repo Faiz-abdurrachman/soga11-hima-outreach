@@ -2113,8 +2113,8 @@
     "bio_link": "https://cyberkarta.com",
     "email": "contact@cyberkarta.com",
     "wa": "6285161835865",
-    "cp": "Business Inquiries Cyberkarta",
-    "kanal": "IG_DM",
+    "cp": "Tim Cyberkarta",
+    "kanal": "WA",
     "no_surat": "065/SOGA/SU/DS/XI/2026",
     "status_kirim": "Siap Kirim",
     "tanggal_kirim": "2026-11-11",
@@ -2123,7 +2123,7 @@
     "delegasi": 0,
     "nama_delegasi": "",
     "wa_delegasi": "",
-    "catatan": "Akun IG & No WA Cyberkarta terverifikasi",
+    "catatan": "Mitra Keamanan Siber & Komunitas IT. WA: +62 851-6183-5865. Format undangan khusus: tanpa kuota delegasi (undangan silaturahmi & networking).",
     "file_surat": "065-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Cyberkarta.pdf"
   },
   {
@@ -2749,15 +2749,39 @@
     "wa_delegasi": "",
     "catatan": "",
     "file_surat": "098-SOGA-SPm-DS-XI-2026 - Surat Undangan SOGA 11 - Hallo.id.pdf"
+  },
+  {
+    "no": 92,
+    "id": "KOM-006",
+    "kategori": "Komunitas",
+    "nama": "Jogja Cyber Security",
+    "kampus": "Komunitas Cyber Security Yogyakarta",
+    "ig": "@jogjacybersec",
+    "url_ig": "https://www.instagram.com/jogjacybersec/",
+    "bio_link": "https://jogjacybersec.org",
+    "email": "contact@jogjacybersec.org",
+    "wa": "6285974841341",
+    "cp": "Kak Alvin (Partnership JCS)",
+    "kanal": "WA",
+    "no_surat": "066/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-13",
+    "pic": "Faiz",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Komunitas independen pegiat cyber security Yogyakarta. Kontak: Kak Alvin (Partnership) +62 859-7484-1341. Telegram: @jogjacybersec. Format undangan khusus: tanpa kuota delegasi.",
+    "file_surat": "066-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Jogja Cyber Security.pdf"
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V10_DELEGASI';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V11_CYBER';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -2883,6 +2907,21 @@ Kami juga dapat dihubungi langsung via WhatsApp di nomor 088227250005. Atas perh
 Hormat kami,
 Faiz - Data Sorcerers`;
       } else {
+        const isCyber = item.id === 'BIZ-003' || item.id === 'KOM-006' || (item.nama || '').toLowerCase().includes('cyber');
+        if (isCyber) {
+          return `Halo rekan-rekan ${targetSalutation}, salam kenal saya Faiz dari tim Data Sorcerers Yogyakarta.
+
+Kami bermaksud mengundang rekan-rekan dari ${item.nama} untuk hadir dan bersilaturahmi di acara Sorcery Gathering #11 (SOGA #11) tentang penguatan karakter, adab, dan daya juang di era AI, hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
+
+Untuk berkas surat undangan resmi dan TOR acaranya, kira-kira lebih nyaman kami kirimkan lewat DM ini atau via WhatsApp ya kak?
+
+Kalau via WA, boleh minta kontak narahubung yang aktif? Atau rekan-rekan bisa juga hubungi saya langsung di WhatsApp: 088227250005.
+
+Terima kasih banyak atas waktunya!
+
+Faiz - Data Sorcerers`;
+        }
+
         return `Halo kak/teman-teman pengurus ${targetSalutation}, salam kenal saya Faiz dari tim Data Sorcerers.
 
 Kami bermaksud mengundang perwakilan delegasi dari ${item.nama} untuk hadir di acara Sorcery Gathering #11 (SOGA #11) tentang penguatan karakter, adab, dan daya juang di era AI, hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub.
@@ -2939,6 +2978,23 @@ Terima kasih banyak atas perhatian dan arahan Bapak/Ibu.
 Hormat kami,
 Faiz - Data Sorcerers`;
       } else {
+        const isCyber = item.id === 'BIZ-003' || item.id === 'KOM-006' || (item.nama || '').toLowerCase().includes('cyber');
+        if (isCyber) {
+          return `Baik rekan-rekan tim ${targetSalutation}, terima kasih banyak atas respon baiknya.
+
+Berikut kami lampirkan tautan berkas resmi kegiatan Sorcery Gathering #11 (SOGA #11):
+- Surat Undangan Resmi (No. ${item.no_surat}): ${suratUrl}
+- Term of Reference (TOR) Acara: ${torUrl}
+
+Kehadiran rekan-rekan dari ${item.nama} bersifat undangan kehormatan (free). Kami sangat senang sekiranya rekan-rekan berkenan hadir dan bersilaturahmi pada agenda ini.
+
+Untuk koordinasi kehadiran hari Minggu, 15 November 2026 nanti di Garuda Spark Innovation Hub, rekan-rekan bisa langsung infokan ke saya melalui DM ini atau via WhatsApp di 088227250005 ya.
+
+Terima kasih banyak atas dukungannya!
+
+Faiz - Data Sorcerers`;
+        }
+
         return `Baik kak/teman-teman pengurus ${targetSalutation}, terima kasih banyak atas respon baiknya.
 
 Berikut kami lampirkan tautan berkas resmi kegiatan Sorcery Gathering #11 (SOGA #11):
@@ -3003,6 +3059,19 @@ Terima kasih banyak atas perhatian dan waktu Bapak/Ibu.
 Hormat kami,
 Faiz - Data Sorcerers`;
       } else {
+        const isCyber = item.id === 'BIZ-003' || item.id === 'KOM-006' || (item.nama || '').toLowerCase().includes('cyber');
+        if (isCyber) {
+          return `Halo Kak / rekan-rekan ${item.nama}, selamat siang.
+
+Saya Faiz dari panitia SOGA #11 Data Sorcerers. Izin menindaklanjuti berkas Surat Undangan Resmi (No. ${item.no_surat}) yang telah kami sampaikan sebelumnya.
+
+Apakah rekan-rekan dari ${item.nama} berkenan hadir pada agenda SOGA #11 hari Minggu, 15 November 2026 nanti di Garuda Spark Innovation Hub? Besar harapan kami rekan-rekan dapat hadir dan bersilaturahmi bersama komunitas teknologi di Yogyakarta.
+
+Terima kasih banyak atas waktu dan perhatiannya!
+
+Faiz - Data Sorcerers`;
+        }
+
         return `Halo Kak/Teman-teman pengurus ${item.nama}, selamat siang.
 
 Saya Faiz dari panitia SOGA #11 Data Sorcerers. Izin menindaklanjuti berkas Surat Undangan Resmi (No. ${item.no_surat}) yang telah kami sampaikan sebelumnya.
@@ -3133,7 +3202,33 @@ Terima kasih banyak atas waktu dan perhatian Bapak/Ibu.
 Hormat kami,
 Faiz - Data Sorcerers`;
       } else {
-        // HIMA / Ormawa / Komunitas
+        // Check if Cyber Community (Cyberkarta / Jogja Cyber Security)
+        const isCyber = item.id === 'BIZ-003' || item.id === 'KOM-006' || (item.nama || '').toLowerCase().includes('cyber');
+        if (isCyber) {
+          let intro = '';
+          if (hasIG && item.cp && !item.cp.toLowerCase().includes('pengurus')) {
+            intro = `Saya mendapat arahan dari admin ${igHandle} untuk menghubungi ${cpRef} terkait surat undangan dan untuk menindaklanjuti silaturahmi kita via Instagram (${igHandle}), berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk rekan-rekan dari ${item.nama}:
+https://hima-smoky.vercel.app/surat/${item.id}`;
+          } else if (hasIG) {
+            intro = `Menindaklanjuti komunikasi dan silaturahmi jejaring komunitas via Instagram (${igHandle}), berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk rekan-rekan dari ${item.nama}:
+https://hima-smoky.vercel.app/surat/${item.id}`;
+          } else {
+            intro = `Menindaklanjuti komunikasi dan silaturahmi ekosistem teknologi di Yogyakarta, berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk rekan-rekan dari ${item.nama}:
+https://hima-smoky.vercel.app/surat/${item.id}`;
+          }
+
+          return `Halo ${cpSalutation}, salam kenal, saya Faiz dari tim Data Sorcerers Yogyakarta.
+
+${intro}
+
+Acara diadakan hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub, Yogyakarta. Kehadiran rekan-rekan ${item.nama} bersifat undangan kehormatan (free).
+
+Kami sangat senang sekiranya rekan-rekan dari ${item.nama} berkenan hadir dan bersilaturahmi di agenda ini. Untuk koordinasi kehadiran, silakan langsung balas chat ini ya kak. Terima kasih banyak atas waktunya!
+
+Faiz - Data Sorcerers`;
+        }
+
+        // HIMA / Ormawa / Komunitas Umum
         let intro = '';
         if (hasIG && item.cp && !item.cp.toLowerCase().includes('pengurus')) {
           intro = `Saya mendapat arahan dari admin ${igHandle} untuk menghubungi ${cpRef} terkait surat undangan dan untuk menindaklanjuti komunikasi kita via DM Instagram (${igHandle}), berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari ${item.nama}.`;
