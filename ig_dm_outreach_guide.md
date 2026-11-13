@@ -36,7 +36,7 @@ Dokumen ini memuat daftar lengkap 91 entitas target undangan Sorcery Gathering #
 | HIM-019 | HIMA | HIMATIKA UTY | @himatikauty | [@himatikauty](https://www.instagram.com/himatikauty/) | https://linktr.ee/himatikauty | 6285184453716 | WA | Kontak Tersedia |
 | HIM-020 | HIMA | HIMSI UAA | @himsi_uaa | [@himsi_uaa](https://www.instagram.com/himsi_uaa/) | - | - | IG_DM | Perlu DM IG |
 | HIM-021 | HIMA | HMF ITDA | @hmf_itda | [@hmf_itda](https://www.instagram.com/hmf_itda/) | - | 6285796709096 | WA | HMF ITD Adisutjipto terverifikasi |
-| HIM-022 | HIMA | HMIF AMIKOM | @hmifamikom | [@hmifamikom](https://www.instagram.com/hmifamikom/) | https://linktr.ee/hmifamikom | - | IG_DM | Perlu DM IG |
+| HIM-022 | HIMA | HMIF AMIKOM | @hmifamikom | [@hmifamikom](https://www.instagram.com/hmifamikom/) | https://linktr.ee/hmifamikom | 62882007703324 | WA | Kontak Hotline terverifikasi via bio IG (diarahkan admin @hmifamikom). Cadangan: CP Aspirasi (+62 823-1362-1711) |
 | HIM-023 | HIMA | HMIF UAD | @hmifuad | [@hmifuad](https://www.instagram.com/hmifuad/) | https://linktr.ee/HMIF_UAD | 6285848103476 | WA | Kontak terverifikasi via admin IG: Mas Doni |
 | HIM-024 | HIMA | HMIF UNJAYA | @hmif_unjaya | [@hmif_unjaya](https://www.instagram.com/hmif_unjaya/) | https://linktr.ee/HMIFUNJAYA | - | IG_DM | Perlu DM IG |
 | HIM-025 | HIMA | HMIF USD | @hmif.usd | [@hmif.usd](https://www.instagram.com/hmif.usd/) | - | 628816516325 | WA | Kontak Tersedia |
