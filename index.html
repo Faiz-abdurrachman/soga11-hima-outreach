@@ -2913,12 +2913,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V17_ITHEC_UNISA';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V18_FIX_IG_LINK';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V16_FOLLOWUP', 'SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V17_ITHEC_UNISA', 'SOGA11_DATABASE_V16_FOLLOWUP', 'SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -4032,40 +4032,36 @@ Faiz - Data Sorcerers`;
       const item = currentData.find(d => d.id === id);
       if (!item) return;
 
-      // Otomatis salin teks Follow-Up H-1 yang menyertakan link Google Drive resmi
+      // 1. Salin teks Follow-Up H-1 (Google Drive link resmi) ke clipboard
       const text = generateIGFollowUpText(item);
-      
-      // 1. Salin sinkron langsung via fallback textarea agar gesture browser HP terjaga
       fallbackCopyText(text);
-      
-      // 2. Salin via navigator.clipboard untuk environment modern
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).catch(() => {});
       }
 
-      showToast('Follow-Up H-1 Disalin!', `Teks surat Drive ${item.nama} tersalin. Buka DM IG dan tinggal Paste!`);
+      // 2. Notifikasi Toast
+      showToast('Follow-Up H-1 Disalin!', `Teks surat ${item.nama} sudah tersalin. Tinggal Paste di IG!`);
 
-      // Update status otomatis
-      if (item.status_kirim === 'Draft' || item.status_kirim === 'Siap Kirim') {
-        item.status_kirim = 'Terkirim';
-        saveData();
-        renderTable();
-      }
-
-      // Buka Instagram langsung ke direct message atau profil
+      // 3. Buka profil Instagram target langsung tanpa redirect loop ig.me
       if (item.ig) {
         const handle = item.ig.replace('@', '').trim();
-        // ig.me membuka aplikasi Instagram langsung ke DM chat di perangkat HP
-        const appUrl = `https://ig.me/m/${handle}`;
+        const appUrl = `https://www.instagram.com/${handle}/`;
         const a = document.createElement('a');
         a.href = appUrl;
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
         document.body.appendChild(a);
         a.click();
-        a.remove();
+        setTimeout(() => a.remove(), 100);
       } else {
         showToast('Info', 'Instagram resmi belum tersedia. Silakan hubungi via WhatsApp.');
+      }
+
+      // 4. Update status ke Terkirim jika sebelumnya Draft / Siap Kirim
+      if (item.status_kirim === 'Draft' || item.status_kirim === 'Siap Kirim') {
+        item.status_kirim = 'Terkirim';
+        saveData();
+        renderTable();
       }
     }
 
