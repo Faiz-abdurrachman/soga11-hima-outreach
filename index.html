@@ -83,8 +83,8 @@
 
         <button onclick="openDelegasiModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold transition shadow-2xs">
           <svg class="w-3.5 h-3.5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <span class="hidden sm:inline">Database Delegasi (5)</span>
-          <span class="sm:hidden">Delegasi (5)</span>
+          <span class="hidden sm:inline">Database Delegasi (7)</span>
+          <span class="sm:hidden">Delegasi (7)</span>
         </button>
 
         <button onclick="openQRModal()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 text-xs font-medium transition shadow-2xs">
@@ -144,8 +144,8 @@
           <span>Total Delegasi</span>
           <span class="text-[10px] text-purple-600 font-bold group-hover:underline">Buka List &rarr;</span>
         </p>
-        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">5</p>
-        <p class="text-[10px] text-slate-400 mt-0.5">5 Terdaftar (2 Ormawa)</p>
+        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">7</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">7 Terdaftar (3 Ormawa)</p>
       </div>
     </div>
 
@@ -481,11 +481,11 @@
         <div class="flex items-center gap-3 text-xs flex-wrap">
           <div class="flex items-center gap-1.5">
             <span class="font-medium text-slate-600">Total Delegasi:</span>
-            <span class="font-bold px-2.5 py-0.5 rounded-full bg-purple-600 text-white text-[11px]">5 Orang</span>
+            <span class="font-bold px-2.5 py-0.5 rounded-full bg-purple-600 text-white text-[11px]">7 Orang</span>
           </div>
           <div class="flex items-center gap-1.5">
             <span class="font-medium text-slate-600">HIMA Hadir:</span>
-            <span class="font-bold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[11px]">2 Ormawa</span>
+            <span class="font-bold px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[11px]">3 Ormawa</span>
           </div>
           <span class="text-slate-400 hidden md:inline">•</span>
           <div class="hidden md:flex items-center gap-1 text-slate-500 font-medium">
@@ -679,11 +679,11 @@
     "status_kirim": "Terkirim",
     "tanggal_kirim": "2026-11-11",
     "pic": "",
-    "rsvp": "Menunggu Disposisi",
-    "delegasi": 0,
-    "nama_delegasi": "",
+    "rsvp": "Konfirmasi Hadir (<3 Delegasi)",
+    "delegasi": 2,
+    "nama_delegasi": "1. Ockta Raya Ramadhani\n2. Sofiyatur Rohmah",
     "wa_delegasi": "",
-    "catatan": "Surat diterima, koordinasi internal dengan Kak Raya (+62 853-8263-2798).",
+    "catatan": "Konfirmasi hadir 2 delegasi: 1. Ockta Raya Ramadhani, 2. Sofiyatur Rohmah. Kontak CP: Kak Raya (+62 853-8263-2798)",
     "file_surat": "005-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - HME UNY.pdf"
   },
   {
@@ -2776,12 +2776,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V11_CYBER';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V12_DELEGASI';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -3974,6 +3974,30 @@ Faiz - Data Sorcerers`;
         no_surat: "032/SOGA/SU/DS/XI/2026",
         kontak_wa: "+62 897-7096-931 (via Pengurus HMPSI)",
         status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 6,
+        id_delegasi: "DEL-006",
+        id_entitas: "HIM-005",
+        nama_delegasi: "Ockta Raya Ramadhani",
+        jabatan_peran: "Pengurus / Delegasi 1 (CP Kak Raya)",
+        organisasi: "HME UNY",
+        kampus: "Universitas Negeri Yogyakarta",
+        no_surat: "005/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 853-8263-2798 (Kak Raya)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 7,
+        id_delegasi: "DEL-007",
+        id_entitas: "HIM-005",
+        nama_delegasi: "Sofiyatur Rohmah",
+        jabatan_peran: "Pengurus / Delegasi 2",
+        organisasi: "HME UNY",
+        kampus: "Universitas Negeri Yogyakarta",
+        no_surat: "005/SOGA/SU/DS/XI/2026",
+        kontak_wa: "+62 853-8263-2798 (via Kak Raya)",
+        status_kehadiran: "Konfirmasi Hadir"
       }
     ];
 
@@ -4020,16 +4044,22 @@ Sorcery Gathering #11: "Pahlawan Pendidikan di Era Algoritma"
 Hari, Tanggal: Minggu, 15 November 2026 (08.00 - 12.30 WIB)
 Lokasi: Garuda Spark Innovation Hub, Yogyakarta
 
-Total Terkonfirmasi: 5 Delegasi (2 Ormawa)
+Total Terkonfirmasi: 7 Delegasi (3 Ormawa)
 
-1. HMP Informatika UPY (Universitas PGRI Yogyakarta) - 3 Delegasi
+1. HME UNY (Universitas Negeri Yogyakarta) - 2 Delegasi
+   - Ockta Raya Ramadhani (CP Kak Raya)
+   - Sofiyatur Rohmah
+   Kontak CP: Kak Raya (+62 853-8263-2798)
+   No. Surat: 005/SOGA/SU/DS/XI/2026
+
+2. HMP Informatika UPY (Universitas PGRI Yogyakarta) - 3 Delegasi
    - Fina Aprilia (Bupati HMPI UPY)
    - Revaleona Bondan Laily Ramadhani
    - Muhammad Fatih Alhamaha
    Kontak CP: Kak Fina (+62 882-0034-04737)
    No. Surat: 029/SOGA/SU/DS/XI/2026
 
-2. HMPSI UMBY (Universitas Mercu Buana Yogyakarta) - 2 Delegasi
+3. HMPSI UMBY (Universitas Mercu Buana Yogyakarta) - 2 Delegasi
    - Febi Chelsia Zaharani
    - Kelvin Dita Febriansyah
    Kontak CP: Pengurus HMPSI (+62 897-7096-931)

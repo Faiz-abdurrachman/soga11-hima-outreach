@@ -78,5 +78,37 @@
     "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
     "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
     "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
+  },
+  {
+    "no": 6,
+    "id_delegasi": "DEL-006",
+    "id_entitas": "HIM-005",
+    "nama_delegasi": "Ockta Raya Ramadhani",
+    "jabatan_peran": "Pengurus / Delegasi 1 (CP Kak Raya)",
+    "organisasi": "HME UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "kategori": "HIMA",
+    "no_surat": "005/SOGA/SU/DS/XI/2026",
+    "kontak_wa": "+62 853-8263-2798",
+    "status_kehadiran": "Konfirmasi Hadir",
+    "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
+    "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
+    "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
+  },
+  {
+    "no": 7,
+    "id_delegasi": "DEL-007",
+    "id_entitas": "HIM-005",
+    "nama_delegasi": "Sofiyatur Rohmah",
+    "jabatan_peran": "Pengurus / Delegasi 2",
+    "organisasi": "HME UNY",
+    "kampus": "Universitas Negeri Yogyakarta",
+    "kategori": "HIMA",
+    "no_surat": "005/SOGA/SU/DS/XI/2026",
+    "kontak_wa": "+62 853-8263-2798 (via Kak Raya)",
+    "status_kehadiran": "Konfirmasi Hadir",
+    "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
+    "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
+    "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
   }
 ]
