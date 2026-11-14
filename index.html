@@ -2913,12 +2913,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V18_FIX_IG_LINK';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V19_DIRECT_MSG';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V17_ITHEC_UNISA', 'SOGA11_DATABASE_V16_FOLLOWUP', 'SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V18_FIX_IG_LINK', 'SOGA11_DATABASE_V17_ITHEC_UNISA', 'SOGA11_DATABASE_V16_FOLLOWUP', 'SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -4040,12 +4040,12 @@ Faiz - Data Sorcerers`;
       }
 
       // 2. Notifikasi Toast
-      showToast('Follow-Up H-1 Disalin!', `Teks surat ${item.nama} sudah tersalin. Tinggal Paste di IG!`);
+      showToast('Follow-Up H-1 Disalin!', `Teks surat ${item.nama} sudah tersalin. Membuka DM Instagram...`);
 
-      // 3. Buka profil Instagram target langsung tanpa redirect loop ig.me
+      // 3. Buka langsung ke Message / DM Instagram target (ig.me/m/{handle})
       if (item.ig) {
         const handle = item.ig.replace('@', '').trim();
-        const appUrl = `https://www.instagram.com/${handle}/`;
+        const appUrl = `https://ig.me/m/${handle}`;
         const a = document.createElement('a');
         a.href = appUrl;
         a.target = '_blank';
