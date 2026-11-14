@@ -127,10 +127,13 @@
         <p class="text-[10px] text-slate-400 mt-0.5">Sudah diblast</p>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
-        <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Pending Balasan</p>
+      <div onclick="filterByFollowUp()" class="bg-white border border-amber-200 hover:border-amber-400 rounded-lg p-3.5 shadow-2xs cursor-pointer transition group">
+        <p class="text-[11px] font-medium text-amber-700 uppercase tracking-wider flex items-center justify-between">
+          <span>Perlu Follow-Up</span>
+          <span class="text-[10px] text-amber-600 font-bold group-hover:underline">Filter &rarr;</span>
+        </p>
         <p id="kpi-pending" class="text-2xl font-bold text-amber-600 mt-1">0</p>
-        <p class="text-[10px] text-slate-400 mt-0.5">Menunggu respon</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">H-1 Belum Balas Chat</p>
       </div>
 
       <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
@@ -171,10 +174,11 @@
 
           <select id="filter-status" class="clean-select select-dark-arrow border border-slate-200 rounded-md py-2 pl-3 pr-8 text-xs text-slate-700 bg-white focus:outline-none focus:border-slate-400">
             <option value="ALL">Semua Status Kirim</option>
-            <option value="Draft">Draft</option>
+            <option value="Perlu Follow-Up">Perlu Follow-Up (Belum Balas)</option>
             <option value="Siap Kirim">Siap Kirim</option>
             <option value="Terkirim">Terkirim</option>
             <option value="Pending / Menunggu Balasan">Pending Balasan</option>
+            <option value="Draft">Draft</option>
             <option value="Gagal / Perlu Alternatif">Gagal / Perlu Alternatif</option>
           </select>
 
@@ -195,7 +199,7 @@
     <div class="p-3 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-950 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-2xs">
       <div class="flex items-center gap-2">
         <span class="font-bold px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] tracking-wide uppercase">Fitur Cepat</span>
-        <span>Kirim via HP: Klik tombol <strong>"Salin & Buka IG DM"</strong> untuk copy template pesan dan otomatis buka profil IG. Jika belum ada IG, tombol berubah menjadi <strong>"Kirim via WhatsApp"</strong> langsung!</span>
+        <span>Kirim via HP: Tombol <strong>"Salin Follow-Up & Buka IG"</strong> otomatis meng-copy pesan susulan H-1 (lengkap dengan link surat resmi Google Drive) dan langsung membuka DM Instagram target!</span>
       </div>
       <button onclick="openQRModal()" class="text-indigo-700 hover:text-indigo-900 font-semibold underline text-left shrink-0 text-xs">
         Scan QR HP
@@ -307,9 +311,9 @@
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             Buka Profil Instagram
           </button>
-          <button id="btn-copy-ig-open" onclick="copyCurrentText('text-ig-open', 'Pesan DM Instagram disalin.')" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium transition shadow-xs">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            <span id="btn-copy-ig-text">Salin Pesan Pembuka</span>
+          <button id="btn-copy-ig-open" onclick="quickDM(activeModalItem.id)" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-purple-700 hover:bg-purple-800 text-white text-xs font-semibold transition shadow-xs">
+            <svg class="w-3.5 h-3.5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span id="btn-copy-ig-text">Salin Follow-Up & Buka DM IG</span>
           </button>
         </div>
       </div>
@@ -2909,12 +2913,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V15_GDRIVE';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V16_FOLLOWUP';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -2995,11 +2999,28 @@
       });
     }
 
+    
+    function isNeedFollowUp(item) {
+      if (!item) return false;
+      const isContacted = item.status_kirim === 'Terkirim' || item.status_kirim === 'Pending / Menunggu Balasan' || item.status_kirim === 'Perlu Follow-Up';
+      const isNotDone = item.rsvp === 'Belum Respon' || item.rsvp === 'Diterima / Membaca' || item.rsvp === 'Menunggu Disposisi';
+      return isContacted && isNotDone;
+    }
+
+    function filterByFollowUp() {
+      const el = document.getElementById('filter-status');
+      if (el) {
+        el.value = 'Perlu Follow-Up';
+        renderTable();
+        showToast('Filter Aktif', 'Menampilkan entitas yang perlu difollow-up.');
+      }
+    }
+
     function updateKPIs() {
       document.getElementById('kpi-total').textContent = currentData.length;
       document.getElementById('kpi-siap').textContent = currentData.filter(d => d.status_kirim === 'Siap Kirim').length;
       document.getElementById('kpi-terkirim').textContent = currentData.filter(d => d.status_kirim === 'Terkirim').length;
-      document.getElementById('kpi-pending').textContent = currentData.filter(d => d.status_kirim === 'Pending / Menunggu Balasan').length;
+      document.getElementById('kpi-pending').textContent = currentData.filter(d => isNeedFollowUp(d)).length;
       document.getElementById('kpi-hadir').textContent = currentData.filter(d => (d.rsvp || '').includes('Hadir') && !(d.rsvp || '').includes('Berhalangan')).length;
       
       const totalDel = currentData.reduce((acc, it) => {
@@ -3491,7 +3512,8 @@ Faiz - Data Sorcerers`;
           d.id.toLowerCase().includes(q) || 
           d.no_surat.toLowerCase().includes(q);
         const matchKat = kat === 'ALL' || d.kategori === kat;
-        const matchStat = stat === 'ALL' || d.status_kirim === stat;
+        const matchStat = stat === 'ALL' || 
+          (stat === 'Perlu Follow-Up' ? isNeedFollowUp(d) : d.status_kirim === stat);
         const matchRsvp = rsvp === 'ALL' || d.rsvp === rsvp;
         return matchQ && matchKat && matchStat && matchRsvp;
       });
@@ -3501,6 +3523,7 @@ Faiz - Data Sorcerers`;
         'Draft': 'bg-slate-100 text-slate-800 border border-slate-300 select-dark-arrow font-medium',
         'Siap Kirim': 'bg-blue-600 text-white border border-blue-600 select-white-arrow font-bold shadow-xs',
         'Terkirim': 'bg-emerald-600 text-white border border-emerald-600 select-white-arrow font-bold shadow-xs',
+        'Perlu Follow-Up': 'bg-amber-500 text-white border border-amber-600 select-white-arrow font-bold shadow-xs',
         'Pending / Menunggu Balasan': 'bg-amber-100 text-amber-900 border border-amber-300 select-dark-arrow font-semibold',
         'Gagal / Perlu Alternatif': 'bg-rose-100 text-rose-800 border border-rose-300 select-dark-arrow font-medium'
       };
@@ -3530,7 +3553,15 @@ Faiz - Data Sorcerers`;
 
             <!-- Organisasi -->
             <td class="py-2.5 px-3">
-              <div class="font-medium text-slate-900 text-xs">${item.nama}</div>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-medium text-slate-900 text-xs">${item.nama}</span>
+                ${isNeedFollowUp(item) ? `
+                  <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 shadow-2xs">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    Perlu Follow-Up
+                  </span>
+                ` : ''}
+              </div>
               <div class="text-[11px] text-slate-500">${item.kampus || '-'}</div>
               <div class="text-[10px] text-slate-400 font-mono mt-0.5">${item.no_surat}</div>
               ${item.nama_delegasi ? `
@@ -3583,6 +3614,7 @@ Faiz - Data Sorcerers`;
                 <option class="bg-white text-slate-900 font-normal" value="Draft" ${item.status_kirim === 'Draft' ? 'selected' : ''}>Draft</option>
                 <option class="bg-white text-slate-900 font-normal" value="Siap Kirim" ${item.status_kirim === 'Siap Kirim' ? 'selected' : ''}>Siap Kirim</option>
                 <option class="bg-white text-slate-900 font-normal" value="Terkirim" ${item.status_kirim === 'Terkirim' ? 'selected' : ''}>Terkirim</option>
+                <option class="bg-white text-slate-900 font-normal" value="Perlu Follow-Up" ${item.status_kirim === 'Perlu Follow-Up' ? 'selected' : ''}>Perlu Follow-Up</option>
                 <option class="bg-white text-slate-900 font-normal" value="Pending / Menunggu Balasan" ${item.status_kirim === 'Pending / Menunggu Balasan' ? 'selected' : ''}>Pending</option>
                 <option class="bg-white text-slate-900 font-normal" value="Gagal / Perlu Alternatif" ${item.status_kirim === 'Gagal / Perlu Alternatif' ? 'selected' : ''}>Gagal</option>
               </select>
@@ -3618,10 +3650,10 @@ Faiz - Data Sorcerers`;
             <td class="py-2.5 px-3 text-center">
               <div class="flex items-center justify-center gap-1">
                 ${hasIG ? `
-                  <!-- Tombol Cepat Salin & DM IG -->
-                  <button onclick="quickDM('${item.id}')" title="Salin Template DM & Buka IG (Otomatis Tandai Terkirim)" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-600 hover:bg-purple-700 text-white font-medium text-[11px] transition shadow-2xs">
-                    <svg class="w-3.5 h-3.5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    <span>DM</span>
+                  <!-- Tombol Cepat Salin & Follow-Up IG -->
+                  <button onclick="quickDM('${item.id}')" title="Salin Teks Follow-Up H-1 & Buka DM IG" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-purple-700 hover:bg-purple-800 text-white font-semibold text-[11px] transition shadow-2xs">
+                    <svg class="w-3.5 h-3.5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span>Follow-Up IG</span>
                   </button>
                 ` : (hasWA ? `
                   <!-- Tombol Cepat WA Langsung jika Belum Ada IG -->
@@ -3678,6 +3710,16 @@ Faiz - Data Sorcerers`;
                   <div class="flex items-center gap-1.5 flex-wrap">
                     <span class="text-[10px] font-mono text-slate-400">#${idx + 1} (${item.id})</span>
                     <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">${item.kategori}</span>
+                    ${isNeedFollowUp(item) ? `
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 shadow-2xs">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                        Perlu Follow-Up H-1
+                      </span>
+                    ` : ((item.rsvp || '').includes('Hadir') ? `
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 shadow-2xs">
+                        Hadir
+                      </span>
+                    ` : '')}
                     ${item.kampus ? `<span class="text-[11px] text-slate-500 font-medium">• ${item.kampus}</span>` : ''}
                   </div>
                   <h4 class="font-bold text-slate-900 text-sm mt-1 leading-snug">${item.nama}</h4>
@@ -3731,6 +3773,7 @@ Faiz - Data Sorcerers`;
                     <option class="bg-white text-slate-900 font-normal" value="Draft" ${item.status_kirim === 'Draft' ? 'selected' : ''}>Draft</option>
                     <option class="bg-white text-slate-900 font-normal" value="Siap Kirim" ${item.status_kirim === 'Siap Kirim' ? 'selected' : ''}>Siap Kirim</option>
                     <option class="bg-white text-slate-900 font-normal" value="Terkirim" ${item.status_kirim === 'Terkirim' ? 'selected' : ''}>Terkirim</option>
+                    <option class="bg-white text-slate-900 font-normal" value="Perlu Follow-Up" ${item.status_kirim === 'Perlu Follow-Up' ? 'selected' : ''}>Perlu Follow-Up</option>
                     <option class="bg-white text-slate-900 font-normal" value="Pending / Menunggu Balasan" ${item.status_kirim === 'Pending / Menunggu Balasan' ? 'selected' : ''}>Pending</option>
                     <option class="bg-white text-slate-900 font-normal" value="Gagal / Perlu Alternatif" ${item.status_kirim === 'Gagal / Perlu Alternatif' ? 'selected' : ''}>Gagal</option>
                   </select>
@@ -3778,10 +3821,10 @@ Faiz - Data Sorcerers`;
               <!-- RAPID OUTREACH ACTION BUTTONS (BIG TOUCH TARGETS) -->
               <div class="pt-2 flex items-center gap-2">
                 ${hasIG ? `
-                  <!-- PRIMARY CTA: COPY & OPEN IG APP -->
-                  <button onclick="quickDM('${item.id}')" class="flex-1 py-2.5 px-3 bg-slate-900 active:bg-slate-800 text-white font-semibold text-xs rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition">
-                    <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                    <span>Salin & Buka IG DM</span>
+                  <!-- PRIMARY CTA: COPY FOLLOW-UP & OPEN IG APP DIRECTLY -->
+                  <button onclick="quickDM('${item.id}')" class="flex-1 py-2.5 px-3 bg-purple-700 active:bg-purple-800 hover:bg-purple-800 text-white font-bold text-xs rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition">
+                    <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    <span>Salin Follow-Up & Buka IG</span>
                   </button>
 
                   <!-- WA CTA -->
@@ -3869,9 +3912,9 @@ Faiz - Data Sorcerers`;
       const pdfLinkEl = document.getElementById('msg-modal-pdf-link');
       if (pdfLinkEl) pdfLinkEl.href = '/surat/' + item.id;
 
-      document.getElementById('text-ig-open').value = generateIGOpenText(item);
       selectIGReplySubtype('dm');
       selectWASubtype('first');
+      selectIGOpenSubtype('followup');
 
       const noticeEl = document.getElementById('msg-modal-notice');
       const waStatusEl = document.getElementById('msg-wa-status');
@@ -3989,32 +4032,31 @@ Faiz - Data Sorcerers`;
       const item = currentData.find(d => d.id === id);
       if (!item) return;
 
-      const text = generateIGOpenText(item);
+      // Otomatis salin teks Follow-Up H-1 yang menyertakan link Google Drive resmi
+      const text = generateIGFollowUpText(item);
       
-      // Copy text to clipboard
+      // 1. Salin sinkron langsung via fallback textarea agar gesture browser HP terjaga
+      fallbackCopyText(text);
+      
+      // 2. Salin via navigator.clipboard untuk environment modern
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
-          showToast('Pesan Disalin!', `DM untuk ${item.nama} tersalin. Tinggal Paste di IG!`);
-        }).catch(() => {
-          fallbackCopyText(text);
-          showToast('Pesan Disalin!', `DM untuk ${item.nama} tersalin. Tinggal Paste di IG!`);
-        });
-      } else {
-        fallbackCopyText(text);
-        showToast('Pesan Disalin!', `DM untuk ${item.nama} tersalin. Tinggal Paste di IG!`);
+        navigator.clipboard.writeText(text).catch(() => {});
       }
 
-      // Automatically update status to Terkirim
-      if (item.status_kirim !== 'Terkirim') {
+      showToast('Follow-Up H-1 Disalin!', `Teks surat Drive ${item.nama} tersalin. Buka DM IG dan tinggal Paste!`);
+
+      // Update status otomatis
+      if (item.status_kirim === 'Draft' || item.status_kirim === 'Siap Kirim') {
         item.status_kirim = 'Terkirim';
         saveData();
         renderTable();
       }
 
-      // Open Instagram app directly via deep link
+      // Buka Instagram langsung ke direct message atau profil
       if (item.ig) {
         const handle = item.ig.replace('@', '').trim();
-        const appUrl = `https://instagram.com/_u/${handle}`;
+        // ig.me membuka aplikasi Instagram langsung ke DM chat di perangkat HP
+        const appUrl = `https://ig.me/m/${handle}`;
         const a = document.createElement('a');
         a.href = appUrl;
         a.target = '_blank';
@@ -4023,7 +4065,7 @@ Faiz - Data Sorcerers`;
         a.click();
         a.remove();
       } else {
-        showToast('Info', 'Instagram resmi HIMA belum tersedia. Gunakan kontak WhatsApp.');
+        showToast('Info', 'Instagram resmi belum tersedia. Silakan hubungi via WhatsApp.');
       }
     }
 
