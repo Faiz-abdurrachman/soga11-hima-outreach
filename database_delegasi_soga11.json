@@ -110,5 +110,53 @@
     "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
     "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
     "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
+  },
+  {
+    "no": 8,
+    "id_delegasi": "DEL-008",
+    "id_entitas": "HIM-042",
+    "nama_delegasi": "Huzifa Mohamed Ali",
+    "jabatan_peran": "Pengurus / Delegasi 1",
+    "organisasi": "ITHeC UNISA (ITECH UNISA)",
+    "kampus": "Universitas Aisyiyah Yogyakarta",
+    "kategori": "HIMA",
+    "no_surat": "042/SOGA/SU/DS/XI/2026",
+    "kontak_wa": "@itech_unisa (via IG HIMA)",
+    "status_kehadiran": "Konfirmasi Hadir",
+    "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
+    "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
+    "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
+  },
+  {
+    "no": 9,
+    "id_delegasi": "DEL-009",
+    "id_entitas": "HIM-042",
+    "nama_delegasi": "Suci Umi Kholifah",
+    "jabatan_peran": "Pengurus / Delegasi 2",
+    "organisasi": "ITHeC UNISA (ITECH UNISA)",
+    "kampus": "Universitas Aisyiyah Yogyakarta",
+    "kategori": "HIMA",
+    "no_surat": "042/SOGA/SU/DS/XI/2026",
+    "kontak_wa": "@itech_unisa (via IG HIMA)",
+    "status_kehadiran": "Konfirmasi Hadir",
+    "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
+    "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
+    "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
+  },
+  {
+    "no": 10,
+    "id_delegasi": "DEL-010",
+    "id_entitas": "HIM-042",
+    "nama_delegasi": "Lutfhia Revi Nafisa",
+    "jabatan_peran": "Pengurus / Delegasi 3",
+    "organisasi": "ITHeC UNISA (ITECH UNISA)",
+    "kampus": "Universitas Aisyiyah Yogyakarta",
+    "kategori": "HIMA",
+    "no_surat": "042/SOGA/SU/DS/XI/2026",
+    "kontak_wa": "@itech_unisa (via IG HIMA)",
+    "status_kehadiran": "Konfirmasi Hadir",
+    "sesi_acara": "Minggu, 15 November 2026 (08.00 - 12.30 WIB)",
+    "lokasi": "Garuda Spark Innovation Hub, Yogyakarta",
+    "status_checkin": "Belum Registrasi Ulang (Menunggu Hari-H)"
   }
 ]

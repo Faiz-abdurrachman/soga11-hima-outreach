@@ -83,8 +83,8 @@
 
         <button onclick="openDelegasiModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold transition shadow-2xs">
           <svg class="w-3.5 h-3.5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <span class="hidden sm:inline">Database Delegasi (7)</span>
-          <span class="sm:hidden">Delegasi (7)</span>
+          <span class="hidden sm:inline">Database Delegasi (10)</span>
+          <span class="sm:hidden">Delegasi (10)</span>
         </button>
 
         <button onclick="openQRModal()" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 text-xs font-medium transition shadow-2xs">
@@ -147,8 +147,8 @@
           <span>Total Delegasi</span>
           <span class="text-[10px] text-purple-600 font-bold group-hover:underline">Buka List &rarr;</span>
         </p>
-        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">7</p>
-        <p class="text-[10px] text-slate-400 mt-0.5">7 Terdaftar (3 Ormawa)</p>
+        <p id="kpi-delegasi" class="text-2xl font-bold text-slate-900 mt-1">10</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">10 Terdaftar (4 Ormawa)</p>
       </div>
     </div>
 
@@ -1628,11 +1628,11 @@
     "status_kirim": "Terkirim",
     "tanggal_kirim": "2026-11-11",
     "pic": "",
-    "rsvp": "Belum Respon",
-    "delegasi": 0,
-    "nama_delegasi": "",
+    "rsvp": "Konfirmasi Hadir (3 Delegasi)",
+    "delegasi": 3,
+    "nama_delegasi": "1. Huzifa Mohamed Ali\n2. Suci Umi Kholifah\n3. Lutfhia Revi Nafisa",
     "wa_delegasi": "",
-    "catatan": "Perlu DM IG",
+    "catatan": "Konfirmasi hadir 3 delegasi: 1. Huzifa Mohamed Ali, 2. Suci Umi Kholifah, 3. Lutfhia Revi Nafisa. Kontak IG: @itech_unisa",
     "file_surat": "042-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - ITECH UNISA.pdf",
     "drive_url": "https://drive.google.com/file/d/1BygT0Ia3Vat804G4YStYurPaAP34acva/view?usp=sharing"
   },
@@ -2913,12 +2913,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V16_FOLLOWUP';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V17_ITHEC_UNISA';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V16_FOLLOWUP', 'SOGA11_DATABASE_V15_GDRIVE', 'SOGA11_DATABASE_V14_CLEAN', 'SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -4264,6 +4264,42 @@ Faiz - Data Sorcerers`;
         kampus: "Universitas Negeri Yogyakarta",
         no_surat: "005/SOGA/SU/DS/XI/2026",
         kontak_wa: "+62 853-8263-2798 (via Kak Raya)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 8,
+        id_delegasi: "DEL-008",
+        id_entitas: "HIM-042",
+        nama_delegasi: "Huzifa Mohamed Ali",
+        jabatan_peran: "Pengurus / Delegasi 1",
+        organisasi: "ITHeC UNISA",
+        kampus: "Universitas Aisyiyah Yogyakarta",
+        no_surat: "042/SOGA/SU/DS/XI/2026",
+        kontak_wa: "@itech_unisa (via IG HIMA)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 9,
+        id_delegasi: "DEL-009",
+        id_entitas: "HIM-042",
+        nama_delegasi: "Suci Umi Kholifah",
+        jabatan_peran: "Pengurus / Delegasi 2",
+        organisasi: "ITHeC UNISA",
+        kampus: "Universitas Aisyiyah Yogyakarta",
+        no_surat: "042/SOGA/SU/DS/XI/2026",
+        kontak_wa: "@itech_unisa (via IG HIMA)",
+        status_kehadiran: "Konfirmasi Hadir"
+      },
+      {
+        no: 10,
+        id_delegasi: "DEL-010",
+        id_entitas: "HIM-042",
+        nama_delegasi: "Lutfhia Revi Nafisa",
+        jabatan_peran: "Pengurus / Delegasi 3",
+        organisasi: "ITHeC UNISA",
+        kampus: "Universitas Aisyiyah Yogyakarta",
+        no_surat: "042/SOGA/SU/DS/XI/2026",
+        kontak_wa: "@itech_unisa (via IG HIMA)",
         status_kehadiran: "Konfirmasi Hadir"
       }
     ];
