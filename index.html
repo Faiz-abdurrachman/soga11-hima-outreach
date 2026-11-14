@@ -2816,12 +2816,12 @@
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V13_PERMIKOMNAS';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V14_CLEAN';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V13_PERMIKOMNAS', 'SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -2972,14 +2972,12 @@ Faiz - Data Sorcerers`;
       } else {
         return `Halo kak / teman-teman pengurus ${targetSalutation}, izin follow-up pesan di atas ya kak.
 
-Mengingat acara Sorcery Gathering #11 akan diselenggarakan besok pagi (Minggu, 15 November 2026 pukul 08.00 WIB di Garuda Spark Innovation Hub), berikut kami lampirkan langsung berkas resminya:
+Mengingat acara Sorcery Gathering #11 akan diselenggarakan besok pagi (Minggu, 15 November 2026 pukul 08.00 WIB di Garuda Spark Innovation Hub), berkas Surat Undangan Resmi (No. ${item.no_surat}) dapat diakses langsung melalui tautan berikut:
+${suratUrl}
 
-- Surat Undangan Resmi: ${suratUrl}
-- Term of Reference (TOR): ${torUrl}
+Undangan ini bersifat kehormatan dan free untuk perwakilan pengurus ${item.nama}.
 
-Undangan ini bersifat kehormatan dan free untuk delegasi pengurus ${item.nama} (maksimal 3 orang).
-
-Sekiranya dari rekan-rekan pengurus ada yang bisa didelegasikan untuk hadir besok, boleh langsung kirimkan nama dan nomor WA perwakilannya di DM ini ya kak agar bisa kami siapkan di meja registrasi dan ID Card tamu.
+Sekiranya dari rekan-rekan pengurus ada yang berkenan hadir besok pagi, mohon dapat mengabari kami nama perwakilannya melalui DM ini ya kak.
 
 Atau rekan-rekan juga bisa langsung mengabari saya via WhatsApp di 088227250005.
 
@@ -3135,13 +3133,12 @@ Faiz - Data Sorcerers`;
 
         return `Baik kak/teman-teman pengurus ${targetSalutation}, terima kasih banyak atas respon baiknya.
 
-Berikut kami lampirkan tautan berkas resmi kegiatan Sorcery Gathering #11 (SOGA #11):
-- Surat Undangan Resmi (No. ${item.no_surat}): ${suratUrl}
-- Term of Reference (TOR) Acara: ${torUrl}
+Berikut kami lampirkan tautan berkas Surat Undangan Resmi (No. ${item.no_surat}) kegiatan Sorcery Gathering #11 (SOGA #11):
+${suratUrl}
 
-Undangan ini merupakan undangan kehormatan bagi perwakilan pengurus/anggota ${item.nama} dengan kuota maksimal 3 orang delegasi (free).
+Undangan ini merupakan undangan kehormatan bagi perwakilan pengurus/anggota ${item.nama} (free).
 
-Untuk konfirmasi nama perwakilan delegasi yang akan hadir pada Minggu, 15 November 2026 di Garuda Spark Innovation Hub, rekan-rekan bisa langsung infokan ke saya melalui DM ini atau via WhatsApp di 088227250005.
+Untuk konfirmasi nama perwakilan yang akan hadir pada Minggu, 15 November 2026 di Garuda Spark Innovation Hub, rekan-rekan bisa langsung infokan ke saya melalui DM ini atau via WhatsApp di 088227250005 ya.
 
 Terima kasih banyak atas dukungannya!
 
@@ -3214,7 +3211,7 @@ Faiz - Data Sorcerers`;
 
 Saya Faiz dari panitia SOGA #11 Data Sorcerers. Izin menindaklanjuti berkas Surat Undangan Resmi (No. ${item.no_surat}) yang telah kami sampaikan sebelumnya.
 
-Apakah surat undangannya sudah sempat didisposisikan kepada rekan-rekan pengurus? Sekiranya sudah ada nama perwakilan delegasi (maksimal 3 orang) yang akan hadir pada Minggu, 15 November 2026 nanti di Garuda Spark Innovation Hub, mohon dapat diinfokan kepada kami ya kak agar dapat kami masukkan ke dalam daftar registrasi tamu delegasi.
+Mengingat agenda SOGA #11 diadakan besok pagi (Minggu, 15 November 2026 di Garuda Spark Innovation Hub), sekiranya ada rekan pengurus yang berkenan hadir, mohon dapat mengabari kami nama perwakilannya melalui chat ini ya kak.
 
 Terima kasih banyak atas waktu dan bantuannya!
 
@@ -3369,20 +3366,27 @@ Faiz - Data Sorcerers`;
         // HIMA / Ormawa / Komunitas Umum
         let intro = '';
         if (hasIG && item.cp && !item.cp.toLowerCase().includes('pengurus')) {
-          intro = `Saya mendapat arahan dari admin ${igHandle} untuk menghubungi ${cpRef} terkait surat undangan dan untuk menindaklanjuti komunikasi kita via DM Instagram (${igHandle}), berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari ${item.nama}.`;
+          intro = `Saya mendapat arahan dari admin ${igHandle} untuk menghubungi ${cpRef} terkait surat undangan resmi. Menindaklanjuti komunikasi kita via DM Instagram (${igHandle}), bersama pesan ini kami lampirkan berkas Surat Undangan Resmi (No. ${item.no_surat}) untuk rekan-rekan pengurus dari ${item.nama}.`;
         } else if (hasIG) {
-          intro = `Menindaklanjuti komunikasi kita via DM Instagram (${igHandle}), berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari ${item.nama}.`;
+          intro = `Menindaklanjuti komunikasi kita via DM Instagram (${igHandle}), bersama pesan ini kami lampirkan berkas Surat Undangan Resmi (No. ${item.no_surat}) untuk rekan-rekan pengurus dari ${item.nama}.`;
         } else {
-          intro = `Bersama pesan ini, berikut saya sampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) dan TOR Acara Sorcery Gathering #11 (SOGA #11) untuk perwakilan delegasi dari ${item.nama}.`;
+          intro = `Bersama pesan ini, kami menyampaikan berkas Surat Undangan Resmi (No. ${item.no_surat}) kepada rekan-rekan pengurus dari ${item.nama}.`;
         }
 
         return `Halo ${cpSalutation}, salam kenal, saya Faiz dari tim Data Sorcerers Yogyakarta.
 
 ${intro}
 
-Acara diadakan hari Minggu, 15 November 2026 di Garuda Spark Innovation Hub. Kehadiran delegasi bersifat undangan kehormatan (free).
+Agenda seminar SOGA #11 diselenggarakan pada:
+- Hari, Tanggal: Minggu, 15 November 2026 (08.00 - 12.30 WIB)
+- Lokasi: Garuda Spark Innovation Hub, Yogyakarta
+- Tema: Pahlawan Pendidikan di Era Algoritma: Menjaga Karakter, Adab, dan Daya Juang di Tengah Kemudahan Teknologi
 
-Untuk konfirmasi nama delegasi yang akan hadir, Kakak/teman-teman bisa langsung infokan ke saya via chat ini ya. Terima kasih banyak atas bantuannya!
+Kehadiran perwakilan bersifat undangan kehormatan (free). Berkas surat undangan resmi telah kami lampirkan bersama pesan ini.
+
+Sekiranya dari rekan-rekan pengurus ada yang berkenan hadir besok pagi, mohon dapat mengabari kami nama perwakilannya melalui chat ini ya kak.
+
+Terima kasih banyak atas perhatian dan waktu rekan-rekan!
 
 Faiz - Data Sorcerers`;
       }
