@@ -111,8 +111,8 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
       <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
         <p class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Total Target</p>
-        <p id="kpi-total" class="text-2xl font-bold text-slate-900 mt-1">91</p>
-        <p class="text-[10px] text-slate-400 mt-0.5">51 HIMA • 26 Media • 14 Lain</p>
+        <p id="kpi-total" class="text-2xl font-bold text-slate-900 mt-1">93</p>
+        <p class="text-[10px] text-slate-400 mt-0.5">51 HIMA • 26 Media • 16 Lain</p>
       </div>
 
       <div class="bg-white border border-slate-200 rounded-lg p-3.5 shadow-2xs">
@@ -161,11 +161,11 @@
         <!-- Filter Dropdowns -->
         <div class="flex flex-wrap items-center gap-2">
           <select id="filter-kategori" class="clean-select select-dark-arrow border border-slate-200 rounded-md py-2 pl-3 pr-8 text-xs text-slate-700 bg-white focus:outline-none focus:border-slate-400">
-            <option value="ALL">Semua Kategori (91)</option>
+            <option value="ALL">Semua Kategori (93)</option>
             <option value="HIMA">HIMA & Ormawa (51)</option>
             <option value="Media Partner">Media Partner (26)</option>
             <option value="Instansi Pemerintah">Instansi Pemerintah (6)</option>
-            <option value="Komunitas">Komunitas (5)</option>
+            <option value="Komunitas">Komunitas (7)</option>
             <option value="Inkubator & Bisnis">Inkubator & Bisnis (3)</option>
           </select>
 
@@ -279,21 +279,37 @@
         </button>
       </div>
 
-      <!-- Tab Content 1: Pembuka IG DM -->
+      <!-- Tab Content 1: DM Instagram (Pembuka & Follow-Up H-1) -->
       <div id="msg-tab-1" class="p-5 space-y-3">
-        <div class="flex items-center justify-between text-xs text-slate-500">
-          <span>Kirim pesan ini ke DM Instagram resmi himpunan:</span>
+        <div class="flex items-center justify-between text-xs text-slate-600">
+          <span class="font-semibold text-slate-800">Pilih Tahap DM Instagram:</span>
           <span class="text-slate-400 text-[11px]">Tanpa emoji • Bersih • Sesuai TOR</span>
         </div>
+
+        <!-- Sub-tabs for Tab 1 -->
+        <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-lg text-xs">
+          <button id="subtab-ig-first" type="button" onclick="selectIGOpenSubtype('first')" class="py-2 px-3 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center">
+            1. Chat Pembuka (Pertama)
+          </button>
+          <button id="subtab-ig-followup" type="button" onclick="selectIGOpenSubtype('followup')" class="py-2 px-3 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center">
+            2. Follow-Up H-1 (Belum Dibalas)
+          </button>
+        </div>
+
+        <p id="msg-ig-open-desc" class="text-[11px] text-slate-500 leading-normal">
+          Kirim pesan ini saat pertama kali menghubungi DM Instagram himpunan/organisasi.
+        </p>
+
         <textarea id="text-ig-open" rows="8" readonly class="w-full bg-slate-50 border border-slate-200 rounded-md p-3 text-xs text-slate-800 font-sans focus:outline-none focus:border-slate-400 leading-relaxed"></textarea>
+        
         <div class="flex items-center justify-between pt-1">
           <button id="btn-open-ig-direct" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-medium transition">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             Buka Profil Instagram
           </button>
-          <button onclick="copyCurrentText('text-ig-open', 'Pesan DM Instagram disalin.')" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium transition shadow-xs">
+          <button id="btn-copy-ig-open" onclick="copyCurrentText('text-ig-open', 'Pesan DM Instagram disalin.')" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium transition shadow-xs">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            Salin Pesan IG
+            <span id="btn-copy-ig-text">Salin Pesan Pembuka</span>
           </button>
         </div>
       </div>
@@ -2773,15 +2789,39 @@
     "wa_delegasi": "",
     "catatan": "Komunitas independen pegiat cyber security Yogyakarta. Kontak: Kak Alvin (Partnership) +62 859-7484-1341. Telegram: @jogjacybersec. Format undangan khusus: tanpa kuota delegasi.",
     "file_surat": "066-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Jogja Cyber Security.pdf"
+  },
+  {
+    "no": 93,
+    "id": "KOM-007",
+    "kategori": "Komunitas",
+    "nama": "Permikomnas Yogyakarta",
+    "kampus": "Korwil VIII DI Yogyakarta",
+    "ig": "@permikomnas_yogyakarta",
+    "url_ig": "https://www.instagram.com/permikomnas_yogyakarta/",
+    "bio_link": "https://linktr.ee/permikomnas_yogyakarta",
+    "email": "",
+    "wa": "6287781348936",
+    "cp": "Pengurus Permikomnas YK",
+    "kanal": "WA",
+    "no_surat": "067/SOGA/SU/DS/XI/2026",
+    "status_kirim": "Siap Kirim",
+    "tanggal_kirim": "2026-11-14",
+    "pic": "Faiz",
+    "rsvp": "Belum Respon",
+    "delegasi": 0,
+    "nama_delegasi": "",
+    "wa_delegasi": "",
+    "catatan": "Perhimpunan Mahasiswa Informatika dan Komputer Nasional (Wilayah VIII DIY). CP Permikomnas: +62 877-8134-8936, CP Partnership: +62 813-5027-5116.",
+    "file_surat": "067-SOGA-SU-DS-XI-2026 - Surat Undangan SOGA 11 - Permikomnas Yogyakarta.pdf"
   }
 ];
     let currentData = [];
-    const STORAGE_KEY = 'SOGA11_DATABASE_V12_DELEGASI';
+    const STORAGE_KEY = 'SOGA11_DATABASE_V13_PERMIKOMNAS';
     let activeModalItem = null;
 
     function initData() {
       // Purge all old cache keys completely
-      ['SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
+      ['SOGA11_DATABASE_V12_DELEGASI', 'SOGA11_DATABASE_V11_CYBER', 'SOGA11_DATABASE_V10_DELEGASI', 'SOGA11_DATABASE_V9_LIVE', 'SOGA11_DATABASE_V8_LIVE', 'SOGA11_DATABASE_V7_VERIFIED', 'SOGA11_DATABASE_V6_ACCURATE', 'SOGA11_DATABASE_V5_PRECISE', 'SOGA11_DATABASE_CLEAN_V2', 'SOGA11_DATABASE_CLEAN', 'SOGA11_DATABASE'].forEach(k => {
         try { localStorage.removeItem(k); } catch(e) {}
       });
 
@@ -2874,6 +2914,104 @@
         return acc + (isHadir ? (parseInt(it.delegasi) || 0) : 0);
       }, 0);
       document.getElementById('kpi-delegasi').textContent = totalDel;
+    }
+
+
+    function generateIGFollowUpText(item) {
+      const isMedia = item.kategori === 'Media Partner';
+      const isGov = item.kategori === 'Instansi Pemerintah';
+      const isCyber = item.id === 'BIZ-003' || item.id === 'KOM-006' || (item.nama || '').toLowerCase().includes('cyber');
+      const cleanHandle = item.ig ? `@${item.ig.replace('@', '').trim()}` : '';
+      const targetSalutation = cleanHandle || item.nama;
+      const publicBase = getPublicHost();
+      const suratUrl = `${publicBase}/surat/${item.id}`;
+      const torUrl = `${publicBase}/tor`;
+
+      if (isMedia) {
+        return `Halo rekan-rekan tim ${targetSalutation}, salam kenal kembali, saya Faiz dari panitia SOGA #11 Data Sorcerers.
+
+Izin menindaklanjuti pesan kami sebelumnya ya kak. Mengingat agenda SOGA #11 akan diselenggarakan besok pagi (Minggu, 15 November 2026 di Garuda Spark Innovation Hub), berikut kami lampirkan langsung berkas resmi kerja sama media partner:
+
+- Surat Permohonan Kerja Sama: ${suratUrl}
+- Term of Reference (TOR): ${torUrl}
+
+Besar harapan kami dapat berkolaborasi bersama ${item.nama} dalam publikasi kegiatan ini. Konfirmasi kerja sama dapat disampaikan via DM ini atau melalui WhatsApp di 088227250005.
+
+Terima kasih banyak atas waktu dan perhatiannya!
+
+Faiz - Data Sorcerers`;
+      } else if (isGov) {
+        return `Selamat siang Bapak/Ibu jajaran pimpinan ${targetSalutation}, salam hormat, saya Faiz dari panitia SOGA #11 Data Sorcerers.
+
+Izin menindaklanjuti pesan permohonan kami sebelumnya. Mengingat kegiatan seminar akan diselenggarakan besok pagi (Minggu, 15 November 2026 pukul 08.00 WIB di Garuda Spark Innovation Hub), berikut kami sampaikan langsung berkas undangan resmi:
+
+- Surat Undangan Resmi: ${suratUrl}
+- Term of Reference (TOR): ${torUrl}
+
+Kami sangat mengharapkan kehadiran perwakilan dari ${item.nama} sebagai Tamu Kehormatan. Konfirmasi kehadiran dapat disampaikan via pesan ini atau WhatsApp narahubung di 088227250005.
+
+Atas perhatian Bapak/Ibu, kami ucapkan terima kasih.
+
+Hormat kami,
+Faiz - Data Sorcerers`;
+      } else if (isCyber) {
+        return `Halo rekan-rekan ${targetSalutation}, izin menindaklanjuti pesan di atas ya.
+
+Mengingat agenda SOGA #11 akan dilaksanakan besok pagi (Minggu, 15 November 2026 di Garuda Spark Innovation Hub), berkas undangan resmi dan TOR acaranya kami lampirkan langsung di sini ya:
+
+- Surat Undangan Resmi: ${suratUrl}
+- Term of Reference (TOR): ${torUrl}
+
+Kehadiran rekan-rekan bersifat undangan kehormatan (free). Kami sangat senang sekiranya rekan-rekan berkenan hadir dan bersilaturahmi besok pagi.
+
+Jika rekan-rekan berkenan hadir, boleh langsung infokan ke kami lewat DM ini atau via WhatsApp di 088227250005 ya.
+
+Terima kasih banyak atas dukungannya!
+
+Faiz - Data Sorcerers`;
+      } else {
+        return `Halo kak / teman-teman pengurus ${targetSalutation}, izin follow-up pesan di atas ya kak.
+
+Mengingat acara Sorcery Gathering #11 akan diselenggarakan besok pagi (Minggu, 15 November 2026 pukul 08.00 WIB di Garuda Spark Innovation Hub), berikut kami lampirkan langsung berkas resminya:
+
+- Surat Undangan Resmi: ${suratUrl}
+- Term of Reference (TOR): ${torUrl}
+
+Undangan ini bersifat kehormatan dan free untuk delegasi pengurus ${item.nama} (maksimal 3 orang).
+
+Sekiranya dari rekan-rekan pengurus ada yang bisa didelegasikan untuk hadir besok, boleh langsung kirimkan nama dan nomor WA perwakilannya di DM ini ya kak agar bisa kami siapkan di meja registrasi dan ID Card tamu.
+
+Atau rekan-rekan juga bisa langsung mengabari saya via WhatsApp di 088227250005.
+
+Terima kasih banyak atas perhatian dan waktunya kak!
+
+Faiz - Data Sorcerers`;
+      }
+    }
+
+    let currentIGOpenSubtype = 'first';
+
+    function selectIGOpenSubtype(subtype) {
+      currentIGOpenSubtype = subtype;
+      const btnFirst = document.getElementById('subtab-ig-first');
+      const btnFollowup = document.getElementById('subtab-ig-followup');
+      const descEl = document.getElementById('msg-ig-open-desc');
+      const textarea = document.getElementById('text-ig-open');
+      const copyBtnText = document.getElementById('btn-copy-ig-text');
+
+      if (subtype === 'first') {
+        if (btnFirst) btnFirst.className = 'py-2 px-3 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center';
+        if (btnFollowup) btnFollowup.className = 'py-2 px-3 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center';
+        if (descEl) descEl.textContent = 'Kirim pesan ini saat pertama kali menghubungi DM Instagram himpunan/organisasi.';
+        if (copyBtnText) copyBtnText.textContent = 'Salin Pesan Pembuka';
+        if (textarea && activeModalItem) textarea.value = generateIGOpenText(activeModalItem);
+      } else {
+        if (btnFollowup) btnFollowup.className = 'py-2 px-3 rounded-md font-semibold text-slate-900 bg-white shadow-xs transition text-center';
+        if (btnFirst) btnFirst.className = 'py-2 px-3 rounded-md font-medium text-slate-500 hover:text-slate-800 transition text-center';
+        if (descEl) descEl.textContent = 'Kirim pesan susulan ini di DM Instagram jika pesan pembuka belum dibalas (sudah menyertakan tautan Surat PDF resmi & TOR):';
+        if (copyBtnText) copyBtnText.textContent = 'Salin Follow-Up IG';
+        if (textarea && activeModalItem) textarea.value = generateIGFollowUpText(activeModalItem);
+      }
     }
 
     // GENERATE PRECISE OUTREACH MESSAGES (RINGKAS, ELEGAN, SESUAI NAMA IG, TANPA EMOJI)
